@@ -1,0 +1,50 @@
+@import './variables';
+@import './mixins.scss';
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: $dark;
+    font-size: $font-size;
+    font-family: $font-text;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    @include baseOffset;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    text-align: center;
+}
+
+.sidebar {
+    @include baseOffset;
+    grid-area: 2 / 1 / 3 / 3;
+}
+
+.demo {
+    @include baseOffset;
+    grid-area: 2 / 3 / 3 / 7;
+}
+
+.header {
+    grid-area: 1 / 1 / 2 / 7;
+}
+
+.preloader {
+    @include baseOffset;
+    grid-area: 2 / 1 / 5 / 7;
+}
+
+.footer {
+    grid-column: 1 / 7;
+}

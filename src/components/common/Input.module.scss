@@ -1,0 +1,42 @@
+@import '../../styles/variables';
+
+.slider {
+    -webkit-appearance: none;
+    height: 8px;
+    margin: $offset-basic * 2 $offset-basic;
+    background: $orange;
+    border-radius: $border-radius-default;
+    outline: none;
+    opacity: 0.9;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: $light;
+    cursor: pointer;
+}
+
+.number {
+    margin: $offset-basic;
+    width: 48px;
+    height: 32px;
+    border-radius: $border-radius-default;
+    background: $orange;
+    color: $light;
+    font-weight: bolder;
+}
+
+.text {
+    @extend .number;
+    width: 100px;
+}

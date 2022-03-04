@@ -1,0 +1,325 @@
+body {
+	margin: 0 auto;
+	height: 100%;
+	padding: 0 6px;
+	font-size: $html-font-size;
+	display: flex;
+	flex-direction: column;
+	background-color: $color-pr2;
+}
+
+.wrapper {
+	flex: 1 0 auto;
+	margin: 0 auto;
+	position: relative;
+	min-width: $mq-xxs;
+	width: $mq-xxs;
+
+	@include media-xs {
+		width: $mq-xs;
+	}
+
+	@include media-sm {
+		width: $mq-sm;
+	}
+
+	@include media-md {
+		width: $mq-md;
+	}
+
+	@include media-lg {
+		width: $mq-lg;
+	}
+
+	@include media-xl {
+		width: $mq-xl;
+	}
+}
+
+
+//*****common  components *****************////
+
+.arrow {
+	@include arrow($color-white, 1px, 4px);
+	mix-blend-mode: normal;
+	opacity: 0.8;
+}
+
+
+.down {
+	transform: rotate(45deg);
+}
+
+.right {
+	transform: rotate(-45deg);
+}
+
+.left {
+	transform: rotate(135deg);
+}
+
+.up {
+	transform: rotate(-135deg);
+}
+
+//********* headers ***********************************//
+
+.header {
+
+	// .header__hero
+
+	&__hero {
+		font: 900 $font-size-hero-xs $Gilroy;
+		letter-spacing: 0.1em;
+		line-height: 1.3em;
+		text-transform: uppercase;
+		text-align: center;
+		color: transparent;
+		-webkit-text-stroke: 0.74px $color-pr4;
+	}
+
+	// .header__subhero
+
+	&__subhero {
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 8px;
+		text-align: center;
+		text-transform: uppercase;
+		font: 400 $font-size-subhero-xs $Gilroy;
+		line-height: 1.17em;
+		letter-spacing: 0.1em;
+		color: $color-white;
+	}
+}
+
+.section__header {
+	h2 {
+		margin: 0 auto;
+		text-align: center;
+
+		span {
+			margin: 8px 0px;
+		}
+	}
+}
+
+.header {
+	// .header__subtitle
+
+	&__subtitle {
+		display: block;
+		font: 400 14px $Gilroy;
+		line-height: 120%;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		color: $color-white;
+	}
+
+	// .header__title
+
+	&__title {
+		display: block;
+		font: 900 24px/31px $Gilroy;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: $color-pr4;
+	}
+
+}
+
+
+//**** SM container (768)  ********//////////
+
+@include media-sm {
+
+	.header {
+		&__subtitle {
+			font-size: 18px;
+		}
+
+		&__title {
+			font-size: 36px;
+			line-height: 46px;
+		}
+	}
+
+	.header {
+
+		// .header__hero
+
+		&__hero {
+			font-size: $font-size-hero-sm;
+			-webkit-text-stroke: 1px $color-pr4;
+		}
+
+		// .header__subhero
+
+		&__subhero {
+			margin-bottom: 16px;
+			font-size: $font-size-hero-sm / 2;
+		}
+	}
+
+}
+
+//**** LG container (1280)  ********//////////
+
+@include media-lg {
+
+	.header {
+		&__subtitle {
+			font-size: 24px;
+		}
+
+		&__title {
+			font-size: 48px;
+			line-height: 61px;
+		}
+	}
+
+	.header {
+
+		// .header__hero
+
+		&__hero {
+			font-size: $font-size-hero-lg;
+		}
+
+		// .header__subhero
+
+		&__subhero {
+			margin-bottom: 24px;
+		}
+	}
+
+}
+
+
+//**** XL container (1920)  ********//////////
+
+@include media-xl {
+	.header {
+
+		// .header__hero
+
+		&__hero {
+			font-size: $font-size-hero-xl;
+		}
+
+		// .header__subhero
+
+		&__subhero {
+			margin-bottom: 16px;
+			font-size: $font-size-hero-xl / 2;
+		}
+	}
+
+}
+
+//********* buttons ***********************************//
+
+.button__link {
+	width: 170px;
+	height: 37px;
+	display: block;
+	background-color: transparent;
+	border: 0.76px solid $color-white;
+	border-radius: 5px;
+	font: 700 13px $Gilroy;
+	text-transform: uppercase;
+	line-height: 120%;
+	color: $color-white;
+	cursor: pointer;
+
+	&:focus {
+		border-color: $color-pr4;
+		background-color: $color-pr4-op25;
+	}
+
+	&:active {
+		border-color: $color-red6;
+		background-color: $color-red6-op25;
+	}
+
+	@include media-sm {
+
+		width: 222px;
+		height: 48px;
+		border: 1px solid $color-white;
+		border-radius: 6px;
+		font-size: 18px;
+
+	}
+}
+
+.section__offset {
+	margin: 0 auto;
+	padding: 40px 0;
+
+	@include media-xs {
+		padding: 60px 0;
+	}
+
+	@include media-sm {
+		padding: 80px 0;
+	}
+
+	@include media-md {}
+
+	@include media-lg {
+		padding: 100px 0;
+	}
+
+	@include media-xl {
+		padding: 140px 0;
+	}
+}
+
+.wrapper__container {
+	margin: 0 auto;
+	width: $mq-xxs-container;
+
+	@include media-xs {
+		width: $mq-xs-container;
+	}
+
+	@include media-sm {
+		width: $mq-sm-container;
+	}
+
+	@include media-md {
+		width: $mq-md-container;
+	}
+
+	@include media-lg {
+		width: $mq-lg-container;
+	}
+
+	@include media-xl {
+		width: $mq-xl-container;
+	}
+}
+
+.wrapper__inner {
+	margin-top: 24px;
+
+	@include media-xs {
+	}
+
+	@include media-sm {
+	margin-top: 40px;
+	}
+
+	@include media-md {
+	margin-top: 60px;
+	}
+
+	@include media-lg {
+	margin-top: 80px;
+	}
+
+	@include media-xl {
+	margin-top: 180px;
+	}
+}

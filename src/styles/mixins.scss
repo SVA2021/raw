@@ -1,0 +1,160 @@
+@import './variables';
+
+//position
+@mixin flexEvenly {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+@mixin flexCenter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+//fonts
+@mixin baseFont {
+  margin: 0;
+
+  font-weight: 500;
+  font-size: $font-size;
+  font-family: $font-text;
+  font-style: normal;
+}
+
+@mixin heroFont {
+  font-weight: bold;
+  font-size: 2.5rem;
+  line-height: 3rem;
+}
+
+@mixin sectionFont {
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 1.8rem;
+}
+
+@mixin subTitleFont {
+  font-weight: bold;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+}
+
+//color 
+@mixin lightDark {
+  background-color: $light;
+  color: $dark;
+}
+
+@mixin darkLight {
+  background-color: $dark;
+  color: $light;
+}
+
+@mixin orangeLight {
+  background-color: $orange;
+  color: $light;
+}
+
+@mixin orangeDark {
+  background-color: $orange;
+  color: $dark;
+}
+
+@mixin greenDark {
+  background-color: $green;
+  color: $dark;
+}
+
+
+@mixin darkLight {
+  background-color: $dark;
+  color: $light;
+}
+
+//borders
+@mixin borderDefault {
+  border: $size-default-border solid $light;
+  border-radius: $border-radius-section;
+}
+
+@mixin borderSectionLight {
+  border: $size-section-border solid $light;
+  border-radius: $border-radius-default;
+}
+
+@mixin borderSectionDark {
+  border: $size-section-border solid $dark;
+  border-radius: $border-radius-default;
+}
+
+@mixin borderSectionOrange {
+  border: $size-section-border solid $orange;
+  border-radius: $border-radius-default;
+}
+
+//offset
+@mixin baseOffset {
+  margin: $offset-basic * 2;
+  padding: $offset-basic * 2;
+}
+
+@mixin baseYOffset {
+  margin: $offset-basic * 2 auto;
+  padding: $offset-basic * 2 auto;
+}
+
+@mixin sectionOffset {
+  margin: $offset-basic *2 auto;
+  padding: $offset-basic * 4;
+}
+
+@mixin maxOffset {
+  margin: $offset-basic * 4;
+  padding: $offset-basic * 4;
+}
+
+@mixin minOffset {
+  margin: $offset-basic;
+  padding: $offset-basic;
+}
+
+@mixin buttonOffset {
+  margin: $offset-basic;
+  padding: $offset-basic $offset-basic * 2;
+}
+
+@mixin buttonOffsetMain {
+  margin: $offset-basic * 4 $offset-basic * 2;
+  padding: $offset-basic $offset-basic * 2;
+}
+
+@mixin buttonOffsetNav {
+  padding: $offset-basic * 2 $offset-basic * 4;
+}
+
+//buttons
+@mixin buttonBase {
+  @include greenDark;
+
+  cursor: pointer;
+  border: none;
+  border-radius: $border-radius-default;
+}
+
+@mixin buttonActive {
+  @include orangeLight;
+
+  cursor: not-allowed;
+  border: none;
+  border-radius: $border-radius-default;
+}
+
+//special for css selectors
+@mixin select {
+  color: $light;
+  background-color: $orange;
+  font-weight: bold;
+}

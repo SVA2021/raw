@@ -1,0 +1,52 @@
+//******************** Media Queries ***********************/
+
+@mixin media-xs {
+	@media (min-width: #{$mq-xs}) {
+		@content;
+	}
+}
+
+@mixin media-sm {
+	@media (min-width: #{$mq-sm}) {
+		@content;
+	}
+}
+
+@mixin media-md {
+	@media (min-width: #{$mq-md}) {
+		@content;
+	}
+}
+
+@mixin media-lg {
+	@media (min-width: #{$mq-lg}) {
+		@content;
+	}
+}
+
+@mixin media-xl {
+	@media (min-width: #{$mq-xl}) {
+		@content;
+	}
+}
+
+//******************** Arrow creation ***********************/
+@mixin arrow($color, $width, $size) {
+	display: inline-block;
+	margin-bottom: $size;
+	padding: $size;
+	border: solid $color;
+	border-width: 0 $width $width 0;
+}
+
+//******************** gradient ***********************/
+
+@mixin gradient2color($endColor: 100px) {
+	background-image:linear-gradient(to right, $color-pr2 $endColor, $color-pr1 $endColor);
+} 
+
+@mixin gradientborder {
+	border: 1px solid;
+	border-image-slice: 1;
+	border-image-source: linear-gradient(to left, #ffffff00, #ffffff20, #ffffff00);
+}
