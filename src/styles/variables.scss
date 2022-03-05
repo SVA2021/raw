@@ -1,22 +1,19 @@
-//font
-$font-size: 14px;
+//**********font
+$font-size: 16px;
 
-$font-titles: 'Roboto',
-Arial,
-sans-serif;
-$font-text: 'Montserrat',
-sans-serif;
+$font-titles: 'Roboto', Arial, sans-serif;
+$font-text: 'Montserrat', sans-serif;
 
-//offset
+//**********offset
 $offset-basic: 4px;
 
-//border-radius
+//**********border-radius
 $border-radius-default: 4px;
 $border-radius-section: $border-radius-default * 4;
 $size-default-border: 2px;
 $size-section-border: 4px;
 
-//colors
+//**********colors
 $orange: #F97F29;
 $green: #DFF296;
 $dark: #19283F;
