@@ -1,13 +1,8 @@
-import { HeroTitle } from "./common/Typography";
-
 const Logo = () => {
 	return (
-		// <HeroTitle>
-		<div className="logo">
-			REST API WIDGETS (Logo)
-		</div>
-
-		// </HeroTitle>
+		<h1 className="logo header__hero">
+			REST API WIDGETS
+		</h1>
 	)
 }
 
