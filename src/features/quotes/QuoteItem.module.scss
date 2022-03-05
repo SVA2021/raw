@@ -1,0 +1,7 @@
+@import '../../styles/mixins';
+
+.main {
+	@include borderDefault;
+	@include baseOffset;
+	@include greenDark;
+}
