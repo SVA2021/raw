@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../../app/store';
 import { holidaysAPI } from './holidaysAPI';
-// import { fetchCount } from './counterAPI';
 
 export interface Country {
 	countryCode: string
@@ -86,12 +85,20 @@ export const holidaySlice = createSlice({
 				state.countriesList = action.payload;
 			});
 		builder
-			.addCase(getCountriesListAsync.pending, (state) => {
+			.addCase(getHolidayNextWeekAsync.pending, (state) => {
 				state.status = 'loading';
 			})
-			.addCase(getCountriesListAsync.fulfilled, (state, action: PayloadAction<Country[]>) => {
+			.addCase(getHolidayNextWeekAsync.fulfilled, (state, action: PayloadAction<HolidayItem[]>) => {
 				state.status = 'idle';
-				state.countriesList = action.payload;
+				state.holidayList = action.payload;
+			});
+		builder
+			.addCase(getCountryHolydaysAsync.pending, (state) => {
+				state.status = 'loading';
+			})
+			.addCase(getCountryHolydaysAsync.fulfilled, (state, action: PayloadAction<HolidayItem[]>) => {
+				state.status = 'idle';
+				state.holidayList = action.payload;
 			});
 	},
 });

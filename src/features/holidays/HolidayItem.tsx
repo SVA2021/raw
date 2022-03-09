@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { holidaysAPI } from './holidaysAPI';
 import s from './HolidayItem.module.scss';
+import { getHolidayNextWeekAsync } from './holidaySlice';
+import { useAppDispatch } from '../../app/hooks';
 
 let quote = {
 	"q": "Grudges are for those who insist that they are owed something; forgiveness, however, is for those who are substantial enough to move on.",
@@ -204,18 +206,19 @@ let response = [
 	}
 ]
 
-const getData = async () => {
-	let result = await holidaysAPI.getHolidaysNextWeek();
+const getData =  () => {
+	let result =  getHolidayNextWeekAsync();
 	console.log(result);
 }
 
 const HolidayItem = () => {
-
+	const dispatch = useAppDispatch();
+let result;
 	// let result = holidaysAPI.getHolidaysNextWeek();
 	useEffect(() => {
-		// console.log(result);
-		getData();
-	}, [])
+		result = dispatch(getHolidayNextWeekAsync());
+		console.log(result);
+	}, [result])
 
 	return (
 		<div className={s.main}>
