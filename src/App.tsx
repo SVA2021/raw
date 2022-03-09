@@ -6,7 +6,7 @@ import './styles/global.scss';
 import Logo from './components/Logo';
 import Weather from './features/weather/Weather';
 import Pomodoro from './features/pomodoro/Pomodoro';
-import Quotes from './features/quotes/Quotes';
+import Holidays from './features/holidays/Holidays';
 import Currency from './features/currency/Currency';
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
 			<Logo />
 			<Weather />
 			<Pomodoro />
-			<Quotes />
+			<Holidays />
 			<Currency />
 		</div>
 	);
