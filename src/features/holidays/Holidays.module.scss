@@ -4,4 +4,11 @@
 	@include borderDefault;
 	@include baseOffset;
 	@include greenDark;
+	text-align: left;
+}
+
+.fixedLabel {
+	float: right;
+	margin-left: $offset-basic;
+	font-weight: bold;
 }

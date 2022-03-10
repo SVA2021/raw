@@ -57,6 +57,7 @@ a {
 	@include borderDefault;
 	@include darkLight;
 	grid-area: quotes;
+	overflow-y: hidden
 }
 
 .currency {

@@ -7,7 +7,7 @@ export interface Country {
 	name: string
 }
 
-export interface HolidayItem {
+export interface HolidayItemType {
 	"date": string
 	"localName": string
 	"name": string
@@ -21,7 +21,7 @@ export interface HolidayItem {
 
 export interface HolidayState {
 	countriesList: Country[],
-	holidayList: HolidayItem[],
+	holidayList: HolidayItemType[],
 	country: Country,
 	status: 'idle' | 'loading' | 'failed';
 }
@@ -68,7 +68,7 @@ export const holidaySlice = createSlice({
 		setCountriesList: (state, action: PayloadAction<Country[]>) => {
 			state.countriesList = action.payload;
 		},
-		setHolidayList: (state, action: PayloadAction<HolidayItem[]>) => {
+		setHolidayList: (state, action: PayloadAction<HolidayItemType[]>) => {
 			state.holidayList = action.payload;
 		},
 		setCountry: (state, action: PayloadAction<Country>) => {
@@ -88,7 +88,7 @@ export const holidaySlice = createSlice({
 			.addCase(getHolidayNextWeekAsync.pending, (state) => {
 				state.status = 'loading';
 			})
-			.addCase(getHolidayNextWeekAsync.fulfilled, (state, action: PayloadAction<HolidayItem[]>) => {
+			.addCase(getHolidayNextWeekAsync.fulfilled, (state, action: PayloadAction<HolidayItemType[]>) => {
 				state.status = 'idle';
 				state.holidayList = action.payload;
 			});
@@ -96,7 +96,7 @@ export const holidaySlice = createSlice({
 			.addCase(getCountryHolydaysAsync.pending, (state) => {
 				state.status = 'loading';
 			})
-			.addCase(getCountryHolydaysAsync.fulfilled, (state, action: PayloadAction<HolidayItem[]>) => {
+			.addCase(getCountryHolydaysAsync.fulfilled, (state, action: PayloadAction<HolidayItemType[]>) => {
 				state.status = 'idle';
 				state.holidayList = action.payload;
 			});

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import s from './Holidays.module.scss';
 
 import ReactCountryFlag from "react-country-flag"
+import { Highlighted, InlineText, PlainText, Title } from '../../components/common/Typography';
+import { HolidayItemType } from './holidaySlice';
 
 
 let response =
@@ -13,30 +15,46 @@ let response =
 	"fixed": true,
 	"global": false,
 	"counties": null,
-	"launchYear": null,
+	"launchYear": 2000,
 	"types": [
 		"Public"
 	]
 }
 
-let code = response.countryCode;
+const code = response.countryCode;
 
-const HolidayItem = () => {
+const HolidayItem = (props: any) => {
 
 	return (
 		<div className={s.main}>
-			<span>date: {response.date}</span>
+			<PlainText>
+				<Title>date:</Title>
+				<InlineText withOffset={true}>{response.date}</InlineText>
+				{response.fixed && <Highlighted className={s.fixedLabel}>fixed</Highlighted>}
+			</PlainText>
 
-			<ReactCountryFlag countryCode={code} svg />
+			<PlainText>
+				<Title>country:</Title>
+				<InlineText withOffset={true}>{response.countryCode}</InlineText>
+				<ReactCountryFlag className={s.fixedLabel} countryCode={code} svg />
+			</PlainText>
 
-			<span>countryCode: {response.countryCode}</span>
-			<span>localName: {response.localName}</span>
-			<span>name: {response.name}</span>
-			{response.launchYear && <span>launchYear: {response.launchYear}</span>}
-			<label htmlFor="fixed">date fixed?</label>
-			<input type="checkbox" name="fixed" checked={response.fixed} />
-			<label htmlFor="global">date fixed?</label>
-			<input type="checkbox" name="global" checked={response.global} />
+			<PlainText>
+				<Title>local name:</Title>
+				<InlineText withOffset={true}>{response.localName}</InlineText>
+			</PlainText>
+
+			<PlainText>
+				<Title>name ENG:</Title>
+				<InlineText withOffset={true}>{response.name}</InlineText>
+			</PlainText>
+
+			{response.launchYear &&
+				<PlainText>
+					<Title>launch Year:</Title>
+					<InlineText withOffset={true}>{response.launchYear}</InlineText>
+				</PlainText>
+			}
 		</div>
 	)
 }
