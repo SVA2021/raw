@@ -7,6 +7,9 @@ const Holidays = () => {
 			<SectionTitle>Holidays</SectionTitle>
 			
 			<HolidayItem />
+			<HolidayItem />
+			<HolidayItem />
+			<HolidayItem />
 		</div>
 	)
 }
