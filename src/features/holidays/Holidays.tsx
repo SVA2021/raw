@@ -5,6 +5,7 @@ const Holidays = () => {
 	return (
 		<div className="holidays">
 			<SectionTitle>Holidays</SectionTitle>
+			
 			<HolidayItem />
 		</div>
 	)
