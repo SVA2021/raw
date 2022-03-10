@@ -98,7 +98,7 @@
 //offset
 @mixin baseOffset {
   margin: $offset-basic * 2;
-  padding: $offset-basic * 2;
+  padding: $offset-basic *2 $offset-basic * 4;
 }
 
 @mixin baseYOffset {
