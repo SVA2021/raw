@@ -1,0 +1,20 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.button {
+  // padding: var(--offset-element-content);
+
+  color: inherit;
+  // font-size: var(--font-size);
+  // Clear default button styles
+  background: transparent;
+  border: none;
+  outline: inherit;
+  cursor: pointer;
+
+}
+
+.withOffset {
+	margin-left: $offset-basic;
+	margin-right: $offset-basic;
+}
