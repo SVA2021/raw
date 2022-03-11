@@ -27,7 +27,20 @@ export interface HolidayState {
 }
 
 const initialState: HolidayState = {
-	countriesList: [],
+	countriesList: [
+		{
+			countryCode: 'RU',
+			name: 'Russia'
+		},
+		{
+			countryCode: 'RU2',
+			name: 'Russia2'
+		},
+		{
+			countryCode: 'RU3',
+			name: 'Russia3'
+		},
+	],
 	holidayList: [],
 	country: {
 		countryCode: 'RU',
@@ -40,7 +53,7 @@ export const getCountriesListAsync = createAsyncThunk(
 	'holiday/getCountriesList',
 	async () => {
 		const response = await holidaysAPI.getCountriesList();
-		return response.data;
+		return response;
 	}
 );
 
@@ -48,7 +61,7 @@ export const getHolidayNextWeekAsync = createAsyncThunk(
 	'holiday/getHolidaysNextWeek',
 	async () => {
 		const response = await holidaysAPI.getHolidaysNextWeek();
-		return response.data;
+		return response;
 	}
 );
 
@@ -56,7 +69,9 @@ export const getCountryHolydaysAsync = createAsyncThunk(
 	'holiday/getCountryHolydays',
 	async (countryCode: string) => {
 		const response = await holidaysAPI.getCountryHolydays(countryCode);
-		return response.data;
+		console.log(response);
+		
+		return response;
 	}
 );
 
@@ -97,8 +112,10 @@ export const holidaySlice = createSlice({
 				state.status = 'loading';
 			})
 			.addCase(getCountryHolydaysAsync.fulfilled, (state, action: PayloadAction<HolidayItemType[]>) => {
+				console.log(action.payload);
 				state.status = 'idle';
 				state.holidayList = action.payload;
+				
 			});
 	},
 });
