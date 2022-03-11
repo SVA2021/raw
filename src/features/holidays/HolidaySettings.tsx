@@ -24,8 +24,6 @@ let response =
 	]
 }
 
-
-
 const code = response.countryCode;
 
 const HolidaySettings = (props: any) => {
