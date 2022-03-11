@@ -14,7 +14,7 @@ export interface HolidayItemType {
 	"countryCode": string
 	"fixed": boolean
 	"global": boolean
-	"counties": string
+	"counties": string | null
 	"launchYear": string | number
 	"types": string[]
 }
