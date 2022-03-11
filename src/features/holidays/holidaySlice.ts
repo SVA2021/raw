@@ -19,12 +19,16 @@ export interface HolidayItemType {
 	"types": string[]
 }
 
+type HolidayListType = 'week' | 'country';
+
 export interface HolidayState {
 	countriesList: Country[],
 	holidayList: HolidayItemType[],
+	listMode: HolidayListType,
 	country: Country,
 	status: 'idle' | 'loading' | 'failed';
 }
+
 
 const initialState: HolidayState = {
 	countriesList: [
@@ -32,16 +36,9 @@ const initialState: HolidayState = {
 			countryCode: 'RU',
 			name: 'Russia'
 		},
-		{
-			countryCode: 'RU2',
-			name: 'Russia2'
-		},
-		{
-			countryCode: 'RU3',
-			name: 'Russia3'
-		},
 	],
 	holidayList: [],
+	listMode: 'week',
 	country: {
 		countryCode: 'RU',
 		name: 'Russia'
@@ -70,7 +67,7 @@ export const getCountryHolydaysAsync = createAsyncThunk(
 	async (countryCode: string) => {
 		const response = await holidaysAPI.getCountryHolydays(countryCode);
 		console.log(response);
-		
+
 		return response;
 	}
 );
@@ -88,6 +85,9 @@ export const holidaySlice = createSlice({
 		},
 		setCountry: (state, action: PayloadAction<Country>) => {
 			state.country = action.payload;
+		},
+		setHolidayListType: (state, action: PayloadAction<HolidayListType>) => {
+			state.listMode = action.payload;
 		},
 	},
 	extraReducers: (builder) => {
@@ -115,7 +115,6 @@ export const holidaySlice = createSlice({
 				console.log(action.payload);
 				state.status = 'idle';
 				state.holidayList = action.payload;
-				
 			});
 	},
 });
@@ -126,17 +125,5 @@ export const selectCountriesList = (state: RootState) => state.holiday.countries
 export const selectHolidayList = (state: RootState) => state.holiday.holidayList;
 export const selectCountry = (state: RootState) => state.holiday.country;
 export const selectHolidayQueryStatus = (state: RootState) => state.holiday.status;
-
-// We can also write thunks by hand, which may contain both sync and async logic.
-// Here's an example of conditionally dispatching actions based on current state.
-// export const incrementIfOdd = (amount: number): AppThunk => (
-// 	dispatch,
-// 	getState
-// ) => {
-// 	const currentValue = selectCount(getState());
-// 	if (currentValue % 2 === 1) {
-// 		dispatch(incrementByAmount(amount));
-// 	}
-// };
 
 export default holidaySlice.reducer;
