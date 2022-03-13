@@ -1,26 +1,8 @@
-// import { useEffect, useState } from 'react';
 import s from './Holidays.module.scss';
-
 import ReactCountryFlag from "react-country-flag"
 import { Highlighted, InlineText, PlainText, Title } from '../../components/common/Typography';
 import { HolidayItemType } from './holidaySlice';
 
-// let props: HolidayItemType =
-// {
-// 	"date": "2022-03-15",
-// 	"localName": "Nemzeti ünnep",
-// 	"name": "1848 Revolution Memorial Day",
-// 	"countryCode": "HU",
-// 	"fixed": true,
-// 	"global": false,
-// 	"counties": null,
-// 	"launchYear": 2000,
-// 	"types": [
-// 		"Public"
-// 	]
-// }
-
-// const code = props.countryCode;
 type HolidayType = {
 	holiday: HolidayItemType
 }

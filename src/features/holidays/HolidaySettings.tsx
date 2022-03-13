@@ -1,22 +1,24 @@
 import { useEffect, useState } from 'react';
 import s from './Holidays.module.scss';
-
 import ReactCountryFlag from "react-country-flag"
-import { Highlighted, InlineText, PlainText, Title } from '../../components/common/Typography';
-import { Country, getCountryHolydaysAsync, getHolidayNextWeekAsync, HolidayItemType, selectCountriesList, selectCountry, setCountry } from './holidaySlice';
-import { getTodayDateString } from '../../app/commonFunctions';
+import { InlineText, PlainText, Title } from '../../components/common/Typography';
+import {
+	getCountryHolydaysAsync,
+	getHolidayNextWeekAsync,
+	selectCountriesList,
+	selectCountry,
+	selectHolidayListMode,
+	setCountry
+} from './holidaySlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Button from '../../components/common/Button';
 import { getCountryByCode } from './holidaysAPI';
-
-// const showCountry = (activeCountry: any) => {
-// 	dispatch(getCountryHolydaysAsync(activeCountry));
-// }
 
 const HolidaySettings = (props: any) => {
 
 	const dispatch = useAppDispatch();
 	const country = useAppSelector(selectCountry);
+	const listMode = useAppSelector(selectHolidayListMode);
 	const countriesList = useAppSelector(selectCountriesList);
 	const today = props.today;
 
@@ -30,16 +32,13 @@ const HolidaySettings = (props: any) => {
 	const countryCode = country.countryCode;
 
 	const [activeCountry, setCountryCode] = useState('');
-	// const [activeCountry, setActiveCountry] = useState(country);
 
 	useEffect(() => {
 		setCountryCode(countryCode)
 	}, [countryCode]);
 
-	// useEffect(() => {
-	// 	setActiveCountry(country)
-	// }, [country]);
-
+	const buttonNextWeekStyle = (listMode === 'week') ? 'active' : '';
+	const buttonCountryStyle = (listMode === 'country') ? 'active' : '';
 
 	return (
 		<div className={s.settings}>
@@ -47,23 +46,24 @@ const HolidaySettings = (props: any) => {
 				<PlainText>
 					<Title>today:</Title>
 					<InlineText withOffset={true}>{today}</InlineText>
-					{/* </PlainText>
-				<PlainText> */}
 					<Title>country:</Title>
 					<InlineText withOffset={true}>{countryName}</InlineText>
 					<ReactCountryFlag countryCode={countryCode} svg />
 				</PlainText>
 			</header>
-
 			<div className={s.buttonArea}>
-
 				<label>
 					<Title>select country:</Title>
+					<Button
+						className={buttonCountryStyle}
+						withOffset={true}
+						onClick={() => showCountry(activeCountry)}
+					>
+						Show
+					</Button>
 					<select
 						value={activeCountry}
 						onChange={(e) => setCountryCode(e.target.value)}
-					// value={activeCountry}
-					// onChange={(e) => setActiveCountry(e.target.value)}
 					>
 						{countriesList.map((option: any) =>
 							<option
@@ -77,14 +77,7 @@ const HolidaySettings = (props: any) => {
 					</select>
 				</label>
 				<Button
-					className={s.buttonCountry}
-					withOffset={true}
-					onClick={() => showCountry(activeCountry)}
-				>
-					Show
-				</Button>
-				<Button
-					className={s.buttonNextWeek}
+					className={buttonNextWeekStyle}
 					withOffset={true}
 					onClick={() => dispatch(getHolidayNextWeekAsync())}
 				>

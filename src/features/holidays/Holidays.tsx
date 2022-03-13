@@ -1,12 +1,20 @@
 import { SectionTitle } from "../../components/common/Typography";
-import HolidayItem from "./HolidayItem";
 import HolidaySettings from "./HolidaySettings";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getCountriesListAsync, getCountryHolydaysAsync, getHolidayNextWeekAsync, selectCountriesList, selectCountry, selectHolidayList, selectHolidayListMode, selectHolidayQueryStatus, setHolidayList } from "./holidaySlice";
+import { 
+	getCountriesListAsync, 
+	getCountryHolydaysAsync, 
+	getHolidayNextWeekAsync, 
+	selectCountriesList, 
+	selectCountry, 
+	selectHolidayList, 
+	selectHolidayListMode, 
+	selectHolidayQueryStatus, 
+	setHolidayList 
+} from "./holidaySlice";
 import { useEffect } from "react";
 import { getTodayDateString } from "../../app/commonFunctions";
 import s from './Holidays.module.scss';
-import Loading from "../../components/Loading";
 import HolidaysList from "./HolidayList";
 
 // function getStorageValue(key:any) {
