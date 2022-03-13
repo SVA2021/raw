@@ -86,7 +86,7 @@ export const holidaySlice = createSlice({
 		setCountry: (state, action: PayloadAction<Country>) => {
 			state.country = action.payload;
 		},
-		setHolidayListType: (state, action: PayloadAction<HolidayListType>) => {
+		setHolidayListMode: (state, action: PayloadAction<HolidayListType>) => {
 			state.listMode = action.payload;
 		},
 	},
@@ -119,11 +119,12 @@ export const holidaySlice = createSlice({
 	},
 });
 
-export const { setCountriesList, setHolidayList, setCountry } = holidaySlice.actions;
+export const { setCountriesList, setHolidayList, setCountry, setHolidayListMode } = holidaySlice.actions;
 
 export const selectCountriesList = (state: RootState) => state.holiday.countriesList;
 export const selectHolidayList = (state: RootState) => state.holiday.holidayList;
 export const selectCountry = (state: RootState) => state.holiday.country;
+export const selectHolidayListMode = (state: RootState) => state.holiday.listMode;
 export const selectHolidayQueryStatus = (state: RootState) => state.holiday.status;
 
 export default holidaySlice.reducer;

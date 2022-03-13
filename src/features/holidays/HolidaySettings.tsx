@@ -31,11 +31,11 @@ const HolidaySettings = (props: any) => {
 	const dispatch = useAppDispatch();
 	const country = useAppSelector(selectCountry);
 	const countriesList = useAppSelector(selectCountriesList);
+	const today = props.today;
 
 	const countryName = country.name;
 	const countryCode = country.countryCode;
 	
-	const today = getTodayDateString('-');
 	const [activeCountry, setCountry] = useState('');
 
 	useEffect(() => {

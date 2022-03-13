@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import s from './Holidays.module.scss';
 
 import ReactCountryFlag from "react-country-flag"
 import { Highlighted, InlineText, PlainText, Title } from '../../components/common/Typography';
 import { HolidayItemType } from './holidaySlice';
-
 
 // let props: HolidayItemType =
 // {
@@ -22,11 +21,11 @@ import { HolidayItemType } from './holidaySlice';
 // }
 
 // const code = props.countryCode;
-type Tholiday = {
+type HolidayType = {
 	holiday: HolidayItemType
 }
 
-const HolidayItem = (props: Tholiday) => {
+const HolidayItem = (props: HolidayType) => {
 	const holiday = props.holiday;
 	return (
 		<div className={s.main}>
