@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { getTodayDateString } from "../../app/commonFunctions";
 import s from './Holidays.module.scss';
 import Loading from "../../components/Loading";
+import HolidaysList from "./HolidayList";
 
 // function getStorageValue(key:any) {
 //   // getting stored value
@@ -38,20 +39,21 @@ const Holidays = () => {
 		// localStorage.setItem(keyLocal, JSON.stringify(today));
 		// setHolidayList(result)
 	}, []);
-	queryStatus = 'loading';
+	// queryStatus = 'loading';
 	// if (queryStatus === 'loading') return <Loading/>; 
 
 	return (
 		<div className="holidays">
-			{(queryStatus === 'loading') ?  <Loading/> : 
-			<>
+			{/* {(queryStatus === 'loading') ?  <Loading/> : 
+			<> */}
 			<SectionTitle>Holidays</SectionTitle>
 			<HolidaySettings today={today}/>
-			<div className={s.holidayListWrapper}>
+			<HolidaysList queryStatus={queryStatus} holidayList={holidayList}/>
+			{/* <div className={s.holidayListWrapper}>
 				{holidayList.map((holiday) => <HolidayItem key={String(holiday)} holiday={holiday} />)}
 			</div>
 			</>
-			}
+			} */}
 		</div>
 	)
 }
