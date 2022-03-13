@@ -4,16 +4,6 @@
 .button {
 	@include buttonBase;
 	@include buttonOffset;
-
-  // padding: var(--offset-element-content);
-  // color: inherit;
-  // // font-size: var(--font-size);
-  // // Clear default button styles
-  // background: transparent;
-  // border: none;
-  // outline: inherit;
-  // cursor: pointer;
-
 }
 
 .active {
