@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Country } from "./holidaySlice";
 // const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 const BASE_URL = 'https://date.nager.at';
 const COUNTRIES_LIST_URL = '/api/v3/AvailableCountries';
@@ -48,4 +49,10 @@ export const holidaysAPI = {
 				return e;
 			});
 	}
+}
+
+export const getCountryByCode = (code: string, list: Country[]) => {
+	let country = { countryCode: code, name: '' }
+	list.map((item) => { if (item.countryCode === code) country = item; })
+	return country;
 }

@@ -66,8 +66,6 @@ export const getCountryHolydaysAsync = createAsyncThunk(
 	'holiday/getCountryHolydays',
 	async (countryCode: string) => {
 		const response = await holidaysAPI.getCountryHolydays(countryCode);
-		console.log(response);
-
 		return response;
 	}
 );
