@@ -2,7 +2,7 @@ import { SectionTitle } from "../../components/common/Typography";
 import HolidayItem from "./HolidayItem";
 import HolidaySettings from "./HolidaySettings";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getCountryHolydaysAsync, getHolidayNextWeekAsync, selectCountry, selectHolidayList, selectHolidayListMode, selectHolidayQueryStatus, setHolidayList } from "./holidaySlice";
+import { getCountriesListAsync, getCountryHolydaysAsync, getHolidayNextWeekAsync, selectCountriesList, selectCountry, selectHolidayList, selectHolidayListMode, selectHolidayQueryStatus, setHolidayList } from "./holidaySlice";
 import { useEffect } from "react";
 import { getTodayDateString } from "../../app/commonFunctions";
 import s from './Holidays.module.scss';
@@ -19,11 +19,14 @@ import HolidaysList from "./HolidayList";
 const Holidays = () => {
 
 	const dispatch = useAppDispatch();
-	let queryStatus = useAppSelector(selectHolidayQueryStatus);
+	const today = getTodayDateString('-');
+
+	const queryStatus = useAppSelector(selectHolidayQueryStatus);
 	const holidayList = useAppSelector(selectHolidayList);
 	const country = useAppSelector(selectCountry);
 	const holidayListMode = useAppSelector(selectHolidayListMode);
-	const today = getTodayDateString('-');
+	
+
 	// const keyLocal = 'today';
 	// const saved = localStorage.getItem(keyLocal) || '{}';
 
@@ -33,27 +36,19 @@ const Holidays = () => {
 
 
 	useEffect(() => {
-		(holidayListMode === 'week') 
-		? dispatch(getHolidayNextWeekAsync()) 
-		: dispatch(getCountryHolydaysAsync(country.countryCode));
+		dispatch(getCountriesListAsync());
+		(holidayListMode === 'week')
+			? dispatch(getHolidayNextWeekAsync())
+			: dispatch(getCountryHolydaysAsync(country.countryCode));
 		// localStorage.setItem(keyLocal, JSON.stringify(today));
 		// setHolidayList(result)
 	}, []);
-	// queryStatus = 'loading';
-	// if (queryStatus === 'loading') return <Loading/>; 
 
 	return (
 		<div className="holidays">
-			{/* {(queryStatus === 'loading') ?  <Loading/> : 
-			<> */}
 			<SectionTitle>Holidays</SectionTitle>
-			<HolidaySettings today={today}/>
-			<HolidaysList queryStatus={queryStatus} holidayList={holidayList}/>
-			{/* <div className={s.holidayListWrapper}>
-				{holidayList.map((holiday) => <HolidayItem key={String(holiday)} holiday={holiday} />)}
-			</div>
-			</>
-			} */}
+			<HolidaySettings today={today} />
+			<HolidaysList queryStatus={queryStatus} holidayList={holidayList} />
 		</div>
 	)
 }
