@@ -15,7 +15,10 @@ const HolidaysList = (props: any) => {
 	return (
 		<div className={s.holidayListWrapper}>
 			{holidayList.map((holiday: HolidayItemType) =>
-				<HolidayItem key={String(holiday)} holiday={holiday} />)}
+				<HolidayItem 
+				key={holiday.countryCode + String(Math.random())} 
+				holiday={holiday} 
+				/>)}
 		</div>
 	)
 }

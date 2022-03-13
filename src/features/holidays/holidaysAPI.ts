@@ -26,7 +26,6 @@ export const holidaysAPI = {
 	getHolidaysNextWeek() {
 		return holidayInstance.get(NEXT_WEEK_URL)
 			.then(response => {
-				console.log(response.data);
 				return response.data;
 			})
 			.catch(e => {

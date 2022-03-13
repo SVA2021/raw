@@ -110,7 +110,6 @@ export const holidaySlice = createSlice({
 				state.status = 'loading';
 			})
 			.addCase(getCountryHolydaysAsync.fulfilled, (state, action: PayloadAction<HolidayItemType[]>) => {
-				console.log(action.payload);
 				state.status = 'idle';
 				state.holidayList = action.payload;
 			});
