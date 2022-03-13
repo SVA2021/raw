@@ -22,6 +22,7 @@ a {
 
 .container {
 	display: grid;
+	z-index: 1;
 	height: 100vh;
 	grid-template-columns: 24% 48% 24%;
 	grid-template-rows: 10% 76% 10%;
