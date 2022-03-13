@@ -3,12 +3,15 @@ import s from './Holidays.module.scss';
 import ReactCountryFlag from "react-country-flag"
 import { InlineText, PlainText, Title } from '../../components/common/Typography';
 import {
+	getCountriesListAsync,
 	getCountryHolydaysAsync,
 	getHolidayNextWeekAsync,
 	selectCountriesList,
 	selectCountry,
 	selectHolidayListMode,
-	setCountry
+	setCountriesList,
+	setCountry,
+	setHolidayListMode
 } from './holidaySlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Button from '../../components/common/Button';
@@ -22,10 +25,34 @@ const HolidaySettings = (props: any) => {
 	const countriesList = useAppSelector(selectCountriesList);
 	const today = props.today;
 
+	const keyLocal = 'todayHoliday';
+	const saved = localStorage.getItem(keyLocal) || '{}';
+	const hasLocalCopy = JSON.parse(saved) === today;
+
+	useEffect(() => {
+		let key = 'countriesList';
+		if (hasLocalCopy) {
+			const saved = localStorage.getItem(key) || '{}';
+			const countriesList = JSON.parse(saved);
+			dispatch(setCountriesList(countriesList));
+		} else {
+			dispatch(getCountriesListAsync());
+		}
+		if (countriesList.length > 1) {
+			localStorage.setItem(key, JSON.stringify(countriesList));
+		}
+	}, []);
+
 	const showCountry = (countryCode: string) => {
 		let country = getCountryByCode(countryCode, countriesList);
+		dispatch(setHolidayListMode('country'));
 		dispatch(setCountry(country));
 		dispatch(getCountryHolydaysAsync(country.countryCode));
+	}
+
+	const showNextWeek = () => {
+		dispatch(setHolidayListMode('week'));
+		dispatch(getHolidayNextWeekAsync());
 	}
 
 	const countryName = country.name;
@@ -34,11 +61,8 @@ const HolidaySettings = (props: any) => {
 	const [activeCountry, setCountryCode] = useState('');
 
 	useEffect(() => {
-		setCountryCode(countryCode)
+		setCountryCode(countryCode);
 	}, [countryCode]);
-
-	const buttonNextWeekStyle = (listMode === 'week') ? 'active' : '';
-	const buttonCountryStyle = (listMode === 'country') ? 'active' : '';
 
 	return (
 		<div className={s.settings}>
@@ -55,7 +79,7 @@ const HolidaySettings = (props: any) => {
 				<label>
 					<Title>select country:</Title>
 					<Button
-						className={buttonCountryStyle}
+						active={listMode === 'country'}
 						withOffset={true}
 						onClick={() => showCountry(activeCountry)}
 					>
@@ -77,9 +101,9 @@ const HolidaySettings = (props: any) => {
 					</select>
 				</label>
 				<Button
-					className={buttonNextWeekStyle}
+					active={listMode === 'week'}
 					withOffset={true}
-					onClick={() => dispatch(getHolidayNextWeekAsync())}
+					onClick={() => showNextWeek()}
 				>
 					Show Next Week Holidays
 				</Button>
