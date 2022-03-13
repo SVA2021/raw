@@ -29,7 +29,7 @@ a {
 	gap: 2%;
 	grid-template-areas:
 		'logo logo logo'
-		'weather pomodoro quotes'
+		'weather pomodoro holidays'
 		'currency currency currency';
 }
 
@@ -56,8 +56,8 @@ a {
 .holidays {
 	@include borderDefault;
 	@include darkLight;
-	grid-area: quotes;
-	overflow-y: hidden
+	grid-area: holidays;
+	position: relative;
 }
 
 .currency {
