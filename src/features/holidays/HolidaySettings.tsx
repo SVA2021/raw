@@ -85,7 +85,7 @@ const HolidaySettings = (props: any) => {
 					>
 						Show
 					</Button>
-					<select
+					<select className={s.selection}
 						value={activeCountry}
 						onChange={(e) => setCountryCode(e.target.value)}
 					>

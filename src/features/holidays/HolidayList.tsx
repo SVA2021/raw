@@ -14,11 +14,13 @@ const HolidaysList = (props: any) => {
 
 	return (
 		<div className={s.holidayListWrapper}>
-			{holidayList.map((holiday: HolidayItemType) =>
-				<HolidayItem 
-				key={holiday.countryCode + String(Math.random())} 
-				holiday={holiday} 
-				/>)}
+			<div className={s.holidayList}>
+				{holidayList.map((holiday: HolidayItemType) =>
+					<HolidayItem
+						key={holiday.countryCode + String(Math.random())}
+						holiday={holiday}
+					/>)}
+			</div>
 		</div>
 	)
 }
