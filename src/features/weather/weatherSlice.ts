@@ -1,129 +1,80 @@
-// import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-// import { RootState, AppThunk } from '../../app/store';
-// import { holidaysAPI } from './holidaysAPI';
+import { weatherAPI } from './weatherAPI';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState, AppThunk } from '../../app/store';
+import { CityGeoType, CountryType, iconIDType, LocationGeoType, WeatherStateType, WeatherType } from './weatherTypes';
+import { convertWeatherData } from './weatherFunctions';
 
-// export interface Country {
-// 	countryCode: string
-// 	name: string
-// }
+const initialState: WeatherStateType = {
+	weather: {},
+	city: {
+		name: 'Moscow',
+		lat: 55.7522,
+		lon: 37.6156,
+	},
+	locationsList: [],
+	country: {
+		countryCode: 'RU',
+		name: 'Russia'
+	},
+	status: 'idle',
+};
 
-// export interface HolidayItemType {
-// 	"date": string
-// 	"localName": string
-// 	"name": string
-// 	"countryCode": string
-// 	"fixed": boolean
-// 	"global": boolean
-// 	"counties": string | null
-// 	"launchYear": string | number
-// 	"types": string[]
-// }
+export const getLocationsListAsync = createAsyncThunk(
+	'weather/getLocationsList',
+	async (city: string) => {
+		const response = await weatherAPI.getCityGeo(city);
+		return response.data;
+	}
+);
 
-// type HolidayListType = 'week' | 'country';
+export const getCurrentWeatherAsync = createAsyncThunk(
+	'weather/getCurrentWeather',
+	async (geo: CityGeoType) => {
+		const response = await weatherAPI.getCurrentWeather(geo);
+		let result: WeatherType = { description: 'no data' };
+		if (response.status === 200) result = convertWeatherData(response.data);
+		return result;
+	}
+);
 
-// export interface HolidayState {
-// 	countriesList: Country[],
-// 	holidayList: HolidayItemType[],
-// 	listMode: HolidayListType,
-// 	country: Country,
-// 	status: 'idle' | 'loading' | 'failed';
-// }
+export const weatherSlice = createSlice({
+	name: 'weather',
+	initialState,
 
+	reducers: {
+		setCity: (state, action: PayloadAction<CityGeoType>) => {
+			state.city = action.payload;
+		},
+		setCountry: (state, action: PayloadAction<CountryType>) => {
+			state.country = action.payload;
+		},
+	},
+	extraReducers: (builder) => {
+		builder
+			.addCase(getLocationsListAsync.pending, (state) => {
+				state.status = 'loading';
+			})
+			.addCase(getLocationsListAsync.fulfilled, (state, action: PayloadAction<LocationGeoType[]>) => {
+				state.status = 'idle';
+				state.locationsList = action.payload;
+			});
+		builder
+			.addCase(getCurrentWeatherAsync.pending, (state) => {
+				state.status = 'loading';
+			})
+			.addCase(getCurrentWeatherAsync.fulfilled, (state, action: PayloadAction<WeatherType>) => {
+				state.status = 'idle';
+				state.weather = action.payload;
+			});
+	},
+});
 
-// const initialState: HolidayState = {
-// 	countriesList: [
-// 		{
-// 			countryCode: 'RU',
-// 			name: 'Russia'
-// 		},
-// 	],
-// 	holidayList: [],
-// 	listMode: 'week',
-// 	country: {
-// 		countryCode: 'RU',
-// 		name: 'Russia'
-// 	},
-// 	status: 'idle',
-// };
+export const { setCity, setCountry } = weatherSlice.actions;
 
-// export const getCountriesListAsync = createAsyncThunk(
-// 	'holiday/getCountriesList',
-// 	async () => {
-// 		const response = await holidaysAPI.getCountriesList();
-// 		return response;
-// 	}
-// );
+export const selectCity = (state: RootState) => state.weather.city;
+export const selectLocationsList = (state: RootState) => state.weather.locationsList;
+export const selectCountry = (state: RootState) => state.weather.country;
+export const selectQueryStatus = (state: RootState) => state.weather.status;
+export const selectWeather = (state: RootState) => state.weather.weather;
 
-// export const getHolidayNextWeekAsync = createAsyncThunk(
-// 	'holiday/getHolidaysNextWeek',
-// 	async () => {
-// 		const response = await holidaysAPI.getHolidaysNextWeek();
-// 		return response;
-// 	}
-// );
-
-// export const getCountryHolydaysAsync = createAsyncThunk(
-// 	'holiday/getCountryHolydays',
-// 	async (countryCode: string) => {
-// 		const response = await holidaysAPI.getCountryHolydays(countryCode);
-// 		return response;
-// 	}
-// );
-
-// export const holidaySlice = createSlice({
-// 	name: 'holiday',
-// 	initialState,
-
-// 	reducers: {
-// 		setCountriesList: (state, action: PayloadAction<Country[]>) => {
-// 			state.countriesList = action.payload;
-// 		},
-// 		setHolidayList: (state, action: PayloadAction<HolidayItemType[]>) => {
-// 			state.holidayList = action.payload;
-// 		},
-// 		setCountry: (state, action: PayloadAction<Country>) => {
-// 			state.country = action.payload;
-// 		},
-// 		setHolidayListMode: (state, action: PayloadAction<HolidayListType>) => {
-// 			state.listMode = action.payload;
-// 		},
-// 	},
-// 	extraReducers: (builder) => {
-// 		builder
-// 			.addCase(getCountriesListAsync.pending, (state) => {
-// 				state.status = 'loading';
-// 			})
-// 			.addCase(getCountriesListAsync.fulfilled, (state, action: PayloadAction<Country[]>) => {
-// 				state.status = 'idle';
-// 				state.countriesList = action.payload;
-// 			});
-// 		builder
-// 			.addCase(getHolidayNextWeekAsync.pending, (state) => {
-// 				state.status = 'loading';
-// 			})
-// 			.addCase(getHolidayNextWeekAsync.fulfilled, (state, action: PayloadAction<HolidayItemType[]>) => {
-// 				state.status = 'idle';
-// 				state.holidayList = action.payload;
-// 			});
-// 		builder
-// 			.addCase(getCountryHolydaysAsync.pending, (state) => {
-// 				state.status = 'loading';
-// 			})
-// 			.addCase(getCountryHolydaysAsync.fulfilled, (state, action: PayloadAction<HolidayItemType[]>) => {
-// 				state.status = 'idle';
-// 				state.holidayList = action.payload;
-// 			});
-// 	},
-// });
-
-// export const { setCountriesList, setHolidayList, setCountry, setHolidayListMode } = holidaySlice.actions;
-
-// export const selectCountriesList = (state: RootState) => state.holiday.countriesList;
-// export const selectHolidayList = (state: RootState) => state.holiday.holidayList;
-// export const selectCountry = (state: RootState) => state.holiday.country;
-// export const selectHolidayListMode = (state: RootState) => state.holiday.listMode;
-// export const selectHolidayQueryStatus = (state: RootState) => state.holiday.status;
-
-// export default holidaySlice.reducer;
-
-export {}
+export default weatherSlice.reducer;
