@@ -56,6 +56,18 @@ export const getTodayDateString = (divider = '') => {
 	let day = today.getDate();
 	let month = today.getMonth() + 1;
 	let year = today.getFullYear();
-	let result = String(year + divider + month + divider + day);
+	let result = String(year + divider
+		+ normalizeDateString(month) + divider
+		+ normalizeDateString(day));
+	return result;
+}
+
+export const normalizeDateString = (date: any) => {
+	let result = '';
+	if (date < 10) {
+		result = '0' + String(date)
+	} else {
+		result = String(date);
+	}
 	return result;
 }
