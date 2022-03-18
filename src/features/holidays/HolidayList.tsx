@@ -8,7 +8,7 @@ const HolidaysList = (props: any) => {
 	const holidayList = props.holidayList;
 	const queryStatus = props.queryStatus;
 
-	if (queryStatus === 'loading' || queryStatus === 'fail') {
+	if (queryStatus === 'loading' || queryStatus === 'failed') {
 		return <Loading text={queryStatus} />;
 	}
 
