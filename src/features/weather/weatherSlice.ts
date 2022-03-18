@@ -1,11 +1,11 @@
 import { weatherAPI } from './weatherAPI';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
-import { CityGeoType, CountryType, iconIDType, LocationGeoType, WeatherStateType, WeatherType } from './weatherTypes';
+import { RootState } from '../../app/store';
+import { CityGeoType, CountryType, LocationGeoType, WeatherStateType, WeatherType } from './weatherTypes';
 import { convertWeatherData } from './weatherFunctions';
 
 const initialState: WeatherStateType = {
-	weather: {},
+	weather: { description: 'no data', time: 0 },
 	city: {
 		name: 'Moscow',
 		lat: 55.7522,
@@ -31,7 +31,7 @@ export const getCurrentWeatherAsync = createAsyncThunk(
 	'weather/getCurrentWeather',
 	async (geo: CityGeoType) => {
 		const response = await weatherAPI.getCurrentWeather(geo);
-		let result: WeatherType = { description: 'no data' };
+		let result: WeatherType = { description: 'no data', time: 0 };
 		if (response.status === 200) result = convertWeatherData(response.data);
 		return result;
 	}
