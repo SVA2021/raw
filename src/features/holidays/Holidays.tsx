@@ -10,13 +10,13 @@ import {
 	selectHolidayQueryStatus,
 } from "./holidaySlice";
 import { useEffect } from "react";
-import { getTodayDateString } from "../../app/commonFunctions";
+import { getDateString } from "../../app/commonFunctions";
 import HolidaysList from "./HolidayList";
 
 const Holidays = () => {
 
 	const dispatch = useAppDispatch();
-	const today = getTodayDateString('-');
+	const today = getDateString('-');
 
 	const queryStatus = useAppSelector(selectHolidayQueryStatus);
 	const holidayList = useAppSelector(selectHolidayList);
