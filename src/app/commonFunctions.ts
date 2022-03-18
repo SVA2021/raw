@@ -51,8 +51,8 @@ export const normalizeObjText = (str: any) => {
 	return JSON.stringify(str, null, ' ').replace(/"/gm, '');
 }
 
-export const getTodayDateString = (divider = '') => {
-	let today = new Date();
+export const getDateString = (divider = '', timestamp = '') => {
+	let today = new Date(timestamp);
 	let day = today.getDate();
 	let month = today.getMonth() + 1;
 	let year = today.getFullYear();
@@ -62,12 +62,8 @@ export const getTodayDateString = (divider = '') => {
 	return result;
 }
 
-export const normalizeDateString = (date: any) => {
+export const normalizeDateString = (date: number | string) => {
 	let result = '';
-	if (date < 10) {
-		result = '0' + String(date)
-	} else {
-		result = String(date);
-	}
+	(+date < 10) ? result = '0' + String(date) : result = String(date);
 	return result;
 }
