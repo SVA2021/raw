@@ -51,7 +51,7 @@ export const normalizeObjText = (str: any) => {
 	return JSON.stringify(str, null, ' ').replace(/"/gm, '');
 }
 
-export const getDateString = (divider = '', timestamp = '') => {
+export const getDateString = (divider = '', timestamp: string | number = '') => {
 	let today = new Date(timestamp);
 	let day = today.getDate();
 	let month = today.getMonth() + 1;
