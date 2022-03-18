@@ -74,7 +74,7 @@ export const { setCity, setCountry } = weatherSlice.actions;
 export const selectCity = (state: RootState) => state.weather.city;
 export const selectLocationsList = (state: RootState) => state.weather.locationsList;
 export const selectCountry = (state: RootState) => state.weather.country;
-export const selectQueryStatus = (state: RootState) => state.weather.status;
+export const selectWeatherQueryStatus = (state: RootState) => state.weather.status;
 export const selectWeather = (state: RootState) => state.weather.weather;
 
 export default weatherSlice.reducer;

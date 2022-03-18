@@ -1,48 +1,52 @@
-// import s from './Holidays.module.scss';
-// import ReactCountryFlag from "react-country-flag"
-// import { Highlighted, InlineText, PlainText, Title } from '../../components/common/Typography';
-// // import { HolidayItemType } from './holidaySlice';
+import s from './Holidays.module.scss';
+import ReactCountryFlag from "react-country-flag"
+import { Highlighted, InlineText, PlainText, Title } from '../../components/common/Typography';
+import { WeatherType } from './weatherTypes';
+import { useEffect, useState } from 'react';
+import { getWeatherIconURL } from './weatherFunctions';
 
-// type HolidayType = {
-// 	holiday: HolidayItemType
-// }
+const WeatherItem = (props: any) => {
 
-// const HolidayItem = (props: HolidayType) => {
-// 	const holiday = props.holiday;
-// 	return (
-// 		<div className={s.main}>
-// 			<PlainText>
-// 				<Title>date:</Title>
-// 				<InlineText withOffset={true}>{holiday.date}</InlineText>
-// 				{holiday.fixed && <Highlighted className={s.fixedLabel}>fixed</Highlighted>}
-// 			</PlainText>
+	const weather: WeatherType = props.weather;
+	
+	const [iconURL, setIcon] = useState('');
 
-// 			<PlainText>
-// 				<Title>country:</Title>
-// 				<InlineText withOffset={true}>{holiday.countryCode}</InlineText>
-// 				<ReactCountryFlag className={s.fixedLabel} countryCode={holiday.countryCode} svg />
-// 			</PlainText>
+	useEffect(() => {
+		if (weather.icon) setIcon(getWeatherIconURL(weather.icon))
+	}, []);
 
-// 			<PlainText>
-// 				<Title>local name:</Title>
-// 				<InlineText withOffset={true}>{holiday.localName}</InlineText>
-// 			</PlainText>
+	return (
+		<div className={s.main}>
+			{/* <PlainText>
+				<Title>date:</Title>
+				<InlineText withOffset={true}>{holiday.date}</InlineText>
+				{holiday.fixed && <Highlighted className={s.fixedLabel}>fixed</Highlighted>}
+			</PlainText>
 
-// 			<PlainText>
-// 				<Title>name ENG:</Title>
-// 				<InlineText withOffset={true}>{holiday.name}</InlineText>
-// 			</PlainText>
+			<PlainText>
+				<Title>country:</Title>
+				<InlineText withOffset={true}>{holiday.countryCode}</InlineText>
+				<ReactCountryFlag className={s.fixedLabel} countryCode={holiday.countryCode} svg />
+			</PlainText>
 
-// 			{holiday.launchYear &&
-// 				<PlainText>
-// 					<Title>launch Year:</Title>
-// 					<InlineText withOffset={true}>{holiday.launchYear}</InlineText>
-// 				</PlainText>
-// 			}
-// 		</div>
-// 	)
-// }
+			<PlainText>
+				<Title>local name:</Title>
+				<InlineText withOffset={true}>{holiday.localName}</InlineText>
+			</PlainText>
 
-// export default HolidayItem;
+			<PlainText>
+				<Title>name ENG:</Title>
+				<InlineText withOffset={true}>{holiday.name}</InlineText>
+			</PlainText>
 
-export {}
+			{holiday.launchYear &&
+				<PlainText>
+					<Title>launch Year:</Title>
+					<InlineText withOffset={true}>{holiday.launchYear}</InlineText>
+				</PlainText>
+			} */}
+		</div>
+	)
+}
+
+export default WeatherItem;
