@@ -2,7 +2,7 @@ import s from './Weather.module.scss';
 import { InlineText, PlainText, Title } from '../../components/common/Typography';
 import { useAppDispatch } from '../../app/hooks';
 import { LocationGeoType } from './weatherTypes';
-import { setCity } from './weatherSlice';
+import { setCity, setListStatus } from './weatherSlice';
 
 const Location = (props: any) => {
 	const location: LocationGeoType = props.location;
@@ -11,6 +11,7 @@ const Location = (props: any) => {
 	const chooseCity = (location: LocationGeoType) => {
 		let city = { name: location.name, lat: location.lat, lon: location.lon }
 		dispatch(setCity(city));
+		dispatch(setListStatus(false));
 	}
 
 	return (
@@ -18,7 +19,6 @@ const Location = (props: any) => {
 			<PlainText>
 				<Title>{location.name}</Title>
 				{(location.state) && <Title>{location.state}</Title>}
-				{(location.local_names.ru) && <Title>{location.local_names.ru}</Title>}
 				<Title>lat=</Title>
 				<InlineText withOffset={true}>{location.lat}</InlineText>
 				<Title>lon=</Title>
