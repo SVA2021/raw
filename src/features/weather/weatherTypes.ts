@@ -40,6 +40,7 @@ export interface WeatherType {
 export interface WeatherStateType {
 	city: CityGeoType,
 	locationsList: LocationGeoType[],
+	listStatus: boolean,
 	weather: WeatherType,
 	country: CountryType,
 	status: 'idle' | 'loading' | 'failed',

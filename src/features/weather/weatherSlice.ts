@@ -12,6 +12,7 @@ const initialState: WeatherStateType = {
 		lon: 37.6156,
 	},
 	locationsList: [],
+	listStatus: false,
 	country: {
 		countryCode: 'RU',
 		name: 'Russia'
@@ -48,6 +49,9 @@ export const weatherSlice = createSlice({
 		setCountry: (state, action: PayloadAction<CountryType>) => {
 			state.country = action.payload;
 		},
+		setListStatus: (state, action: PayloadAction<boolean>) => {
+			state.listStatus = action.payload;
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -69,12 +73,13 @@ export const weatherSlice = createSlice({
 	},
 });
 
-export const { setCity, setCountry } = weatherSlice.actions;
+export const { setCity, setCountry, setListStatus } = weatherSlice.actions;
 
 export const selectCity = (state: RootState) => state.weather.city;
 export const selectLocationsList = (state: RootState) => state.weather.locationsList;
 export const selectCountry = (state: RootState) => state.weather.country;
 export const selectWeatherQueryStatus = (state: RootState) => state.weather.status;
 export const selectWeather = (state: RootState) => state.weather.weather;
+export const selectListStatus = (state: RootState) => state.weather.listStatus;
 
 export default weatherSlice.reducer;
