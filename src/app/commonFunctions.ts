@@ -51,19 +51,18 @@ export const normalizeObjText = (str: any) => {
 	return JSON.stringify(str, null, ' ').replace(/"/gm, '');
 }
 
-export const getDateString = (divider = '', timestamp: string | number = '') => {
-	let today = new Date(timestamp);
+export const getDateString = (divider = '', timestamp: number = 1) => {
+	let today = (timestamp === 1) ? new Date() : new Date(timestamp);
 	let day = today.getDate();
 	let month = today.getMonth() + 1;
 	let year = today.getFullYear();
-	let result = String(year + divider
-		+ normalizeDateString(month) + divider
-		+ normalizeDateString(day));
+	let result = year + divider + normalizeDateString(month) + divider + normalizeDateString(day);
+
 	return result;
 }
 
-export const normalizeDateString = (date: number | string) => {
-	let result = '';
-	(+date < 10) ? result = '0' + String(date) : result = String(date);
+export const normalizeDateString = (date: number) => {
+	let result;
+	(date < 10) ? result = '0' + String(date) : result = String(date);
 	return result;
 }
