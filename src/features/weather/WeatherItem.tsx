@@ -1,50 +1,59 @@
-import s from './Holidays.module.scss';
-import ReactCountryFlag from "react-country-flag"
-import { Highlighted, InlineText, PlainText, Title } from '../../components/common/Typography';
+import s from './Weather.module.scss';
+import { InlineText, PlainText, Title } from '../../components/common/Typography';
 import { WeatherType } from './weatherTypes';
 import { useEffect, useState } from 'react';
 import { getWeatherIconURL } from './weatherFunctions';
+import Loading from '../../components/Loading';
+import { getDateString } from '../../app/commonFunctions';
 
 const WeatherItem = (props: any) => {
-
 	const weather: WeatherType = props.weather;
-	
 	const [iconURL, setIcon] = useState('');
+	const icon = weather.icon;
+
+	const date = getDateString('-', weather.time);
 
 	useEffect(() => {
-		if (weather.icon) setIcon(getWeatherIconURL(weather.icon))
-	}, []);
+		if (icon) setIcon(getWeatherIconURL(icon))
+	}, [icon]);
+
+	if (weather.description === 'no data') return <Loading text={weather.description} />
 
 	return (
 		<div className={s.main}>
-			{/* <PlainText>
+			<PlainText>
 				<Title>date:</Title>
-				<InlineText withOffset={true}>{holiday.date}</InlineText>
-				{holiday.fixed && <Highlighted className={s.fixedLabel}>fixed</Highlighted>}
+				<InlineText withOffset={true}>{date}</InlineText>
+				<Title>city:</Title>
+				<InlineText withOffset={true}>{weather.name}</InlineText>
 			</PlainText>
-
 			<PlainText>
-				<Title>country:</Title>
-				<InlineText withOffset={true}>{holiday.countryCode}</InlineText>
-				<ReactCountryFlag className={s.fixedLabel} countryCode={holiday.countryCode} svg />
+				<InlineText withOffset={true}>{weather.description}</InlineText>
 			</PlainText>
-
+			<div style={{ backgroundImage: `url(${iconURL})` }}></div>
 			<PlainText>
-				<Title>local name:</Title>
-				<InlineText withOffset={true}>{holiday.localName}</InlineText>
+				<Title>temperature:</Title>
+				<InlineText withOffset={true}>{weather.temp}&#176;C</InlineText>
+				<Title>feels like:</Title>
+				<InlineText withOffset={true}>{weather.feels_like}&#176;C</InlineText>
+				<Title>min:</Title>
+				<InlineText withOffset={true}>{weather.temp_min}&#176;C</InlineText>
+				<Title>max:</Title>
+				<InlineText withOffset={true}>{weather.temp_max}&#176;C</InlineText>
 			</PlainText>
-
 			<PlainText>
-				<Title>name ENG:</Title>
-				<InlineText withOffset={true}>{holiday.name}</InlineText>
+				<Title>pressure:</Title>
+				<InlineText withOffset={true}>{weather.pressure}hPa</InlineText>
+				<Title>humidity:</Title>
+				<InlineText withOffset={true}>{weather.humidity}%</InlineText>
+				<Title>visibility:</Title>
+				<InlineText withOffset={true}>{weather.visibility}meter</InlineText>
+				<Title>wind:</Title>
+				<InlineText withOffset={true}>{weather.windSpeed}meter/sec</InlineText>
+				<InlineText style={{ transform: `rotate(${weather.windDeg}deg)` }}>
+					&#8593;
+				</InlineText>
 			</PlainText>
-
-			{holiday.launchYear &&
-				<PlainText>
-					<Title>launch Year:</Title>
-					<InlineText withOffset={true}>{holiday.launchYear}</InlineText>
-				</PlainText>
-			} */}
 		</div>
 	)
 }

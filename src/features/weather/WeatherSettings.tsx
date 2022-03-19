@@ -3,36 +3,30 @@ import s from './Weather.module.scss';
 import { InlineText, PlainText, Title } from '../../components/common/Typography';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Button from '../../components/common/Button';
-import { getLocationsListAsync, selectCity, selectCountry, selectLocationsList } from './weatherSlice';
-import { weatherAPI } from './weatherAPI';
+import { getLocationsListAsync, selectCountry, selectListStatus, setListStatus } from './weatherSlice';
 import LocationList from './LocationList';
 import ReactCountryFlag from 'react-country-flag';
+import { getDateString } from '../../app/commonFunctions';
 
 const WeatherSettings = (props: any) => {
 
 	const dispatch = useAppDispatch();
-	// const city = useAppSelector(selectCity);
 	const country = useAppSelector(selectCountry);
-	const today = props.today;
+	const listStatus = useAppSelector(selectListStatus);
 
-	const keyLocal = 'todayWeather';
-	const savedKey = localStorage.getItem(keyLocal) || '{}';
-	const hasLocalCopy = JSON.parse(savedKey) === today;
-
-	const countryName = country.name;
-	const countryCode = country.countryCode;
-
+	let today = getDateString('-');
 	const [activeCity, setActiveCity] = useState('');
+	// const [today, setToday] = useState('');
 
 	const getLocations = (city: string) => {
 		dispatch(getLocationsListAsync(activeCity));
+		dispatch(setListStatus(true));
 	}
 
-	// useEffect(() => {
-	// 	// setCountryCode(countryCode);
-	// 	console.log(locationsList);
-
-	// }, [locationsList]);
+	// setToday(getDateString('-'));
+	useEffect(() => {
+		console.log(today);
+	}, [today]);
 
 	return (
 		<div className={s.settings}>
@@ -41,8 +35,8 @@ const WeatherSettings = (props: any) => {
 					<Title>today:</Title>
 					<InlineText withOffset={true}>{today}</InlineText>
 					<Title>country:</Title>
-					<ReactCountryFlag countryCode={countryCode} svg />
-					<InlineText withOffset={true}>{countryName}</InlineText>
+					<ReactCountryFlag countryCode={country.countryCode} svg />
+					<InlineText withOffset={true}>{country.name}</InlineText>
 				</PlainText>
 			</header>
 			<div className={s.searchArea}>
@@ -52,7 +46,7 @@ const WeatherSettings = (props: any) => {
 					Show
 				</Button>
 			</div>
-			<LocationList />
+			{listStatus && <LocationList />}
 		</div>
 	)
 }
