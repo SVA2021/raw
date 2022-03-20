@@ -49,11 +49,13 @@ a {
 	@include borderDefault;
 	@include darkLight;
 	grid-area: weather;
+	position: relative;
 }
 
 .pomodoro {
 	@include borderDefault;
 	@include darkLight;
+	position: relative;
 	grid-area: pomodoro;
 }
 
@@ -67,6 +69,7 @@ a {
 .currency {
 	@include borderDefault;
 	@include darkLight;
+	position: relative;
 	grid-area: currency;
 }
 
