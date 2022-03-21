@@ -15,7 +15,7 @@ const App = () => {
 			<Logo />
 			<Weather />
 			<Pomodoro />
-			<Holidays />
+			{/* <Holidays /> */}
 			<Currency />
 		</div>
 	);
