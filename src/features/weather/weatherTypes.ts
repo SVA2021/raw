@@ -11,8 +11,8 @@ export interface CityGeoType {
 
 export interface LocationGeoType {
 	name: string
-	lat: number | string
-	lon: number | string
+	lat: number
+	lon: number
 	country: string
 	state?: string
 	local_names?: any
