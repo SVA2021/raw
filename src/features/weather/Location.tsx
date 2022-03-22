@@ -5,11 +5,12 @@ import { LocationGeoType } from './weatherTypes';
 import { setCity, setListStatus } from './weatherSlice';
 
 const Location = (props: any) => {
+
 	const location: LocationGeoType = props.location;
 	const dispatch = useAppDispatch();
 
 	const chooseCity = (location: LocationGeoType) => {
-		let city = { name: location.name, lat: location.lat, lon: location.lon }
+		let city = { name: location.name, lat: location.lat, lon: location.lon, }
 		dispatch(setCity(city));
 		dispatch(setListStatus(false));
 	}
@@ -17,12 +18,14 @@ const Location = (props: any) => {
 	return (
 		<div className={s.location} onClick={() => chooseCity(location)}>
 			<PlainText>
-				<Title>{location.name}</Title>
-				{(location.state) && <Title>{location.state}</Title>}
-				<Title>lat=</Title>
-				<InlineText withOffset={true}>{location.lat}</InlineText>
-				<Title>lon=</Title>
-				<InlineText withOffset={true}>{location.lon}</InlineText>
+				<Title withOffset={true}>{location.name}</Title>
+				{(location.state) && <Title withOffset={true}>{location.state}</Title>}
+			</PlainText>
+			<PlainText>
+				<Title withOffset={true}>lat=</Title>
+				<InlineText withOffset={true}>{location.lat.toFixed(2)}</InlineText>
+				<Title withOffset={true}>lon=</Title>
+				<InlineText withOffset={true}>{location.lon.toFixed(2)}</InlineText>
 			</PlainText>
 		</div>
 	)
