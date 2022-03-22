@@ -24,3 +24,12 @@ export const convertWeatherData = (response: any) => {
 	}
 	return result;
 }
+
+export const setColor = (temp: number | undefined) => {
+	if (!temp) return false;
+	let result;
+	result = { color: 'white', backgroundColor: 'yellow' };
+	if (temp < 4) result.backgroundColor = 'blue';
+	if (temp > 24) result.backgroundColor = 'red';
+	return result;
+}
