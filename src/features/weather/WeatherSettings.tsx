@@ -3,7 +3,10 @@ import s from './Weather.module.scss';
 import { InlineText, PlainText, Title } from '../../components/common/Typography';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Button from '../../components/common/Button';
-import { getLocationsListAsync, selectCountry, selectListStatus, setListStatus } from './weatherSlice';
+import {
+	getLocationsListAsync,
+	selectCountry, selectListStatus, setListStatus
+} from './weatherSlice';
 import LocationList from './LocationList';
 import ReactCountryFlag from 'react-country-flag';
 import { getDateString } from '../../app/commonFunctions';
@@ -27,9 +30,9 @@ const WeatherSettings = (props: any) => {
 		<div className={s.settings}>
 			<header>
 				<PlainText>
-					<Title>today:</Title>
+					<Title withOffset={true}>today:</Title>
 					<InlineText withOffset={true}>{today}</InlineText>
-					<Title>country:</Title>
+					<Title withOffset={true}>country:</Title>
 					<ReactCountryFlag countryCode={country.countryCode} svg />
 					<InlineText withOffset={true}>{country.name}</InlineText>
 				</PlainText>

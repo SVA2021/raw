@@ -39,3 +39,41 @@
 	right: 0.5em;
 	left: 0.5em;
 }
+
+.wind {
+	display: inline-block;
+	// transform: rotate(90);
+}
+
+.modal {
+	@include borderDefault;
+	@include baseOffset;
+	background-color: $dark;
+	// @include orangeDark;
+	z-index: 10;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	bottom: 0%;
+	right: 0%;
+	@include flexCenter;
+  flex-direction: column;
+}
+
+.location {
+	@include borderDefault;
+	@include baseOffset;
+	@include orangeDark;
+}
+
+.icon {
+	@include flexCenter;
+	height: 100px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: top center;
+}
+
+.description {
+	text-align: center;
+}
