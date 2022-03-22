@@ -1,22 +1,24 @@
 import s from './Weather.module.scss';
-import { useAppSelector } from '../../app/hooks';
-import { selectLocationsList } from './weatherSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectLocationsList, setListStatus } from './weatherSlice';
 import Loading from '../../components/Loading';
 import Location from './Location';
-import { useEffect } from 'react';
 
 const LocationList = () => {
 
+	const dispatch = useAppDispatch();
 	const locationsList = useAppSelector(selectLocationsList);
-	// let listStatus = locationsList.length;
-	
-	// useEffect(() => {
-	// }, [listStatus]);
-	
-	// if (listStatus === 0) return <Loading text={'waiting...'} />
+	const listStatus = locationsList.length;
+
+	const hideModal = () => {
+		dispatch(setListStatus(false));
+	}
+
 	return (
-		<div className={s.modal}>
-			{locationsList.map((location) => <Location location={location} />)}
+		<div className={s.modal} onClick={() => hideModal()}>
+			{(listStatus === 0)
+				? <Loading text={'no data'} />
+				: locationsList.map((location) => <Location location={location} />)}
 		</div>
 	)
 }
