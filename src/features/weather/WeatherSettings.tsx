@@ -16,17 +16,12 @@ const WeatherSettings = (props: any) => {
 
 	let today = getDateString('-');
 	const [activeCity, setActiveCity] = useState('');
-	// const [today, setToday] = useState('');
 
 	const getLocations = (city: string) => {
+		if (city.length === 0) return false;
 		dispatch(getLocationsListAsync(activeCity));
 		dispatch(setListStatus(true));
 	}
-
-	// setToday(getDateString('-'));
-	useEffect(() => {
-		console.log(today);
-	}, [today]);
 
 	return (
 		<div className={s.settings}>
