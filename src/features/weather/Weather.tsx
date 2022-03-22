@@ -1,7 +1,10 @@
 import { SectionTitle } from "../../components/common/Typography";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import WeatherSettings from "./WeatherSettings";
-import { getCurrentWeatherAsync, selectCity, selectWeather, selectWeatherQueryStatus } from "./weatherSlice";
+import {
+	getCurrentWeatherAsync,
+	selectCity, selectWeather, selectWeatherQueryStatus
+} from "./weatherSlice";
 import WeatherItem from "./WeatherItem";
 import Loading from "../../components/Loading";
 import { useEffect } from "react";
