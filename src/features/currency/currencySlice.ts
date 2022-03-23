@@ -69,11 +69,9 @@ export const currencySlice = createSlice({
 
 export const { setBaseCurrency, setExchangeList, setRatesList } = currencySlice.actions;
 
-export const selectCity = (state: RootState) => state.weather.city;
-export const selectLocationsList = (state: RootState) => state.weather.locationsList;
-export const selectCountry = (state: RootState) => state.weather.country;
-export const selectWeatherQueryStatus = (state: RootState) => state.weather.status;
-export const selectWeather = (state: RootState) => state.weather.weather;
-export const selectListStatus = (state: RootState) => state.weather.listStatus;
+export const selectBase = (state: RootState) => state.currency.base;
+export const selectexchangeList = (state: RootState) => state.currency.exchangeList;
+export const selectRatesList = (state: RootState) => state.currency.ratesList;
+export const selectWeatherQueryStatus = (state: RootState) => state.currency.status;
 
 export default currencySlice.reducer;
