@@ -13,7 +13,7 @@ const App = () => {
 	return (
 		<div className='container'>
 			<Logo />
-			<Weather />
+			{/* <Weather /> */}
 			<Pomodoro />
 			{/* <Holidays /> */}
 			<Currency />
