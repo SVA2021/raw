@@ -10,9 +10,9 @@ const currencyInstance = axios.create({
 
 export const currencyAPI = {
 
-	getLatest(base: string = 'rub', symbols: string[] = []) {
+	getLatest(base: string, symbols: string) {
 		const baseQuery = `base=${base}`;
-		const symbolsQuery = (symbols.length === 0) ? `` : `&symbols=${symbols.join(',')}`;
+		const symbolsQuery = (symbols.length === 0) ? `` : `&symbols=` + symbols;
 		const query = LATEST_DATA + baseQuery + symbolsQuery;
 		return currencyInstance.get(query)
 			.then(response => {
