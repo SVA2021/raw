@@ -13,8 +13,7 @@ export const currencyAPI = {
 	getLatest(base: string = 'rub', symbols: string[] = []) {
 		const baseQuery = `base=${base}`;
 		const symbolsQuery = (symbols.length === 0) ? `` : `&symbols=${symbols.join(',')}`;
-		const accuracy = `&places=2`;
-		const query = LATEST_DATA + baseQuery + symbolsQuery + accuracy;
+		const query = LATEST_DATA + baseQuery + symbolsQuery;
 		return currencyInstance.get(query)
 			.then(response => {
 				console.log(response);
