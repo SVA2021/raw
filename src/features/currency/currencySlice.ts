@@ -98,7 +98,7 @@ export const currencySlice = createSlice({
 			state.activeCurrency.push(action.payload);
 		},
 		delActiveCurrency: (state, action: PayloadAction<CurrencyType>) => {
-			state.activeCurrency.filter((item) => (item.code === action.payload.code));
+			state.activeCurrency.filter((item) => (item.code !== action.payload.code));
 		},
 		setRatesList: (state, action: PayloadAction<any>) => {
 			state.rates = action.payload;
