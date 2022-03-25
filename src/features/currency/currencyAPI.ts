@@ -1,4 +1,5 @@
 import axios from "axios";
+import { QueryCurrencyType } from "./currencySlice";
 
 const BASE_URL = 'https://api.exchangerate.host/';
 const LATEST_DATA = 'latest?';
@@ -10,9 +11,9 @@ const currencyInstance = axios.create({
 
 export const currencyAPI = {
 
-	getLatest(base: string, symbols: string) {
-		const baseQuery = `base=${base}`;
-		const symbolsQuery = (symbols.length === 0) ? `` : `&symbols=` + symbols;
+	getLatest(request: QueryCurrencyType) {
+		const baseQuery = `base=${request.base}`;
+		const symbolsQuery = (request.symbols.length === 0) ? `` : `&symbols=` + request.symbols;
 		const query = LATEST_DATA + baseQuery + symbolsQuery;
 		return currencyInstance.get(query)
 			.then(response => {
