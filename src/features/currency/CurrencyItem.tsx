@@ -1,0 +1,65 @@
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useState } from "react";
+import s from './Currency.module.scss';
+import { InlineText, PlainText, Title } from '../../components/common/Typography';
+import { delActiveCurrency, selectAllCurrency } from "./currencySlice";
+
+const CurrencyItem = (props: any) => {
+	const dispatch = useAppDispatch();
+	const allCurrencyList = useAppSelector(selectAllCurrency);
+
+	const base = props.base;
+	const code = props.code;
+	const rate = props.rate;
+	const description = props.description;
+
+	const [original, setOriginal] = useState(1);
+	const [second, setSecond] = useState(rate);
+
+	const changeOriginal = (value: number) => {
+		setOriginal(value);
+		setSecond(value * rate);
+	}
+
+	const changeSecond = (value: number) => {
+		setSecond(value);
+		setOriginal(value / rate);
+	}
+
+	const delCurrency = () => {
+		let request = allCurrencyList.find(item => item.code === code);
+		if (request === undefined) return false;
+		dispatch(delActiveCurrency(request));
+	}
+
+	return (
+		<div className={s.item}>
+			<Title>currency:</Title>
+			<InlineText withOffset={true}>{code}</InlineText>
+			<InlineText withOffset={true}>{`{` + description + '}'}</InlineText>
+			<PlainText>
+				<InlineText withOffset={true}>1 {base}</InlineText>
+				<InlineText withOffset={true}>= {rate}</InlineText>
+				<InlineText>{code}</InlineText>
+			</PlainText>
+			<PlainText>
+				<InlineText withOffset={true}>1 {code}</InlineText>
+				<InlineText withOffset={true}>= {1 / rate}</InlineText>
+				<InlineText>{base}</InlineText>
+			</PlainText>
+			<div>
+				<PlainText>
+					<Title>convert</Title>
+				</PlainText>
+				<input type="number" className={s.inputNumber} min={0}
+					value={original} onChange={(e) => changeOriginal(+e.target.value)} />
+				<InlineText withOffset={true}>&#8644;</InlineText>
+				<input type="number" className={s.inputNumber} min={0}
+					value={second} onChange={(e) => changeSecond(+e.target.value)} />
+			</div>
+			<button className={s.closeBtn} onClick={() => delCurrency()}>X</button>
+		</div>
+	)
+}
+
+export default CurrencyItem;
