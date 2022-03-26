@@ -12,7 +12,38 @@
 	@include borderDefault;
 	@include baseOffset;
 	display: flex;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
 	flex-direction: row;
+}
+
+.inputNumber{
+	width: 5em;
+}
+
+.item{
+	@include borderDefault;
+	@include maxOffset;
+	@include orangeDark;
+	padding-right: $offset-basic * 12;
+	position: relative;
+}
+
+.closeBtn{
+	@include darkLight;
+
+  border: $size-section-border solid $orange;
+	border-radius: 50%;
+	width: 2em;
+	height: 2em;
+	position: absolute;
+	top: 0.5em;
+	right: 0.5em;
+}
+
+.convert{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
 }

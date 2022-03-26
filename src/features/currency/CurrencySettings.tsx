@@ -6,6 +6,7 @@ import { getDateString } from "../../app/commonFunctions";
 import {
 	addActiveCurrency,
 	CurrencyType,
+	getCurrencyListAsync,
 	getLatestAsync,
 	selectActiveCurrency,
 	selectAllCurrency,
@@ -33,13 +34,15 @@ const CurrencySettings = (props: any) => {
 	}
 
 	const addCurrency = () => {
-
-
 		let request = allCurrencyList.find(item => item.code === additionCurrency);
 		if (request === undefined) return false;
 		let status = activeCurrencyList.find((item) => item.code === request?.code);
 		if (status?.code) return false;
 		dispatch(addActiveCurrency(request));
+	}
+
+	const loadCurrency = () => {
+		dispatch(getCurrencyListAsync());
 	}
 
 	return (
@@ -78,6 +81,7 @@ const CurrencySettings = (props: any) => {
 					<Button active={true} withOffset={true} onClick={() => addCurrency()}>Add</Button>
 				</div>
 			</div>
+			<Button active={true} withOffset={true} onClick={() => loadCurrency()}>load full currency list</Button>
 		</div>
 	)
 }

@@ -34,23 +34,24 @@ const CurrencyItem = (props: any) => {
 
 	return (
 		<div className={s.item}>
-			<Title>currency:</Title>
-			<InlineText withOffset={true}>{code}</InlineText>
+			<Title withOffset={true}>{code}</Title>
 			<InlineText withOffset={true}>{`{` + description + '}'}</InlineText>
 			<PlainText>
-				<InlineText withOffset={true}>1 {base}</InlineText>
-				<InlineText withOffset={true}>= {rate}</InlineText>
-				<InlineText>{code}</InlineText>
+				<InlineText withOffset={true}>1</InlineText>
+				<Title>{base}</Title>
+				<InlineText withOffset={true}>= {rate.toFixed(2)}</InlineText>
+				<Title>{code}</Title>
 			</PlainText>
 			<PlainText>
-				<InlineText withOffset={true}>1 {code}</InlineText>
-				<InlineText withOffset={true}>= {1 / rate}</InlineText>
-				<InlineText>{base}</InlineText>
+				<InlineText withOffset={true}>1</InlineText>
+				<Title>{code}</Title>
+				<InlineText withOffset={true}>= {(1 / rate).toFixed(2)}</InlineText>
+				<Title>{base}</Title>
 			</PlainText>
-			<div>
 				<PlainText>
 					<Title>convert</Title>
 				</PlainText>
+			<div className={s.convert}>
 				<input type="number" className={s.inputNumber} min={0}
 					value={original} onChange={(e) => changeOriginal(+e.target.value)} />
 				<InlineText withOffset={true}>&#8644;</InlineText>

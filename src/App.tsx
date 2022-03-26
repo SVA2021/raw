@@ -16,7 +16,7 @@ const App = () => {
 			{/* <Weather /> */}
 			<Pomodoro />
 			{/* <Holidays /> */}
-			<Currency />
+			{/* <Currency /> */}
 		</div>
 	);
 }

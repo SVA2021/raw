@@ -18,7 +18,7 @@ const Currency = (props: any) => {
 	useEffect(() => {
 		console.log(base);
 		dispatch(getLatestAsync({ base: base, symbols: symbols }))
-	}, []);
+	}, [activeCurrencyList]);
 	return (
 		<div className="currency">
 			<SectionTitle>Currency</SectionTitle>
