@@ -33,8 +33,12 @@ const CurrencySettings = (props: any) => {
 	}
 
 	const addCurrency = () => {
+
+
 		let request = allCurrencyList.find(item => item.code === additionCurrency);
 		if (request === undefined) return false;
+		let status = activeCurrencyList.find((item) => item.code === request?.code);
+		if (status?.code) return false;
 		dispatch(addActiveCurrency(request));
 	}
 
