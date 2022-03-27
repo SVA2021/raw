@@ -20,12 +20,6 @@ export const SectionTitle: FC<any> = ({ children }) => (
 	</h3>
 );
 
-export const SubTitle: FC<any> = ({ children }) => (
-	<h4 className={s.subTitle}>
-		{children}
-	</h4>
-);
-
 export const SubTitleUpper: FC<any> = ({ children }) => (
 	<h4 className={s.subTitleUpper}>
 		{children}
@@ -94,4 +88,15 @@ export const InlineText: FC<TTypographyProps> = ({ className = '', style, withOf
 	>
 		{children}
 	</span>
+);
+
+export const SubTitle: FC<TTypographyProps> = ({ className = '', style, withOffset, children }) => (
+	<h4
+		className={classNames(className, s.subTitle, {
+			[s.withOffset]: withOffset,
+		})}
+		style={style}
+	>
+		{children}
+	</h4>
 );
