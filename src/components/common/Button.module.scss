@@ -4,11 +4,19 @@
 .button {
 	@include buttonBase;
 	@include buttonOffset;
+	
+	&:hover {
+		box-shadow: 2px 2px 5px $orange, -2px -2px 5px $orange;
+}
 }
 
 .active {
 	@extend .button;
 	@include buttonActive;
+	
+	&:hover {
+		box-shadow: 2px 2px 5px $green, -2px -2px 5px $green;
+}
 }
 
 .withOffset {
