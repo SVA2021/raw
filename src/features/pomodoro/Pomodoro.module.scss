@@ -1,2 +1,56 @@
 @import '../../styles/mixins';
 @import '../../styles/variables';
+
+.mode {
+	@include baseOffset;
+	@include flexEvenly;
+	// @include borderDefault;
+	// background-color: red;
+}
+
+.clock {
+	// @include borderDefault;
+	@include baseOffset;
+	// background-color: green;
+	font-size: 200px;
+	
+	font-family: $font-titles;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	text-align: center;
+	color: transparent;
+	-webkit-text-stroke: 5px $light;
+}
+
+.buttons {
+	background-color: orange;
+}
+
+.statistic {
+	background-color: lightgreen;
+}
+
+.settings {
+	margin: 0 auto;
+	width: 50%;
+	background-color: blueviolet;
+	position: relative;
+	// position: absolute;
+	// z-index: 10;
+	// left: 50%;
+	// top: 50%;
+	// transform: translate(-50%, -50%);
+}
+
+
+.closeBtn{
+	@include darkLight;
+
+  border: $size-section-border solid $orange;
+	border-radius: 50%;
+	width: 2em;
+	height: 2em;
+	position: absolute;
+	top: 0.5em;
+	right: 0.5em;
+}

@@ -23,9 +23,9 @@ a {
 }
 
 .container {
-	display: grid;
+	// display: grid;
 	z-index: 1;
-	height: 100vh;
+	// height: 100vh;
 	overflow: hidden;
 	grid-template-columns: 24% 48% 24%;
 	grid-template-rows: 10% 56% 30%;

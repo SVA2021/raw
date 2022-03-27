@@ -147,7 +147,7 @@
 @mixin buttonActive {
   @include orangeLight;
 
-  cursor: not-allowed;
+  // cursor: not-allowed;
   border: none;
   border-radius: $border-radius-default;
 }
