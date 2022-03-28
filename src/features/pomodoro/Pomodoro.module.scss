@@ -4,16 +4,12 @@
 .mode {
 	@include baseOffset;
 	@include flexEvenly;
-	// @include borderDefault;
-	// background-color: red;
 }
 
 .clock {
-	// @include borderDefault;
 	@include baseOffset;
-	// background-color: green;
 	font-size: 200px;
-	
+
 	font-family: $font-titles;
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
@@ -23,34 +19,53 @@
 }
 
 .buttons {
-	background-color: orange;
+	@include baseOffset;
+	@include flexEvenly;
 }
 
 .statistic {
-	background-color: lightgreen;
+	@include flexEvenly;
+	@include baseOffset;
 }
 
 .settings {
+	@include baseOffset;
+	background-color: $dark;
+	border-radius: $border-radius-section;
+	border: $offset-basic solid $dark;
 	margin: 0 auto;
-	width: 50%;
-	background-color: blueviolet;
+	width: 40%;
 	position: relative;
 	// position: absolute;
 	// z-index: 10;
 	// left: 50%;
 	// top: 50%;
 	// transform: translate(-50%, -50%);
+
+	box-shadow: 2px 2px 200px $orange, -2px -2px 200px $orange;
 }
 
 
-.closeBtn{
-	@include darkLight;
+.closeBtn {
 
-  border: $size-section-border solid $orange;
+	background-color: $orange;
+
+	border: $size-section-border solid $orange;
+	font-weight: bolder;
 	border-radius: 50%;
 	width: 2em;
 	height: 2em;
 	position: absolute;
 	top: 0.5em;
 	right: 0.5em;
+
+	&:hover {
+		box-shadow: 5px 5px 25px $green, -5px -5px 25px $green;
+	}
+}
+
+.settingsIcon {
+	// color: $orange;
+	color: orange;
+	// background-color: blue;
 }

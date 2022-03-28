@@ -10,12 +10,14 @@ export interface Country {
 export interface PomodoroState {
 	mode : ModeType
 	settingsStatus: boolean
+	isRunning: boolean
 }
 
 
 const initialState = {
 	mode: 'work',
 	settingsStatus: false,
+	isRunning: false,
 };
 
 
@@ -30,6 +32,9 @@ export const pomodoroSlice = createSlice({
 		setSettingsStatus: (state, action: PayloadAction<boolean>) => {
 			state.settingsStatus = action.payload;
 		},
+		setRunningStatus: (state, action: PayloadAction<boolean>) => {
+			state.isRunning = action.payload;
+		},
 	},
 });
 
@@ -37,5 +42,6 @@ export const { setMode, } = pomodoroSlice.actions;
 
 export const selectMode = (state: RootState) => state.pomodoro.mode;
 export const selectSettingsStatus = (state: RootState) => state.pomodoro.settingsStatus;
+export const selectRunningStatus = (state: RootState) => state.pomodoro.isRunning;
 
 export default pomodoroSlice.reducer;
