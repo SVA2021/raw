@@ -1,19 +1,21 @@
-import { InlineText, PlainText, SectionTitle, Strong, SubTitle, Title } from "../../components/common/Typography";
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import Button from "../../components/common/Button";
+import { InlineText, PlainText, Title } from "../../components/common/Typography";
+import { useAppSelector } from '../../app/hooks';
 import s from './Pomodoro.module.scss';
-import { InputRange } from "../../components/common/Input";
+import { selectMode, selectStatistic } from "./pomodoroSlice";
 
 const PomodoroStatistic = () => {
+	const mode = useAppSelector(selectMode);
+	const statistic = useAppSelector(selectStatistic);
+
 	return (
 		<div className={s.statistic}>
 			<PlainText>
 				<Title>status:</Title>
-				<InlineText withOffset={true}>work</InlineText>
+				<InlineText withOffset={true}>{mode}</InlineText>
 			</PlainText>
 			<PlainText>
 				<Title>session:</Title>
-				<InlineText withOffset={true}>1/4</InlineText>
+				<InlineText withOffset={true}>{statistic.sessions} / 4</InlineText>
 			</PlainText>
 		</div>
 	)
