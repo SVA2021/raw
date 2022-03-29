@@ -3,6 +3,7 @@ import { RootState, AppThunk } from '../../app/store';
 import { ModeType, SettingsType, StatisticType } from './pomodoroTypes';
 
 export const DEFAULT_TIMERS: SettingsType = { work: 25, short: 5, long: 15 };
+export const DEFAULT_STATS = { sessions: 0, work: 0, break: 0 };
 
 export interface PomodoroState {
 	mode: ModeType
@@ -14,18 +15,10 @@ export interface PomodoroState {
 
 const initialState = {
 	mode: 'work',
-	settings: {
-		work: 25,
-		short: 5,
-		long: 15
-	},
+	settings: DEFAULT_TIMERS,
 	settingsStatus: false,
 	isRunning: false,
-	statistic: {
-		sessions: 0,
-		work: 0,
-		break: 0,
-	}
+	statistic: DEFAULT_STATS,
 };
 
 export const pomodoroSlice = createSlice({
@@ -51,7 +44,9 @@ export const pomodoroSlice = createSlice({
 export const { setMode, setSettingsValues, setSettingsStatus, setRunningStatus, } = pomodoroSlice.actions;
 
 export const selectMode = (state: RootState) => state.pomodoro.mode;
+export const selectSettings = (state: RootState) => state.pomodoro.settings;
 export const selectSettingsStatus = (state: RootState) => state.pomodoro.settingsStatus;
 export const selectRunningStatus = (state: RootState) => state.pomodoro.isRunning;
+export const selectStatistic = (state: RootState) => state.pomodoro.statistic;
 
 export default pomodoroSlice.reducer;
