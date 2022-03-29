@@ -1,16 +1,24 @@
-import { InlineText, PlainText, SectionTitle, Strong, SubTitle, Title } from "../../components/common/Typography";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Button from "../../components/common/Button";
 import s from './Pomodoro.module.scss';
-import { InputRange } from "../../components/common/Input";
+import { selectMode, setMode, setSettingsStatus } from "./pomodoroSlice";
+import { ModeType } from "./pomodoroTypes";
 
 const PomodoroMode = () => {
+
+	const mode = useAppSelector(selectMode);
+	const dispatch = useAppDispatch();
+
+	const changeMode = (mode: ModeType) => {
+		dispatch(setMode(mode));
+	}
+
 	return (
 		<div className={s.mode}>
-			<Button active={true}>work</Button>
-			<Button active={true}>short break</Button>
-			<Button active={true}>long break</Button>
-			<Button active={true}>settings</Button>
+			<Button onClick={() => changeMode('work')} active={mode === 'work'}>work</Button>
+			<Button onClick={() => changeMode('short')} active={mode === 'short'}>short break</Button>
+			<Button onClick={() => changeMode('long')} active={mode === 'long'}>long break</Button>
+			<Button onClick={() => dispatch(setSettingsStatus(true))} >settings</Button>
 		</div>
 	)
 }
