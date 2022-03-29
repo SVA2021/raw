@@ -1,25 +1,32 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../../app/store';
-import { ModeType } from './pomodoroTypes';
+import { ModeType, SettingsType, StatisticType } from './pomodoroTypes';
 
-export interface Country {
-	countryCode: string
-	name: string
-}
+export const DEFAULT_TIMERS: SettingsType = { work: 25, short: 5, long: 15 };
 
 export interface PomodoroState {
-	mode : ModeType
+	mode: ModeType
+	settings: SettingsType
 	settingsStatus: boolean
 	isRunning: boolean
+	statistic: StatisticType
 }
-
 
 const initialState = {
 	mode: 'work',
+	settings: {
+		work: 25,
+		short: 5,
+		long: 15
+	},
 	settingsStatus: false,
 	isRunning: false,
+	statistic: {
+		sessions: 0,
+		work: 0,
+		break: 0,
+	}
 };
-
 
 export const pomodoroSlice = createSlice({
 	name: 'pomodoro',
@@ -28,6 +35,9 @@ export const pomodoroSlice = createSlice({
 	reducers: {
 		setMode: (state, action: PayloadAction<ModeType>) => {
 			state.mode = action.payload;
+		},
+		setSettingsValues: (state, action: PayloadAction<SettingsType>) => {
+			state.settings = action.payload;
 		},
 		setSettingsStatus: (state, action: PayloadAction<boolean>) => {
 			state.settingsStatus = action.payload;
@@ -38,7 +48,7 @@ export const pomodoroSlice = createSlice({
 	},
 });
 
-export const { setMode, } = pomodoroSlice.actions;
+export const { setMode, setSettingsValues, setSettingsStatus, setRunningStatus, } = pomodoroSlice.actions;
 
 export const selectMode = (state: RootState) => state.pomodoro.mode;
 export const selectSettingsStatus = (state: RootState) => state.pomodoro.settingsStatus;
