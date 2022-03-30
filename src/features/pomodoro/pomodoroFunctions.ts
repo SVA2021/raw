@@ -14,3 +14,23 @@ export const chooseColor = (mode: ModeType, isRunning: boolean) => {
 	if (isRunning && mode === 'long') result = COLOR_LONG_BREAK;
 	return result;
 }
+
+export const showTime = () => {
+	
+}
+
+// function startTime() {
+// 	setBack('blue');
+
+// 	timerID = setInterval(() => {
+// 			counterBack = Number(counterBack - 1000);
+// 			if (counterBack <= 0) {
+// 					setBack('red');
+// 					clearInterval(timerID);
+// 					startBtn.addEventListener('click', startTime);
+// 			}
+// 			showTime(counterBack, 'clock');
+// 	}, 1000);
+
+// 	startBtn.removeEventListener('click', startTime);
+// }

@@ -1,30 +1,25 @@
 import { SubTitle, } from "../../components/common/Typography";
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Button from "../../components/common/Button";
 import s from './Pomodoro.module.scss';
-import { DEFAULT_TIMERS, setSettingsStatus, setSettingsValues } from "./pomodoroSlice";
-import { useState } from "react";
+import { DEFAULT_TIMERS, selectSettings, setSettingsStatus, setSettingsValues } from "./pomodoroSlice";
+import { useEffect, useState } from "react";
 import { InputRangeModule } from "../../components/common/InputRangeModule/InputRangeModule";
+import { SettingsType } from "./pomodoroTypes";
 
-const PomodoroSettings = () => {
+const PomodoroSettings = (props: any) => {
+	// const timers = useAppSelector(selectSettings);
 	const dispatch = useAppDispatch();
-
-	const setDefaultTimers = () => {
-		dispatch(setSettingsValues(DEFAULT_TIMERS));
-	}
-
-	const closeSettings = () => {
-		dispatch(setSettingsStatus(false));
-	}
+	const timers = props.timers;
 
 	const workLimit = { min: 1, max: 30 };
-	const [workTimer, setWorkTimer] = useState(DEFAULT_TIMERS.work);
+	const [workTimer, setWorkTimer] = useState(timers.work);
 
 	const shortBreakLimit = { min: 1, max: 10 };
-	const [shortBreakTimer, setShortBreakTimer] = useState(DEFAULT_TIMERS.short);
+	const [shortBreakTimer, setShortBreakTimer] = useState(timers.short);
 
 	const longBreakLimit = { min: 1, max: 30 };
-	const [longBreakTimer, setLongBreakTimer] = useState(DEFAULT_TIMERS.long);
+	const [longBreakTimer, setLongBreakTimer] = useState(timers.long);
 
 	const setTimers = () => {
 		dispatch(setSettingsValues(
@@ -36,6 +31,25 @@ const PomodoroSettings = () => {
 		));
 		dispatch(setSettingsStatus(false));
 	}
+
+	const setDefaultTimers = () => {
+		dispatch(setSettingsValues(DEFAULT_TIMERS));
+		dispatch(setSettingsStatus(false));
+	}
+
+	const closeSettings = () => {
+		dispatch(setSettingsStatus(false));
+	}
+	// useEffect(() => setWorkTimer(workTimer),[workTimer]);
+
+	// useEffect(() => {
+	// 	// console.log(timers);
+	// 	// console.log("workTimer= " + workTimer);
+	// 	return (() => {
+	// 		// console.log('return useeffect');
+	// 	}
+	// 	)
+	// });
 
 	return (
 		<div className={s.settings}>
