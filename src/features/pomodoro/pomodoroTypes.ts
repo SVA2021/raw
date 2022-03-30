@@ -1,4 +1,4 @@
-export type ModeType = 'work' | 'long' | 'short';
+export type ModeType = 'work' | 'long' | 'short' | 'pause';
 
 export interface SettingsType {
 	work: number,
