@@ -14,13 +14,19 @@
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
 	text-align: center;
-	color: transparent;
-	-webkit-text-stroke: 5px $light;
+	color: $light;
+	font-weight: 700;
+	background-color: transparent;
+	transition: all 0.5s linear;
+	// color: transparent;
+	// -webkit-text-stroke: 5px $light;
 }
 
 .buttons {
-	@include baseOffset;
+	@include maxOffset;
 	@include flexEvenly;
+	width: 50%;
+	margin: 0 auto;
 }
 
 .statistic {

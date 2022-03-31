@@ -4,11 +4,11 @@ import s from './Pomodoro.module.scss';
 import { selectMode, setMode, setSettingsStatus } from "./pomodoroSlice";
 import { ModeType } from "./pomodoroTypes";
 
-const PomodoroMode = (props:any) => {
+const PomodoroMode = (props: any) => {
 
-	const mode = props.mode;
-	// const mode = useAppSelector(selectMode);
 	const dispatch = useAppDispatch();
+	const mode = useAppSelector(selectMode);
+	// const mode = props.mode;
 
 	const changeMode = (mode: ModeType) => {
 		dispatch(setMode(mode));

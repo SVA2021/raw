@@ -10,14 +10,16 @@ export interface PomodoroState {
 	settings: SettingsType
 	settingsStatus: boolean
 	isRunning: boolean
+	pause: boolean
 	statistic: StatisticType
 }
 
-const initialState = {
+const initialState: PomodoroState = {
 	mode: 'work',
 	settings: DEFAULT_TIMERS,
 	settingsStatus: false,
 	isRunning: false,
+	pause: false,
 	statistic: DEFAULT_STATS,
 };
 
@@ -38,15 +40,19 @@ export const pomodoroSlice = createSlice({
 		setRunningStatus: (state, action: PayloadAction<boolean>) => {
 			state.isRunning = action.payload;
 		},
+		setPause: (state, action: PayloadAction<boolean>) => {
+			state.pause = action.payload;
+		},
 	},
 });
 
-export const { setMode, setSettingsValues, setSettingsStatus, setRunningStatus, } = pomodoroSlice.actions;
+export const { setMode, setSettingsValues, setSettingsStatus, setRunningStatus, setPause,} = pomodoroSlice.actions;
 
 export const selectMode = (state: RootState) => state.pomodoro.mode;
 export const selectSettings = (state: RootState) => state.pomodoro.settings;
 export const selectSettingsStatus = (state: RootState) => state.pomodoro.settingsStatus;
 export const selectRunningStatus = (state: RootState) => state.pomodoro.isRunning;
+export const selectPause = (state: RootState) => state.pomodoro.pause;
 export const selectStatistic = (state: RootState) => state.pomodoro.statistic;
 
 export default pomodoroSlice.reducer;
