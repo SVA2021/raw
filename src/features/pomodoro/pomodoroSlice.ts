@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store';
 import { ModeType, SettingsType, StatisticType } from './pomodoroTypes';
 
 export const DEFAULT_TIMERS: SettingsType = { work: 25, short: 5, long: 15 };
@@ -11,6 +11,7 @@ export interface PomodoroState {
 	settingsStatus: boolean
 	isRunning: boolean
 	pause: boolean
+	finish: boolean
 	statistic: StatisticType
 }
 
@@ -20,6 +21,7 @@ const initialState: PomodoroState = {
 	settingsStatus: false,
 	isRunning: false,
 	pause: false,
+	finish: false,
 	statistic: DEFAULT_STATS,
 };
 
@@ -43,6 +45,9 @@ export const pomodoroSlice = createSlice({
 		setPause: (state, action: PayloadAction<boolean>) => {
 			state.pause = action.payload;
 		},
+		setFinish: (state, action: PayloadAction<boolean>) => {
+			state.finish = action.payload;
+		},
 		setStatistic: (state, action: PayloadAction<StatisticType>) => {
 			state.statistic.work += action.payload.work;
 			state.statistic.break += action.payload.break;
@@ -52,7 +57,7 @@ export const pomodoroSlice = createSlice({
 });
 
 export const {
-	setMode, setSettingsValues, setSettingsStatus, setRunningStatus, setPause, setStatistic,
+	setMode, setSettingsValues, setSettingsStatus, setRunningStatus, setPause, setStatistic, setFinish,
 } = pomodoroSlice.actions;
 
 export const selectMode = (state: RootState) => state.pomodoro.mode;
@@ -60,6 +65,7 @@ export const selectSettings = (state: RootState) => state.pomodoro.settings;
 export const selectSettingsStatus = (state: RootState) => state.pomodoro.settingsStatus;
 export const selectRunningStatus = (state: RootState) => state.pomodoro.isRunning;
 export const selectPause = (state: RootState) => state.pomodoro.pause;
+export const selectFinish = (state: RootState) => state.pomodoro.finish;
 export const selectStatistic = (state: RootState) => state.pomodoro.statistic;
 
 export default pomodoroSlice.reducer;
