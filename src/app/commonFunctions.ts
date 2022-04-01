@@ -66,3 +66,9 @@ export const normalizeDateString = (date: number) => {
 	(date < 10) ? result = '0' + String(date) : result = String(date);
 	return result;
 }
+
+export const convertMinuteToHHMM = (minute: number = 0): string => {
+	let hh = normalizeDateString(Math.floor(minute / 60));
+	let mm = normalizeDateString(minute % 60);
+	return `${hh} h ${mm}m`;
+}
