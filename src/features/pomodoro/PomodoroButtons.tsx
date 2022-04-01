@@ -1,44 +1,51 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Button from "../../components/common/Button";
 import s from './Pomodoro.module.scss';
-import { selectMode, selectPause, selectRunningStatus, setMode, setPause, setRunningStatus } from "./pomodoroSlice";
-import { ModeType } from './pomodoroTypes';
+import { nextModePomodoro } from './pomodoroFunctions';
+import {
+	selectMode, selectPause, selectRunningStatus,
+	selectSettings, selectStatistic, setFinish,
+	setMode, setPause, setRunningStatus, setStatistic
+} from "./pomodoroSlice";
 
 const PomodoroButtons = ({ setTime = (d: number) => console.log(d), ...props }) => {
 	const dispatch = useAppDispatch();
 	const mode = useAppSelector(selectMode);
 	const pause = useAppSelector(selectPause);
 	const isRunning = useAppSelector(selectRunningStatus);
-	// const mode = props.mode;
-	// const isRunning = props.isRunning;
+	const timers = useAppSelector(selectSettings);
+	const statistic = useAppSelector(selectStatistic);
 
 	const pauseClock = () => {
 		dispatch(setPause(!pause));
 	}
 
 	const startClock = () => {
+		dispatch(setFinish(false));
 		dispatch(setRunningStatus(true));
+		if (mode === 'work') dispatch(setStatistic({ work: 0, break: 0, sessions: 1 }));
 	}
 
 	const reloadClock = () => {
-		dispatch(setRunningStatus(false));
+		setTime(timers[mode]);
 	}
 
 	const skipClock = () => {
 		setTime(0);
-		dispatch(setRunningStatus(false));
+		dispatch(setMode(nextModePomodoro(mode, statistic)));
 	}
-	console.log('pomodoro buttons');
 
 	return (
 		<div className={s.buttons}>
-			{isRunning && 
-			<>
-			<Button active={pause} onClick={() => pauseClock()}>pause</Button>
-			<Button onClick={() => reloadClock()}>reload</Button>
-			<Button onClick={() => skipClock()}>skip</Button>
-			</>}
-			<Button active={isRunning && !pause} onClick={() => startClock()}>start</Button>
+			{
+				isRunning ?
+					<>
+						<Button onClick={() => reloadClock()}>reload</Button>
+						<Button onClick={() => pauseClock()} active={pause} >pause</Button>
+						<Button onClick={() => skipClock()}>skip</Button>
+					</>
+					: <Button onClick={() => startClock()}>start {mode}</Button>
+			}
 		</div>
 	)
 }
