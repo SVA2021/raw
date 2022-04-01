@@ -43,10 +43,17 @@ export const pomodoroSlice = createSlice({
 		setPause: (state, action: PayloadAction<boolean>) => {
 			state.pause = action.payload;
 		},
+		setStatistic: (state, action: PayloadAction<StatisticType>) => {
+			state.statistic.work += action.payload.work;
+			state.statistic.break += action.payload.break;
+			state.statistic.sessions += action.payload.sessions;
+		},
 	},
 });
 
-export const { setMode, setSettingsValues, setSettingsStatus, setRunningStatus, setPause,} = pomodoroSlice.actions;
+export const {
+	setMode, setSettingsValues, setSettingsStatus, setRunningStatus, setPause, setStatistic,
+} = pomodoroSlice.actions;
 
 export const selectMode = (state: RootState) => state.pomodoro.mode;
 export const selectSettings = (state: RootState) => state.pomodoro.settings;
