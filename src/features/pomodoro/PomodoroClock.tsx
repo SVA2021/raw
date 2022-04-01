@@ -9,24 +9,21 @@ import {
 	selectFinish, selectMode, selectPause, selectRunningStatus 
 } from "./pomodoroSlice";
 
-const SECOND = 1000;
-const MINUTE = SECOND * 60;
-
 const PomodoroClock = (props: any) => {
 	const mode = useAppSelector(selectMode);
 	const pause = useAppSelector(selectPause);
 	const finish = useAppSelector(selectFinish);
 	const isRunning = useAppSelector(selectRunningStatus);
 
-	const time = props.time * MINUTE;
+	const time = props.time;
 	const finishClockStyle = (finish) ? s.finish : '';
 	const [clockStyle, setClockStyle] = useState('');
 
 	useEffect(() => setClockStyle(chooseColor(mode, isRunning, pause)),
 		[mode, isRunning, pause]);
 
-	const timeMin = normalizeDateString(Math.floor(time / MINUTE));
-	const timeSec = normalizeDateString((time - (+timeMin * MINUTE)) / SECOND);
+	const timeMin = normalizeDateString(Math.floor(time / 60));
+	const timeSec = normalizeDateString(time % 60);
 
 	return (
 		<div className={classNames(s.clock, s[clockStyle], finishClockStyle)} >

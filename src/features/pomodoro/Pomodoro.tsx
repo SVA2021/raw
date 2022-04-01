@@ -25,7 +25,7 @@ const Pomodoro = () => {
 	const isRunning = useAppSelector(selectRunningStatus);
 	const isSettings = useAppSelector(selectSettingsStatus);
 
-	const initialTime = timers[mode];
+	const initialTime = 60 * timers[mode];
 	const [time, setTime] = useState(initialTime);
 
 	useEffect(() => setTime(initialTime), [initialTime]);
