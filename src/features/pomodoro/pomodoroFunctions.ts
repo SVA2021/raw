@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { useAppDispatch } from "../../app/hooks";
 import { ModeType, StatisticType } from "./pomodoroTypes"
 
 export const chooseColor = (mode: ModeType, isRunning: boolean, pause = false) => {
@@ -23,53 +21,8 @@ export const startSession = (mode: ModeType, statistic :StatisticType): ModeType
 	return 'short';
 }
 
-
-
-// export const useCountdown = (sec: number) => {
-// useEffect(() => {
-// 	const interval = setInterval((sec: number) => {
-// 		if (sec === 0) return false;
-// 		sec-- ;
-// 	}, 1000)
-// 	return () => clearInterval(interval);
-// },[sec])
-// return sec;
-// };
-
-
-// useEffect(() => {
-// 	const interval = setInterval((sec: number) => {
-// 		if (sec === 0) return false
-// 		setTime(time - 1);
-// 	}, 1000)
-// 	return () => clearInterval(interval);
-// },[time])
-
-// export const showTime = () => {
-	
-// 	timerID = setInterval(() => {
-// 			counterBack = Number(counterBack - 1000);
-// 			if (counterBack <= 0) {
-// 					setBack('red');
-// 					clearInterval(timerID);
-// 					startBtn.addEventListener('click', startTime);
-// 			}
-// 			showTime(counterBack, 'clock');
-// 	}, 1000);
-// }
-
-// function startTime() {
-// 	setBack('blue');
-
-// 	timerID = setInterval(() => {
-// 			counterBack = Number(counterBack - 1000);
-// 			if (counterBack <= 0) {
-// 					setBack('red');
-// 					clearInterval(timerID);
-// 					startBtn.addEventListener('click', startTime);
-// 			}
-// 			showTime(counterBack, 'clock');
-// 	}, 1000);
-
-// 	startBtn.removeEventListener('click', startTime);
-// }
+export const normalizeSession = (session: number): number => {
+	if (!session || session === 0) return 0;
+	if (session % 4 === 0) return 4;
+	return session % 4;
+}
