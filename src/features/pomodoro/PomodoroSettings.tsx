@@ -2,15 +2,15 @@ import { SubTitle, } from "../../components/common/Typography";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Button from "../../components/common/Button";
 import s from './Pomodoro.module.scss';
-import { DEFAULT_TIMERS, selectSettings, setSettingsStatus, setSettingsValues } from "./pomodoroSlice";
-import { useEffect, useState } from "react";
+import {
+	DEFAULT_TIMERS, selectSettings, setSettingsStatus, setSettingsValues
+} from "./pomodoroSlice";
+import { useState } from "react";
 import { InputRangeModule } from "../../components/common/InputRangeModule/InputRangeModule";
-import { SettingsType } from "./pomodoroTypes";
 
 const PomodoroSettings = (props: any) => {
-	// const timers = useAppSelector(selectSettings);
 	const dispatch = useAppDispatch();
-	const timers = props.timers;
+	const timers = useAppSelector(selectSettings);
 
 	const workLimit = { min: 1, max: 30 };
 	const [workTimer, setWorkTimer] = useState(timers.work);
@@ -40,16 +40,6 @@ const PomodoroSettings = (props: any) => {
 	const closeSettings = () => {
 		dispatch(setSettingsStatus(false));
 	}
-	// useEffect(() => setWorkTimer(workTimer),[workTimer]);
-
-	// useEffect(() => {
-	// 	// console.log(timers);
-	// 	// console.log("workTimer= " + workTimer);
-	// 	return (() => {
-	// 		// console.log('return useeffect');
-	// 	}
-	// 	)
-	// });
 
 	return (
 		<div className={s.settings}>

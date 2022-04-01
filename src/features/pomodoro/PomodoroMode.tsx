@@ -1,17 +1,21 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Button from "../../components/common/Button";
 import s from './Pomodoro.module.scss';
-import { selectMode, setMode, setSettingsStatus } from "./pomodoroSlice";
+import {
+	selectMode, selectRunningStatus, setFinish, setMode, setSettingsStatus
+} from "./pomodoroSlice";
 import { ModeType } from "./pomodoroTypes";
 
 const PomodoroMode = (props: any) => {
 
 	const dispatch = useAppDispatch();
 	const mode = useAppSelector(selectMode);
-	// const mode = props.mode;
+	const isRunning = useAppSelector(selectRunningStatus);
 
 	const changeMode = (mode: ModeType) => {
+		if (isRunning) return false;
 		dispatch(setMode(mode));
+		dispatch(setFinish(false));
 	}
 
 	return (

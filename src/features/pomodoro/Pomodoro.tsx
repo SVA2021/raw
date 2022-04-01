@@ -6,20 +6,27 @@ import PomodoroClock from "./PomodoroClock";
 import PomodoroButtons from "./PomodoroButtons";
 import PomodoroStatistic from "./PomodoroStatistic";
 import PomodoroSettings from "./PomodoroSettings";
-import { selectMode, selectPause, selectRunningStatus, selectSettings, selectSettingsStatus, setRunningStatus } from "./pomodoroSlice";
+import {
+	selectFinish, selectMode, selectPause,
+	selectRunningStatus, selectSettings, selectSettingsStatus,
+	selectStatistic, setFinish, setMode,
+	setRunningStatus, setStatistic
+} from "./pomodoroSlice";
+import { nextModePomodoro } from "./pomodoroFunctions";
 
 const Pomodoro = () => {
 
 	const dispatch = useAppDispatch();
-
 	const mode = useAppSelector(selectMode);
+	const pause = useAppSelector(selectPause);
+	const finish = useAppSelector(selectFinish);
 	const timers = useAppSelector(selectSettings);
+	const statistic = useAppSelector(selectStatistic);
 	const isRunning = useAppSelector(selectRunningStatus);
 	const isSettings = useAppSelector(selectSettingsStatus);
-	const pause = useAppSelector(selectPause);
 
 	const initialTime = timers[mode];
-	const [time, setTime] = useState(initialTime); // time in second
+	const [time, setTime] = useState(initialTime);
 
 	useEffect(() => setTime(initialTime), [initialTime]);
 
@@ -30,7 +37,14 @@ const Pomodoro = () => {
 		}, 1000);
 		if (time === 0) {
 			clearInterval(interval);
+			dispatch(setFinish(true));
 			dispatch(setRunningStatus(false));
+			if (finish) {
+				(mode === 'work')
+					? dispatch(setStatistic({ work: initialTime, break: 0, sessions: 0 }))
+					: dispatch(setStatistic({ work: 0, break: initialTime, sessions: 0 }));
+				dispatch(setMode(nextModePomodoro(mode, statistic)));
+			}
 		}
 		return () => clearInterval(interval);
 	}, [time, isRunning, pause])
@@ -39,10 +53,10 @@ const Pomodoro = () => {
 		<div className="pomodoro">
 			<SectionTitle>Pomodoro</SectionTitle>
 			<PomodoroMode />
-			<PomodoroClock mode={mode} isRunning={isRunning} time={time} />
-			<PomodoroButtons mode={mode} isRunning={isRunning} setTime={(sec: number) => setTime(sec)} />
+			<PomodoroClock time={time} />
+			<PomodoroButtons setTime={(sec: number) => setTime(sec)} />
 			<PomodoroStatistic />
-			{isSettings && <PomodoroSettings timers={timers} />}
+			{isSettings && <PomodoroSettings />}
 		</div>
 	)
 }
