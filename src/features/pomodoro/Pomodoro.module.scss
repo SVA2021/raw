@@ -2,12 +2,14 @@
 @import '../../styles/variables';
 
 .mode {
-	@include baseOffset;
+	@include maxOffset;
 	@include flexEvenly;
 }
 
 .clock {
-	@include baseOffset;
+	@include maxOffset;
+	width: 80%;
+	margin: 0 auto;
 	font-size: 200px;
 
 	font-family: $font-titles;
@@ -18,8 +20,10 @@
 	font-weight: 700;
 	// background-color: transparent;
 	transition: all 0.5s linear;
-	// color: transparent;
-	// -webkit-text-stroke: 5px $light;
+	color: transparent;
+	-webkit-text-stroke: 5px $light;
+
+	border-radius: 200px;
 }
 
 .idle {
@@ -27,37 +31,43 @@
 }
 
 .work {
-	background-color: blue;
+	background-image: radial-gradient(circle at center, $dark 25%, $orange 100%);
 }
 
 .pause {
-	background-color: orange;
+	animation: finished 3s ease-in-out infinite;
+	background-color: $orange;
 }
 
 .long {
-	background-color: lawngreen;
+	background-color: $green;
+	color: $orange;
 }
 
 .short {
-	background-color: green;
+	background-color: $green;
+	color: $orange;
 }
 
 .finish {
-	animation: finished 2s ease-in-out infinite;
+	animation: finished 5s ease-in-out infinite;
 }
 
 @keyframes finished {
 	0% {
-		transform: scale(1)
+		transform: scale(0.9);
+		opacity: 0.05;
 	}
 
 	50% {
-	background-color: red;
-	transform: scale(1.1)
+		opacity: 1;
+		color: $orange;
+		transform: scale(1.1);
 	}
 
 	100% {
-		transform: scale(1)
+		opacity: 0.05;
+		transform: scale(0.9);
 	}
 }
 
@@ -80,7 +90,6 @@
 	border: $offset-basic solid $dark;
 	margin: 0 auto;
 	width: 40%;
-	// position: relative;
 	position: absolute;
 	z-index: 10;
 	left: 50%;
@@ -107,10 +116,4 @@
 	&:hover {
 		box-shadow: 5px 5px 25px $green, -5px -5px 25px $green;
 	}
-}
-
-.settingsIcon {
-	// color: $orange;
-	// color: orange;
-	// background-color: blue;
 }
