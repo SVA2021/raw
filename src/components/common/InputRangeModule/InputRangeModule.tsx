@@ -23,11 +23,6 @@ export const InputRangeModule: FC<InputRangeModulePropsType> = (
 
 	useEffect(() => {
 		onChangeFunction(newValue)
-		// console.log(description +'  old ' + value + '   new ' + newValue);
-
-		// return (() => {
-			// console.log(description + ' return input useeffect');
-		// })
 	}, [newValue])
 
 	return (
