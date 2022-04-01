@@ -1,19 +1,12 @@
 import { useEffect, useState } from "react";
+import { useAppDispatch } from "../../app/hooks";
 import { ModeType, StatisticType } from "./pomodoroTypes"
 
-const COLOR_PAUSE = 'orange';
-const COLOR_WORK = 'blue';
-const COLOR_SHORT_BREAK = 'green';
-const COLOR_LONG_BREAK = 'lawngreen';
-
 export const chooseColor = (mode: ModeType, isRunning: boolean, pause = false) => {
-	let result = 'inherit';
-	if (mode === undefined || isRunning === undefined) return result;
-	if (isRunning && mode === 'work') result = COLOR_WORK;
-	if (isRunning && mode === 'short') result = COLOR_SHORT_BREAK;
-	if (isRunning && mode === 'long') result = COLOR_LONG_BREAK;
-	if (isRunning && pause) result = COLOR_PAUSE;
-	return result;
+	if (mode === undefined || isRunning === undefined) return 'idle';
+	if (pause) return 'pause';
+	if (isRunning) return mode;
+	return 'idle';
 }
 
 export const nextModePomodoro = (mode: ModeType, statistic :StatisticType): ModeType  => {
@@ -23,7 +16,12 @@ export const nextModePomodoro = (mode: ModeType, statistic :StatisticType): Mode
 	return 'short';
 }
 
-
+export const startSession = (mode: ModeType, statistic :StatisticType): ModeType  => {
+	let session = statistic.sessions;
+	if ( mode !== 'work') return 'work';
+	if (session === 4) return 'long';
+	return 'short';
+}
 
 
 

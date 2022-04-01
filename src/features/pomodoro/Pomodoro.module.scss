@@ -16,10 +16,49 @@
 	text-align: center;
 	color: $light;
 	font-weight: 700;
-	background-color: transparent;
+	// background-color: transparent;
 	transition: all 0.5s linear;
 	// color: transparent;
 	// -webkit-text-stroke: 5px $light;
+}
+
+.idle {
+	background-color: inherit;
+}
+
+.work {
+	background-color: blue;
+}
+
+.pause {
+	background-color: orange;
+}
+
+.long {
+	background-color: lawngreen;
+}
+
+.short {
+	background-color: green;
+}
+
+.finish {
+	animation: finished 2s ease-in-out infinite;
+}
+
+@keyframes finished {
+	0% {
+		transform: scale(1)
+	}
+
+	50% {
+	background-color: red;
+	transform: scale(1.1)
+	}
+
+	100% {
+		transform: scale(1)
+	}
 }
 
 .buttons {
