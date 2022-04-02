@@ -27,16 +27,23 @@
 }
 
 .number {
-    margin: $offset-basic;
-    width: 48px;
+    margin: $offset-basic * 2;
+		padding: $offset-basic * 2;
+		padding-right: $offset-basic;
+    width: 5em;
     height: 32px;
     border-radius: $border-radius-default;
     background: $orange;
     color: $light;
-    font-weight: bolder;
+    font-weight: bold;
 }
 
 .text {
     @extend .number;
     width: 100px;
+
+		&::placeholder{
+			color: $green;
+			opacity: 0.75;
+		}
 }
