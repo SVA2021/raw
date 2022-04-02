@@ -25,22 +25,22 @@ const HolidaySettings = (props: any) => {
 	const countriesList = useAppSelector(selectCountriesList);
 	const today = props.today;
 
-	const keyLocal = 'todayHoliday';
-	const saved = localStorage.getItem(keyLocal) || '{}';
-	const hasLocalCopy = JSON.parse(saved) === today;
+	// const keyLocal = 'todayHoliday';
+	// const saved = localStorage.getItem(keyLocal) || '{}';
+	// const hasLocalCopy = JSON.parse(saved) === today;
 
 	useEffect(() => {
-		let key = 'countriesList';
-		if (hasLocalCopy) {
-			const saved = localStorage.getItem(key) || '{}';
-			const countriesList = JSON.parse(saved);
-			dispatch(setCountriesList(countriesList));
-		} else {
+		// let key = 'countriesList';
+		// if (hasLocalCopy) {
+		// 	const saved = localStorage.getItem(key) || '{}';
+		// 	const countriesList = JSON.parse(saved);
+		// 	dispatch(setCountriesList(countriesList));
+		// } else {
 			dispatch(getCountriesListAsync());
-		}
-		if (countriesList.length > 1) {
-			localStorage.setItem(key, JSON.stringify(countriesList));
-		}
+		// }
+		// if (countriesList.length > 1) {
+		// 	localStorage.setItem(key, JSON.stringify(countriesList));
+		// }
 	}, []);
 
 	const showCountry = (countryCode: string) => {

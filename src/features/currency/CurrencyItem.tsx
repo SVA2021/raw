@@ -3,6 +3,7 @@ import { useState } from "react";
 import s from './Currency.module.scss';
 import { InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
 import { delActiveCurrency, selectAllCurrency } from "./currencySlice";
+import { InputNumber } from '../../components/common/Input/Input';
 
 const CurrencyItem = (props: any) => {
 	const dispatch = useAppDispatch();
@@ -48,14 +49,14 @@ const CurrencyItem = (props: any) => {
 				<InlineText withOffset={true}>= {(1 / rate).toFixed(2)}</InlineText>
 				<Title>{base}</Title>
 			</PlainText>
-				<PlainText>
-					<Title>convert</Title>
-				</PlainText>
+			<PlainText>
+				<Title>convert</Title>
+			</PlainText>
 			<div className={s.convert}>
-				<input type="number" className={s.inputNumber} min={0}
+				<InputNumber className={s.inputNumber} min={0}
 					value={original} onChange={(e) => changeOriginal(+e.target.value)} />
 				<InlineText withOffset={true}>&#8644;</InlineText>
-				<input type="number" className={s.inputNumber} min={0}
+				<InputNumber className={s.inputNumber} min={0}
 					value={second} onChange={(e) => changeSecond(+e.target.value)} />
 			</div>
 			<button className={s.closeBtn} onClick={() => delCurrency()}>X</button>

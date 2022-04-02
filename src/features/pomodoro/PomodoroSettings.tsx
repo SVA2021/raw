@@ -64,7 +64,7 @@ const PomodoroSettings = (props: any) => {
 			/>
 			<Button onClick={() => setTimers()}>set timers</Button>
 			<Button onClick={() => setDefaultTimers()}>reset</Button>
-			<button className={s.closeBtn} onClick={() => closeSettings()}>X</button>
+			<Button className={s.closeBtn} onClick={() => closeSettings()}>X</Button>
 		</div>
 	)
 }

@@ -10,6 +10,7 @@ import {
 import LocationList from './LocationList';
 import ReactCountryFlag from 'react-country-flag';
 import { getDateString } from '../../app/commonFunctions';
+import { InputText } from '../../components/common/Input/Input';
 
 const WeatherSettings = (props: any) => {
 
@@ -38,7 +39,7 @@ const WeatherSettings = (props: any) => {
 				</PlainText>
 			</header>
 			<div className={s.searchArea}>
-				<input type="text" className={s.textInput} placeholder={' city name'}
+				<InputText className={s.textInput} placeholder={' city name'}
 					onChange={(e) => setActiveCity(e.target.value)} />
 				<Button withOffset={true} onClick={() => getLocations(activeCity)}>
 					Show

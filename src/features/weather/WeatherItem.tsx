@@ -30,9 +30,7 @@ const WeatherItem = (props: any) => {
 			</PlainText>
 			<div className={s.icon} style={{ backgroundImage: `url(${iconURL})` }}></div>
 			<PlainText className={s.description}>
-			{/* <Title>{weather.description}</Title> */}
 				{weather.description}
-				{/* <InlineText withOffset={true}>{weather.description}</InlineText> */}
 			</PlainText>
 			<PlainText>
 				<Title>temperature:</Title>

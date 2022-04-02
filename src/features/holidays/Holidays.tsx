@@ -23,10 +23,10 @@ const Holidays = () => {
 	const country = useAppSelector(selectCountry);
 	const holidayListMode = useAppSelector(selectHolidayListMode);
 
-	const keyLocal = 'todayHoliday';
+	// const keyLocal = 'todayHoliday';
 
 	useEffect(() => {
-		localStorage.setItem(keyLocal, JSON.stringify(today));
+		// localStorage.setItem(keyLocal, JSON.stringify(today));
 
 		(holidayListMode === 'week')
 			? dispatch(getHolidayNextWeekAsync())
