@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { normalizeDateString } from "../../app/commonFunctions";
 import {  useAppSelector } from "../../app/hooks";
-import { InlineText, } from "../../components/common/Typography";
+import { InlineText, } from "../../components/common/Typography/Typography";
 import s from './Pomodoro.module.scss';
 import { chooseColor } from "./pomodoroFunctions";
 import { 
@@ -28,7 +28,7 @@ const PomodoroClock = (props: any) => {
 	return (
 		<div className={classNames(s.clock, s[clockStyle], finishClockStyle)} >
 			<InlineText>{timeMin}</InlineText>
-			<InlineText>:</InlineText>
+			<InlineText withOffset={true}>:</InlineText>
 			<InlineText>{timeSec}</InlineText>
 		</div>
 	)

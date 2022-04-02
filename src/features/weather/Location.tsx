@@ -1,5 +1,5 @@
 import s from './Weather.module.scss';
-import { InlineText, PlainText, Title } from '../../components/common/Typography';
+import { InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
 import { useAppDispatch } from '../../app/hooks';
 import { LocationGeoType } from './weatherTypes';
 import { setCity, setListStatus } from './weatherSlice';

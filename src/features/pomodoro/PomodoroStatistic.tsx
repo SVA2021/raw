@@ -1,4 +1,4 @@
-import { Highlighted,  PlainText, Title } from "../../components/common/Typography";
+import { Highlighted,  PlainText, Title } from "../../components/common/Typography/Typography";
 import { useAppSelector } from '../../app/hooks';
 import s from './Pomodoro.module.scss';
 import { selectMode, selectStatistic } from "./pomodoroSlice";

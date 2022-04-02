@@ -1,6 +1,6 @@
 import s from './Holidays.module.scss';
 import ReactCountryFlag from "react-country-flag"
-import { Highlighted, InlineText, PlainText, Title } from '../../components/common/Typography';
+import { Highlighted, InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
 import { HolidayItemType } from './holidaySlice';
 
 type HolidayType = {

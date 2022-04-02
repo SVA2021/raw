@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useState } from "react";
 import s from './Currency.module.scss';
-import { InlineText, PlainText, Title } from '../../components/common/Typography';
+import { InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
 import { delActiveCurrency, selectAllCurrency } from "./currencySlice";
 
 const CurrencyItem = (props: any) => {

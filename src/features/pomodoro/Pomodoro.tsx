@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { SectionTitle, } from "../../components/common/Typography";
+import { SectionTitle, } from "../../components/common/Typography/Typography";
 import PomodoroMode from "./PomodoroMode";
 import PomodoroClock from "./PomodoroClock";
 import PomodoroButtons from "./PomodoroButtons";

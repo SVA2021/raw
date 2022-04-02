@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import Button from "../../components/common/Button";
+import Button from "../../components/common/Button/Button";
 import s from './Pomodoro.module.scss';
 import {
 	selectMode, selectRunningStatus, setFinish, setMode, setSettingsStatus

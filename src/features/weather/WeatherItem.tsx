@@ -1,9 +1,9 @@
 import s from './Weather.module.scss';
-import { InlineText, PlainText, Title } from '../../components/common/Typography';
+import { InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
 import { WeatherType } from './weatherTypes';
 import { useEffect, useState } from 'react';
 import { getWeatherIconURL, setColor } from './weatherFunctions';
-import Loading from '../../components/Loading';
+import Loading from '../../components/common/Loading/Loading';
 import { getDateString } from '../../app/commonFunctions';
 
 const WeatherItem = (props: any) => {

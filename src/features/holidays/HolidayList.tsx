@@ -1,6 +1,6 @@
 import HolidayItem from "./HolidayItem";
 import { HolidayItemType, } from "./holidaySlice";
-import Loading from "../../components/Loading";
+import Loading from "../../components/common/Loading/Loading";
 import s from './Holidays.module.scss';
 
 const HolidaysList = (props: any) => {

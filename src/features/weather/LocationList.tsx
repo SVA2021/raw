@@ -1,7 +1,7 @@
 import s from './Weather.module.scss';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectLocationsList, setListStatus } from './weatherSlice';
-import Loading from '../../components/Loading';
+import Loading from '../../components/common/Loading/Loading';
 import Location from './Location';
 
 const LocationList = () => {

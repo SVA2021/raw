@@ -1,4 +1,4 @@
-import { SectionTitle } from "../../components/common/Typography";
+import { SectionTitle } from "../../components/common/Typography/Typography";
 import HolidaySettings from "./HolidaySettings";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {

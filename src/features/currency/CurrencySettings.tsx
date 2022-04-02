@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useState } from "react";
 import s from './Currency.module.scss';
-import { InlineText, PlainText, Title } from '../../components/common/Typography';
+import { InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
 import { getDateString } from "../../app/commonFunctions";
 import {
 	addActiveCurrency,
@@ -13,7 +13,7 @@ import {
 	selectBase,
 	setBaseCurrency
 } from "./currencySlice";
-import Button from "../../components/common/Button";
+import Button from "../../components/common/Button/Button";
 import { getCodeCurrency } from "./currencyFunctions";
 
 const CurrencySettings = (props: any) => {

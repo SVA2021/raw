@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import s from './Holidays.module.scss';
 import ReactCountryFlag from "react-country-flag"
-import { InlineText, PlainText, Title } from '../../components/common/Typography';
+import { InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
 import {
 	getCountriesListAsync,
 	getCountryHolydaysAsync,
@@ -14,7 +14,7 @@ import {
 	setHolidayListMode
 } from './holidaySlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import Button from '../../components/common/Button';
+import Button from '../../components/common/Button/Button';
 import { getCountryByCode } from './holidaysAPI';
 
 const HolidaySettings = (props: any) => {

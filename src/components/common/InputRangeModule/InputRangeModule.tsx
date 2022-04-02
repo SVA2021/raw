@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { FC, useEffect, useState } from 'react';
 import styles from './InputRangeModule.module.scss';
-import { InlineText, Strong } from '../Typography';
-import { InputRange } from '../Input';
+import { InlineText, Strong } from '../Typography/Typography';
+import { InputRange } from '../Input/Input';
 
 export type InputRangeModulePropsType = {
 	className?: string;

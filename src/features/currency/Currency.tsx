@@ -1,6 +1,6 @@
-import { SectionTitle } from "../../components/common/Typography";
+import { SectionTitle } from "../../components/common/Typography/Typography";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import Loading from "../../components/Loading";
+import Loading from "../../components/common/Loading/Loading";
 import CurrencySettings from "./CurrencySettings";
 import { getLatestAsync, selectActiveCurrency, selectBase, selectCurrencyQueryStatus } from "./currencySlice";
 import CurrencyList from "./CurrencyList";

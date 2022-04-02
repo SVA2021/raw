@@ -1,4 +1,4 @@
-import { SectionTitle } from "../../components/common/Typography";
+import { SectionTitle } from "../../components/common/Typography/Typography";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import WeatherSettings from "./WeatherSettings";
 import {
@@ -6,7 +6,7 @@ import {
 	selectCity, selectWeather, selectWeatherQueryStatus
 } from "./weatherSlice";
 import WeatherItem from "./WeatherItem";
-import Loading from "../../components/Loading";
+import Loading from "../../components/common/Loading/Loading";
 import { useEffect } from "react";
 
 const Weather = (props: any) => {
