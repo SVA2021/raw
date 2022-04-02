@@ -18,7 +18,8 @@ const LocationList = () => {
 		<div className={s.modal} onClick={() => hideModal()}>
 			{(listStatus === 0)
 				? <Loading text={'no data'} />
-				: locationsList.map((location) => <Location location={location} />)}
+				: locationsList.map((location) => 
+				<Location key={location.lat + location.lon} location={location} />)}
 		</div>
 	)
 }
