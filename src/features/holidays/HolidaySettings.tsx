@@ -16,6 +16,9 @@ import {
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Button from '../../components/common/Button/Button';
 import { getCountryByCode } from './holidaysAPI';
+import LinkToOriginal from '../../components/LinkToOriginal';
+
+const HOLIDAY_URL = 'https://date.nager.at';
 
 const HolidaySettings = (props: any) => {
 
@@ -108,6 +111,7 @@ const HolidaySettings = (props: any) => {
 					Show Next Week Holidays
 				</Button>
 			</div>
+			<LinkToOriginal link={HOLIDAY_URL} />
 		</div>
 	)
 }

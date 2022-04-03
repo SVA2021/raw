@@ -11,6 +11,9 @@ import LocationList from './LocationList';
 import ReactCountryFlag from 'react-country-flag';
 import { getDateString } from '../../app/commonFunctions';
 import { InputText } from '../../components/common/Input/Input';
+import LinkToOriginal from '../../components/LinkToOriginal';
+
+const WEATHER_URL = 'http://api.openweathermap.org';
 
 const WeatherSettings = (props: any) => {
 
@@ -45,6 +48,7 @@ const WeatherSettings = (props: any) => {
 					Show
 				</Button>
 			</div>
+				<LinkToOriginal link={WEATHER_URL} />
 			{listStatus && <LocationList />}
 		</div>
 	)

@@ -15,6 +15,9 @@ import {
 } from "./currencySlice";
 import Button from "../../components/common/Button/Button";
 import { getCodeCurrency } from "./currencyFunctions";
+import LinkToOriginal from '../../components/LinkToOriginal';
+
+const CURRENCY_URL = "https://exchangerate.host/#/";
 
 const CurrencySettings = (props: any) => {
 
@@ -81,7 +84,10 @@ const CurrencySettings = (props: any) => {
 					<Button active={true} withOffset={true} onClick={() => addCurrency()}>Add</Button>
 				</div>
 			</div>
-			<Button active={true} withOffset={true} onClick={() => loadCurrency()}>load full currency list</Button>
+			<Button active={true} withOffset={true} onClick={() => loadCurrency()}>
+				load full currency list
+			</Button>
+			<LinkToOriginal link={CURRENCY_URL} />
 		</div>
 	)
 }
