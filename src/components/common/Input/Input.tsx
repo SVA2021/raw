@@ -7,7 +7,7 @@ type TInputNumProps = {
 	withOffset?: boolean;
 	min?: number;
 	max?: number;
-	value?:number;
+	value?: number;
 	name?: string;
 	placeholder?: string;
 	onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
@@ -16,7 +16,7 @@ type TInputNumProps = {
 type TInputTextProps = {
 	className?: string;
 	withOffset?: boolean;
-	value?:string;
+	value?: string;
 	name?: string;
 	placeholder?: string;
 	onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
@@ -45,19 +45,3 @@ export const InputText: FC<TInputTextProps> = ({ className = '', withOffset, ...
 		}, className)} {...props} />
 	)
 };
-
-//! below previous version of components commented
-
-// export const Select = (props: any) => {
-// 	return (
-// 		<label>
-// 			{props.label}
-// 			<select value={props.value} onChange={props.handleChange}>
-// 				{props.optionList.map(
-// 					(option: any) => <option value={option.value}>{option.text}</option>
-// 				)
-// 				}
-// 			</select>
-// 		</label>
-// 	)
-// }
