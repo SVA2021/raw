@@ -30,7 +30,7 @@
     margin: $offset-basic * 2;
 		padding: $offset-basic * 2;
 		padding-right: $offset-basic;
-    width: 5em;
+    // width: 5em;
     height: 32px;
     border-radius: $border-radius-default;
     background: $orange;
@@ -40,7 +40,7 @@
 
 .text {
     @extend .number;
-    width: 100px;
+    // width: 100px;
 
 		&::placeholder{
 			color: $green;
