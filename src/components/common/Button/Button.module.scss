@@ -4,6 +4,8 @@
 .button {
 	@include buttonBase;
 	@include buttonOffset;
+	text-transform: uppercase;
+	font-weight: bold;
 
 	&:hover {
 		box-shadow: 5px 5px 50px $orange, -5px -5px 50px $orange;
