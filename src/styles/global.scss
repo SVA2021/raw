@@ -10,7 +10,6 @@ body {
 	font-size: $font-size;
 	font-family: $font-text;
 	scroll-behavior: smooth;
-
 }
 
 a {
@@ -23,18 +22,19 @@ a {
 }
 
 .container {
-	// display: grid;
+	display: grid;
 	z-index: 1;
-	// height: 100vh;
+	// height: 150vh;
 	overflow: hidden;
-	grid-template-columns: 24% 48% 24%;
-	grid-template-rows: 10% 56% 30%;
+	grid-template-columns: 24% 74% ;
+	// grid-template-rows: 50px auto 250px 250px;
 	text-align: center;
 	gap: 2%;
 	grid-template-areas:
-		'logo logo logo'
-		'weather pomodoro holidays'
-		'currency currency currency';
+		'logo logo '
+		'weather pomodoro '
+		'holidays holidays '
+		'currency currency ';
 }
 
 .logo {
