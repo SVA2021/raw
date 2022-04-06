@@ -2,7 +2,7 @@ import axios from "axios";
 import { API_KEY_WEATHER } from "../../private/weatherVariables";
 import { CityGeoType } from "./weatherTypes";
 
-const BASE_URL = 'http://api.openweathermap.org';
+export const BASE_URL = 'http://api.openweathermap.org';
 const CURRENT_WEATHER = '/data/2.5/weather';
 const GEO_CITY = '/geo/1.0/direct?q=';
 

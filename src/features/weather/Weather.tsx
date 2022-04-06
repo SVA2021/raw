@@ -5,9 +5,12 @@ import {
 	getCurrentWeatherAsync,
 	selectCity, selectWeather, selectWeatherQueryStatus
 } from "./weatherSlice";
+import s from './Weather.module.scss';
 import WeatherItem from "./WeatherItem";
 import Loading from "../../components/common/Loading/Loading";
 import { useEffect } from "react";
+import LinkToOriginal from "../../components/LinkToOriginal";
+import { BASE_URL } from "./weatherAPI";
 
 const Weather = (props: any) => {
 
@@ -22,7 +25,10 @@ const Weather = (props: any) => {
 
 	return (
 		<div className="weather">
-			<SectionTitle>Weather</SectionTitle>
+			<header className={s.header}>
+				<SectionTitle>Weather</SectionTitle>
+				<LinkToOriginal link={BASE_URL} height={'2rem'} />
+			</header>
 			<WeatherSettings />
 			{
 				(queryStatus === 'loading' || queryStatus === 'failed')

@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import s from './Weather.module.scss';
 import { InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import Button from '../../components/common/Button/Button';
 import {
 	getLocationsListAsync,
 	selectCountry, selectListStatus, setListStatus
@@ -11,9 +10,7 @@ import LocationList from './LocationList';
 import ReactCountryFlag from 'react-country-flag';
 import { getDateString } from '../../app/commonFunctions';
 import { InputText } from '../../components/common/Input/Input';
-import LinkToOriginal from '../../components/LinkToOriginal';
 
-const WEATHER_URL = 'http://api.openweathermap.org';
 
 const WeatherSettings = (props: any) => {
 
@@ -42,13 +39,14 @@ const WeatherSettings = (props: any) => {
 				</PlainText>
 			</header>
 			<div className={s.searchArea}>
-				<InputText className={s.textInput} placeholder={' city name'}
-					onChange={(e) => setActiveCity(e.target.value)} />
-				<Button withOffset={true} onClick={() => getLocations(activeCity)}>
-					Show
-				</Button>
+				<form onSubmit={(e) => {
+					e.preventDefault();
+					getLocations(activeCity)
+				}}>
+					<InputText className={s.textInput} placeholder={'city name'}
+						onChange={(e) => setActiveCity(e.target.value)} />
+				</form>
 			</div>
-				<LinkToOriginal link={WEATHER_URL} />
 			{listStatus && <LocationList />}
 		</div>
 	)
