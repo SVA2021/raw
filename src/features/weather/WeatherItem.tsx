@@ -34,29 +34,31 @@ const WeatherItem = (props: any) => {
 			<div className={s.description}>
 				<div className={s.icon} style={{ backgroundImage: `url(${iconURL})` }}></div>
 				<PlainText >
-					<InlineText className={classNames(s.temperature, s[setColor(weather.temp)])} >{weather.temp}&#176;C</InlineText>
+					<InlineText className={classNames(s.temperature, s[setColor(weather.temp)])} >
+						{weather.temp?.toFixed(1)}&#176;C
+					</InlineText>
 					<InlineText className={s.parameter}>{weather.description}</InlineText>
 				</PlainText>
 			</div>
 			<PlainText>
 				<Title>feels like:</Title>
 				<InlineText className={s[setColor(weather.feels_like)]} withOffset={true}>
-					{weather.feels_like}&#176;C
+					{weather.feels_like?.toFixed(1)}&#176;C
 				</InlineText>
 			</PlainText>
 			<PlainText>
 				<Title>min:</Title>
 				<InlineText className={s[setColor(weather.temp_min)]} withOffset={true}>
-					{weather.temp_min}&#176;C
+					{weather.temp_min?.toFixed(1)}&#176;C
 				</InlineText>
 				<Title>max:</Title>
 				<InlineText className={s[setColor(weather.temp_max)]} withOffset={true}>
-					{weather.temp_max}&#176;C
+					{weather.temp_max?.toFixed(1)}&#176;C
 				</InlineText>
 			</PlainText>
 			<PlainText>
 				<Title>wind:</Title>
-				<InlineText withOffset={true}>{weather.windSpeed}m/s</InlineText>
+				<InlineText withOffset={true}>{weather.windSpeed?.toFixed(1)}m/s</InlineText>
 				<InlineText className={s.wind} style={{ transform: `rotate(${weather.windDeg}deg)` }}>
 					&#8593;
 				</InlineText>
