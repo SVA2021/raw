@@ -15,8 +15,14 @@ const Location = (props: any) => {
 		dispatch(setListStatus(false));
 	}
 
+	const setLoc = (e: any) => {
+		e.preventDefault();
+		if (e.key === 'Enter') chooseCity(location);
+	}
+
 	return (
-		<div className={s.location} onClick={() => chooseCity(location)}>
+		<div className={s.location} tabIndex={0}
+			onClick={() => chooseCity(location)} onKeyPress={(e) => setLoc(e)}>
 			<PlainText>
 				<Title withOffset={true}>{location.name}</Title>
 				{(location.state) && <Title withOffset={true}>{location.state}</Title>}

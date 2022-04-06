@@ -19,7 +19,7 @@ const LocationList = () => {
 			{(listStatus === 0)
 				? <Loading text={'no data'} />
 				: locationsList.map((location) => 
-				<Location key={location.lat + location.lon} location={location} />)}
+				<Location key={location.lat + location.lon} location={location}/>)}
 		</div>
 	)
 }

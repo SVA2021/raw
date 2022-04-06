@@ -1,6 +1,14 @@
 @import '../../styles/mixins';
 @import '../../styles/variables';
 
+
+.header{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
 .main {
 	@include borderDefault;
 	@include baseOffset;
@@ -54,16 +62,23 @@
 	position: absolute;
 	top: 0%;
 	left: 0%;
-	bottom: 0%;
+	// bottom: 0%;
 	right: 0%;
 	@include flexCenter;
   flex-direction: column;
+	overflow:scroll;
+	cursor: pointer;
 }
 
 .location {
 	@include borderDefault;
 	@include baseOffset;
 	@include orangeDark;
+
+	&:focus{
+		box-shadow: 5px 5px 50px $green, -5px -5px 50px $green;
+		background-color: $green;
+	}
 }
 
 .icon {
@@ -76,4 +91,9 @@
 
 .description {
 	text-align: center;
+}
+
+.textInput{
+	width: 90%;
+	margin: 0 auto;
 }
