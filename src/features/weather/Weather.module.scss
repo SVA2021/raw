@@ -2,7 +2,7 @@
 @import '../../styles/variables';
 
 
-.header{
+.header {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -50,23 +50,26 @@
 
 .wind {
 	display: inline-block;
-	// transform: rotate(90);
+	margin: $offset-basic;
+	padding: $offset-basic;
+	font-size: 1.5rem;
+	font-weight: bolder;
+	color: $dark;
 }
 
 .modal {
 	@include borderDefault;
 	@include baseOffset;
 	background-color: $dark;
-	// @include orangeDark;
 	z-index: 10;
 	position: absolute;
 	top: 0%;
 	left: 0%;
-	// bottom: 0%;
+	bottom: 0%;
 	right: 0%;
-	@include flexCenter;
-  flex-direction: column;
-	overflow:scroll;
+	display: flex;
+	flex-direction: column;
+	overflow-y: scroll;
 	cursor: pointer;
 }
 
@@ -75,25 +78,56 @@
 	@include baseOffset;
 	@include orangeDark;
 
-	&:focus{
+	&:focus {
 		box-shadow: 5px 5px 50px $green, -5px -5px 50px $green;
 		background-color: $green;
 	}
 }
 
 .icon {
-	@include flexCenter;
+	flex: 1 0 auto;
 	height: 100px;
+	width: 100px;
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: top center;
 }
 
 .description {
+	@include flexCenter;
 	text-align: center;
 }
 
-.textInput{
+.parameter {
+	padding: $offset-basic 0;
+	display: inline-block;
+}
+
+.temperature {
+	padding: $offset-basic;
+	font-size: 1.5rem;
+	border-radius: $border-radius-default;
+}
+
+.textInput {
 	width: 90%;
 	margin: 0 auto;
+}
+
+.cold {
+	color: $light;
+	background-color: $dark;
+	border: 1px solid $light;
+}
+
+.warm {
+	color: $orange;
+	background-color: $green;
+	border: 1px solid $orange;
+}
+
+.hot{
+	color: $light;
+	background-color: $orange;
+	border: 1px solid $light;
 }
