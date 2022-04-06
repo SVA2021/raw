@@ -1,14 +1,15 @@
-
+import { ReactComponent as Icon } from '../img/earth_globe.svg';
 
 const LinkToOriginal = (props: any) => {
 	const link = props.link;
+	const height = props.height;
 	return (
 		<a
 			href={link}
 			target="_blank"
 			rel="noopener noreferrer"
 		>
-			Link to original REST service
+			<Icon style={{ height: height }} />
 		</a>
 	)
 }
