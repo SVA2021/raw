@@ -25,12 +25,12 @@ const HolidayItem = (props: HolidayType) => {
 
 			<PlainText>
 				<Title>local name:</Title>
-				<InlineText withOffset={true}>{holiday.localName}</InlineText>
+				<InlineText className={s.description}>{holiday.localName}</InlineText>
 			</PlainText>
 
 			<PlainText>
 				<Title>name ENG:</Title>
-				<InlineText withOffset={true}>{holiday.name}</InlineText>
+				<InlineText className={s.description}>{holiday.name}</InlineText>
 			</PlainText>
 
 			{holiday.launchYear &&

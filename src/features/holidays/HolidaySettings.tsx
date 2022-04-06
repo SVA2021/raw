@@ -9,16 +9,12 @@ import {
 	selectCountriesList,
 	selectCountry,
 	selectHolidayListMode,
-	setCountriesList,
 	setCountry,
 	setHolidayListMode
 } from './holidaySlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Button from '../../components/common/Button/Button';
 import { getCountryByCode } from './holidaysAPI';
-import LinkToOriginal from '../../components/LinkToOriginal';
-
-const HOLIDAY_URL = 'https://date.nager.at';
 
 const HolidaySettings = (props: any) => {
 
@@ -28,22 +24,8 @@ const HolidaySettings = (props: any) => {
 	const countriesList = useAppSelector(selectCountriesList);
 	const today = props.today;
 
-	// const keyLocal = 'todayHoliday';
-	// const saved = localStorage.getItem(keyLocal) || '{}';
-	// const hasLocalCopy = JSON.parse(saved) === today;
-
 	useEffect(() => {
-		// let key = 'countriesList';
-		// if (hasLocalCopy) {
-		// 	const saved = localStorage.getItem(key) || '{}';
-		// 	const countriesList = JSON.parse(saved);
-		// 	dispatch(setCountriesList(countriesList));
-		// } else {
-			dispatch(getCountriesListAsync());
-		// }
-		// if (countriesList.length > 1) {
-		// 	localStorage.setItem(key, JSON.stringify(countriesList));
-		// }
+		dispatch(getCountriesListAsync());
 	}, []);
 
 	const showCountry = (countryCode: string) => {
@@ -73,21 +55,16 @@ const HolidaySettings = (props: any) => {
 				<PlainText>
 					<Title>today:</Title>
 					<InlineText withOffset={true}>{today}</InlineText>
+				</PlainText>
+				<PlainText>
 					<Title>country:</Title>
 					<InlineText withOffset={true}>{countryName}</InlineText>
 					<ReactCountryFlag countryCode={countryCode} svg />
 				</PlainText>
 			</header>
-			<div className={s.buttonArea}>
+			<div className={s.select__country}>
 				<label>
 					<Title>select country:</Title>
-					<Button
-						active={listMode === 'country'}
-						withOffset={true}
-						onClick={() => showCountry(activeCountry)}
-					>
-						Show
-					</Button>
 					<select className={s.selection}
 						value={activeCountry}
 						onChange={(e) => setCountryCode(e.target.value)}
@@ -99,19 +76,20 @@ const HolidaySettings = (props: any) => {
 							>
 								{option.name}
 							</option>
-						)
-						}
+						)}
 					</select>
 				</label>
-				<Button
-					active={listMode === 'week'}
-					withOffset={true}
-					onClick={() => showNextWeek()}
-				>
-					Show Next Week Holidays
+			</div>
+			<div className={s.buttonArea}>
+				<Button active={listMode === 'country'} 
+				onClick={() => showCountry(activeCountry)} >
+					country
+				</Button>
+				<Button active={listMode === 'week'} 
+				onClick={() => showNextWeek()} >
+					Next Week 
 				</Button>
 			</div>
-			<LinkToOriginal link={HOLIDAY_URL} />
 		</div>
 	)
 }

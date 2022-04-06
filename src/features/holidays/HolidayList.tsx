@@ -13,7 +13,7 @@ const HolidaysList = (props: any) => {
 	}
 
 	return (
-		<div className={s.holidayListWrapper}>
+		// <div className={s.holidayListWrapper}>
 			<div className={s.holidayList}>
 				{holidayList.map((holiday: HolidayItemType) =>
 					<HolidayItem
@@ -21,7 +21,7 @@ const HolidaysList = (props: any) => {
 						holiday={holiday}
 					/>)}
 			</div>
-		</div>
+		// </div>
 	)
 }
 

@@ -12,6 +12,9 @@ import {
 import { useEffect } from "react";
 import { getDateString } from "../../app/commonFunctions";
 import HolidaysList from "./HolidayList";
+import { BASE_URL } from "./holidaysAPI";
+import s from './Holidays.module.scss';
+import LinkToOriginal from "../../components/LinkToOriginal";
 
 const Holidays = () => {
 
@@ -23,11 +26,7 @@ const Holidays = () => {
 	const country = useAppSelector(selectCountry);
 	const holidayListMode = useAppSelector(selectHolidayListMode);
 
-	// const keyLocal = 'todayHoliday';
-
 	useEffect(() => {
-		// localStorage.setItem(keyLocal, JSON.stringify(today));
-
 		(holidayListMode === 'week')
 			? dispatch(getHolidayNextWeekAsync())
 			: dispatch(getCountryHolydaysAsync(country.countryCode));
@@ -35,8 +34,13 @@ const Holidays = () => {
 
 	return (
 		<div className="holidays">
-			<SectionTitle>Holidays</SectionTitle>
-			<HolidaySettings today={today} />
+			<header className={s.header}>
+				<div className={s.title}>
+					<SectionTitle>Holidays</SectionTitle>
+					<LinkToOriginal link={BASE_URL} height={'2rem'} />
+				</div>
+				<HolidaySettings today={today} />
+			</header>
 			<HolidaysList queryStatus={queryStatus} holidayList={holidayList} />
 		</div>
 	)
