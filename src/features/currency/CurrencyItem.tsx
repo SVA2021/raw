@@ -4,6 +4,7 @@ import s from './Currency.module.scss';
 import { InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
 import { delActiveCurrency, selectAllCurrency } from "./currencySlice";
 import { InputNumber } from '../../components/common/Input/Input';
+import Button from '../../components/common/Button/Button';
 
 const CurrencyItem = (props: any) => {
 	const dispatch = useAppDispatch();
@@ -16,6 +17,7 @@ const CurrencyItem = (props: any) => {
 
 	const [original, setOriginal] = useState(1);
 	const [second, setSecond] = useState(rate);
+	const [visible, setVisible] = useState(false);
 
 	const changeOriginal = (value: number) => {
 		setOriginal(value);
@@ -35,8 +37,9 @@ const CurrencyItem = (props: any) => {
 
 	return (
 		<div className={s.item}>
-			<Title withOffset={true}>{code}</Title>
-			<InlineText withOffset={true}>{`{` + description + '}'}</InlineText>
+			<PlainText>
+				{description}
+			</PlainText>
 			<PlainText>
 				<InlineText withOffset={true}>1</InlineText>
 				<Title>{base}</Title>
@@ -49,15 +52,23 @@ const CurrencyItem = (props: any) => {
 				<InlineText withOffset={true}>= {(1 / rate).toFixed(2)}</InlineText>
 				<Title>{base}</Title>
 			</PlainText>
-			<PlainText>
-				<Title>convert</Title>
-			</PlainText>
 			<div className={s.convert}>
-				<InputNumber className={s.inputNumber} min={0}
-					value={original} onChange={(e) => changeOriginal(+e.target.value)} />
-				<InlineText withOffset={true}>&#8644;</InlineText>
-				<InputNumber className={s.inputNumber} min={0}
-					value={second} onChange={(e) => changeSecond(+e.target.value)} />
+				<Button active={visible} onClick={() => setVisible(!visible)}>convert</Button>
+				{visible &&
+					<>
+						<div>
+							<InputNumber className={s.inputNumber} min={0}
+								value={original} onChange={(e) => changeOriginal(+e.target.value)} />
+							<Title>{base}</Title>
+						</div>
+						<InlineText withOffset={true}>&#8644;</InlineText>
+						<div>
+							<InputNumber className={s.inputNumber} min={0}
+								value={second} onChange={(e) => changeSecond(+e.target.value)} />
+							<Title>{code}</Title>
+						</div>
+					</>
+				}
 			</div>
 			<button className={s.closeBtn} onClick={() => delCurrency()}>X</button>
 		</div>
