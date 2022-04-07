@@ -2,14 +2,13 @@
 @import '../../styles/variables';
 
 .mode {
-	@include maxOffset;
+	@include baseOffset;
 	@include flexEvenly;
 }
 
 .clock {
-	@include maxOffset;
-	width: 80%;
-	margin: 0 auto;
+	margin: $offset-basic * 4 ;
+	padding: $offset-basic * 4 ;
 	font-size: 200px;
 
 	font-family: $font-titles;
@@ -18,12 +17,16 @@
 	text-align: center;
 	color: $light;
 	font-weight: 700;
-	// background-color: transparent;
-	transition: all 0.5s linear;
+	transition: all 0.25s linear;
 	color: transparent;
 	-webkit-text-stroke: 5px $light;
 
-	border-radius: 200px;
+	border-radius: 20px;
+}
+
+.digit{
+	display: inline-block;
+	margin: 0 auto;
 }
 
 .idle {
@@ -72,7 +75,7 @@
 }
 
 .buttons {
-	@include maxOffset;
+	@include baseOffset;
 	@include flexEvenly;
 	width: 50%;
 	margin: 0 auto;
@@ -87,9 +90,9 @@
 	@include baseOffset;
 	background-color: $dark;
 	border-radius: $border-radius-section;
-	border: $offset-basic solid $dark;
+	border: $size-default-border solid $light;
 	margin: 0 auto;
-	width: 40%;
+	width: 50%;
 	position: absolute;
 	z-index: 10;
 	left: 50%;
@@ -99,20 +102,31 @@
 	box-shadow: 2px 2px 200px $orange, -2px -2px 200px $orange;
 }
 
+.settings__title{
+	@include baseOffset;
+	text-transform: uppercase;
+}
+
+.settings__item{
+	@include baseOffset;
+}
+
 
 .closeBtn {
 	margin: 0;
 	padding: 0;
 	background-color: $orange;
+	font-weight: bolder;
+	font-size: 1rem;
 
-	border: $size-section-border solid $orange;
+	border: $size-default-border solid $light;
 	font-weight: bolder;
 	border-radius: 50%;
-	width: 2em;
-	height: 2em;
+	width: 2rem;
+	height: 2rem;
 	position: absolute;
-	top: 0.5em;
-	right: 0.5em;
+	top: 0.5rem;
+	right: 0.5rem;
 
 	&:hover {
 		box-shadow: 5px 5px 25px $green, -5px -5px 25px $green;

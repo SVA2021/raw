@@ -27,7 +27,7 @@ const PomodoroButtons = ({ setTime = (d: number) => console.log(d), ...props }) 
 	}
 
 	const reloadClock = () => {
-		setTime(timers[mode]);
+		setTime(timers[mode] * 60);
 	}
 
 	const skipClock = () => {

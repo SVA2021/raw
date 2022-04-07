@@ -27,9 +27,9 @@ const PomodoroClock = (props: any) => {
 
 	return (
 		<div className={classNames(s.clock, s[clockStyle], finishClockStyle)} >
-			<InlineText>{timeMin}</InlineText>
-			<InlineText withOffset={true}>:</InlineText>
-			<InlineText>{timeSec}</InlineText>
+			<InlineText className={s.digit}>{timeMin}</InlineText>
+			<InlineText className={s.digit} withOffset={true}>:</InlineText>
+			<InlineText className={s.digit}>{timeSec}</InlineText>
 		</div>
 	)
 }

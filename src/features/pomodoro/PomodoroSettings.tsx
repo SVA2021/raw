@@ -43,7 +43,7 @@ const PomodoroSettings = (props: any) => {
 
 	return (
 		<div className={s.settings}>
-			<SubTitle>settings</SubTitle>
+			<SubTitle className={s.settings__title}>settings</SubTitle>
 			<InputRangeModule
 				className={s.settings__item}
 				description={'work'}
@@ -62,8 +62,10 @@ const PomodoroSettings = (props: any) => {
 				value={longBreakTimer} min={longBreakLimit.min} max={longBreakLimit.max}
 				onChangeFunction={(val: number) => setLongBreakTimer(val)}
 			/>
-			<Button onClick={() => setTimers()}>set timers</Button>
-			<Button onClick={() => setDefaultTimers()}>reset</Button>
+			<div className={s.settings__item}>
+				<Button onClick={() => setTimers()}>set timers</Button>
+				<Button onClick={() => setDefaultTimers()}>reset</Button>
+			</div>
 			<Button className={s.closeBtn} onClick={() => closeSettings()}>X</Button>
 		</div>
 	)

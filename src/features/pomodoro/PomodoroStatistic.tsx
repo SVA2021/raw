@@ -6,12 +6,14 @@ import { nextModePomodoro, normalizeSession } from "./pomodoroFunctions";
 import { convertMinuteToHHMM } from "../../app/commonFunctions";
 
 const PomodoroStatistic = () => {
+	
 	const mode = useAppSelector(selectMode);
 	const statistic = useAppSelector(selectStatistic);
 	const nextMode = nextModePomodoro(mode, statistic);
 	const session = normalizeSession(statistic.sessions);
 	const workStat = convertMinuteToHHMM(statistic.work);
 	const relaxStat = convertMinuteToHHMM(statistic.break);
+
 	return (
 		<>
 			<div className={s.statistic}>
@@ -27,8 +29,6 @@ const PomodoroStatistic = () => {
 					<Title>session:</Title>
 					<Highlighted withOffset={true}>{session} / 4</Highlighted>
 				</PlainText>
-			</div>
-			<div className={s.statistic}>
 				<PlainText>
 					<Title>total work time:</Title>
 					<Highlighted withOffset={true}>{workStat}</Highlighted>
