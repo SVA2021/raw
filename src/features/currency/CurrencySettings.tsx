@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import s from './Currency.module.scss';
-import { InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
+import { Highlighted, InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
 import { getDateString } from "../../app/commonFunctions";
 import {
 	addActiveCurrency,
@@ -15,9 +15,6 @@ import {
 } from "./currencySlice";
 import Button from "../../components/common/Button/Button";
 import { getCodeCurrency } from "./currencyFunctions";
-import LinkToOriginal from '../../components/LinkToOriginal';
-
-const CURRENCY_URL = "https://exchangerate.host/#/";
 
 const CurrencySettings = (props: any) => {
 
@@ -48,46 +45,48 @@ const CurrencySettings = (props: any) => {
 		dispatch(getCurrencyListAsync());
 	}
 
+	useEffect(() => setCurrency(), [activeCurrency]);
+
 	return (
 		<div className={s.settings}>
 			<header>
 				<PlainText>
 					<Title>today:</Title>
 					<InlineText withOffset={true}>{today}</InlineText>
+				</PlainText>
+				<PlainText>
 					<Title>currency:</Title>
-					<InlineText withOffset={true}>{currency}</InlineText>
+					<Highlighted withOffset={true}>{currency}</Highlighted>
 				</PlainText>
 			</header>
-			<div>
+			<div className={s.select__wrapper}>
 				<Title>base currency:</Title>
-				<div>
-					<select className={s.selection} onChange={(e) => setActiveCurrencyLocal(e.target.value)} >
+				<label>
+					<select className={s.select} onChange={(e) => setActiveCurrencyLocal(e.target.value)} >
 						{allCurrencyList.map((currencyItem: CurrencyType) =>
 							<option key={currencyItem.description + currencyItem.code} value={currencyItem.code}>
 								{currencyItem.code}
 							</option>
 						)}
 					</select>
-					<Button active={true} withOffset={true} onClick={() => setCurrency()}>Show</Button>
-				</div>
+				</label>
 			</div>
-			<div>
+			<div className={s.select__wrapper}>
 				<Title>second currency:</Title>
-				<div>
-					<select className={s.selection} onChange={(e) => setAdditionCurrencyLocal(e.target.value)} >
+				<label>
+					<select className={s.select__fixed} onChange={(e) => setAdditionCurrencyLocal(e.target.value)} >
 						{allCurrencyList.map((currencyItem: CurrencyType) =>
 							<option key={currencyItem.description + currencyItem.code} value={currencyItem.code}>
 								{currencyItem.code + ' ' + currencyItem.description}
 							</option>
 						)}
 					</select>
-					<Button active={true} withOffset={true} onClick={() => addCurrency()}>Add</Button>
-				</div>
+				</label>
 			</div>
-			<Button active={true} withOffset={true} onClick={() => loadCurrency()}>
-				load full currency list
-			</Button>
-			<LinkToOriginal link={CURRENCY_URL} />
+			<div className={s.buttonArea}>
+				<Button withOffset={true} onClick={() => addCurrency()}>Add</Button>
+				<Button withOffset={true} onClick={() => loadCurrency()}>load full list</Button>
+			</div>
 		</div>
 	)
 }

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { QueryCurrencyType } from "./currencySlice";
 
-const BASE_URL = 'https://api.exchangerate.host/';
+export const BASE_URL = 'https://api.exchangerate.host/';
 const LATEST_DATA = 'latest?';
 const SYMBOLS_DATA = 'symbols';
 

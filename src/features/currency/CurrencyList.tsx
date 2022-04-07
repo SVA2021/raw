@@ -10,12 +10,12 @@ const CurrencyList = (props: any) => {
 	const activeCurrencyList = props.activeCurrencyList;
 
 	return (
-		<div className={s.currencyList}>
+		<div className={s.list}>
 			{activeCurrencyList.map((currency: CurrencyType) => {
 				if (currency.code.toLowerCase() === base.toLowerCase()) return false;
 				return (
 					<CurrencyItem
-						key={base + currency.code + currency.description + Math.random}
+						key={String(Math.random()).toLowerCase()}
 						base={base}
 						code={currency.code}
 						description={currency.description}

@@ -1,49 +1,102 @@
 @import '../../styles/mixins';
 @import '../../styles/variables';
 
-.settings {
-	@include greenDark;
-	@include borderDefault;
-	@include baseOffset;
+.header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
-.currencyList {
-	@include greenDark;
-	@include borderDefault;
-	@include baseOffset;
+.title {
+	display: flex;
+	align-items: center;
+}
+
+.settings {
+	@include minOffset;
+}
+
+.select__wrapper {
+	@include minOffset;
+}
+
+.select {
+	@include minOffset;
+	@include orangeDark;
+	border-radius: $border-radius-default;
+
+	&:hover {
+		box-shadow: 2px 2px 10px $light, -2px -2px 10px $light;
+	}
+
+}
+
+.select__fixed {
+	@include minOffset;
+	@include orangeDark;
+	border-radius: $border-radius-default;
+
+	&:hover {
+		box-shadow: 2px 2px 10px $light, -2px -2px 10px $light;
+	}
+
+	width: 90%;
+}
+
+.buttonArea {
+	margin: $offset-basic 0;
 	display: flex;
 	justify-content: space-evenly;
-	align-items: center;
-	flex-direction: row;
 }
 
-.inputNumber{
-	width: 5em;
+.inputNumber {
+	display: inline-block;
+	width: 5rem;
+	background-color: $dark;
 }
 
-.item{
+.item {
 	@include borderDefault;
-	@include maxOffset;
+	@include baseOffset;
 	@include orangeDark;
-	padding-right: $offset-basic * 12;
 	position: relative;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-basis: auto;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
 }
 
-.closeBtn{
+.closeBtn {
 	@include darkLight;
 
-  border: $size-section-border solid $orange;
+	border: $size-default-border solid $light;
 	border-radius: 50%;
-	width: 2em;
-	height: 2em;
+	width: 1.5rem;
+	height: 1.5rem;
 	position: absolute;
-	top: 0.5em;
-	right: 0.5em;
+	top: 0.5rem;
+	right: 0.5rem;
+
+	&:hover{
+		transform: scale(1.5);
+		transition: transform 0.25s ease-in-out;
+	}
 }
 
-.convert{
+.convert {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
 	justify-content: space-evenly;
+}
+
+.list {
+	display: flex;
+	overflow-y: hidden;
+	overflow-x: auto;
 }
