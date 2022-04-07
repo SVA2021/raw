@@ -24,8 +24,6 @@
 .select {
 	@include minOffset;
 	@include orangeDark;
-
-	display: block;
 	border-radius: $border-radius-default;
 
 	&:hover {
