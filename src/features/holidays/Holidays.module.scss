@@ -13,36 +13,20 @@
 	align-items: center;
 }
 
-
-.fixedLabel {
-	float: right;
-	margin-left: $offset-basic;
-	font-weight: bold;
+.settings {
+	@include minOffset;
 }
 
-// .holidayListWrapper {
-	// overflow-y: scroll;
-	// z-index: 0;
-	// position: relative;
-	// padding: 0 1em;
-// }
-
-// .settings {
-// 	display: block;
-// 	padding: 0 1em;
-// }
-
-.select__country {
-	margin: $offset-basic ;
+.select__wrapper {
+	@include minOffset;
 }
 
-.selection {
+.select {
+	@include minOffset;
+	@include orangeDark;
+
 	display: block;
-	border-radius: $offset-basic * 2;
-	background-color: $orange;
-	color: $dark;
-	margin: $offset-basic ;
-	padding: $offset-basic;
+	border-radius: $border-radius-default;
 
 	&:hover {
 		box-shadow: 2px 2px 10px $light, -2px -2px 10px $light;
@@ -56,25 +40,26 @@
 	justify-content: space-evenly;
 }
 
-.holidayList {
-	// z-index: 1;
-	overflow-y: hidden;
-	// position: absolute;
-	// top: 0;
-	// right: 0.5em;
-	// left: 0.5em;
+.list {
 	display: flex;
+	overflow-y: hidden;
 	overflow-x: auto;
 }
 
-.main {
+.item {
 	@include borderDefault;
 	@include baseOffset;
 	@include greenDark;
 	text-align: left;
 	flex-grow: 1;
 	flex-shrink: 0;
-	flex-basis:  220px;
+	flex-basis: auto;
+}
+
+.label {
+	float: right;
+	margin-left: $offset-basic;
+	font-weight: bold;
 }
 
 .description {

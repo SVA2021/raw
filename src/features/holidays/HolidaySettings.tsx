@@ -62,18 +62,15 @@ const HolidaySettings = (props: any) => {
 					<ReactCountryFlag countryCode={countryCode} svg />
 				</PlainText>
 			</header>
-			<div className={s.select__country}>
+			<div className={s.select__wrapper}>
 				<label>
 					<Title>select country:</Title>
-					<select className={s.selection}
+					<select className={s.select}
 						value={activeCountry}
 						onChange={(e) => setCountryCode(e.target.value)}
 					>
 						{countriesList.map((option: any) =>
-							<option
-								key={option.countryCode.toLowerCase()}
-								value={option.countryCode}
-							>
+							<option key={String(Math.random()).toLowerCase()} value={option.countryCode}>
 								{option.name}
 							</option>
 						)}
@@ -81,13 +78,11 @@ const HolidaySettings = (props: any) => {
 				</label>
 			</div>
 			<div className={s.buttonArea}>
-				<Button active={listMode === 'country'} 
-				onClick={() => showCountry(activeCountry)} >
+				<Button active={listMode === 'country'} onClick={() => showCountry(activeCountry)} >
 					country
 				</Button>
-				<Button active={listMode === 'week'} 
-				onClick={() => showNextWeek()} >
-					Next Week 
+				<Button active={listMode === 'week'} onClick={() => showNextWeek()} >
+					Next Week
 				</Button>
 			</div>
 		</div>
