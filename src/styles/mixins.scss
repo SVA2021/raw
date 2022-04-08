@@ -158,3 +158,11 @@
   background-color: $orange;
   font-weight: bold;
 }
+
+
+// Large devices
+@mixin tablet {
+  @media ( max-width: $mq-xl ) {
+    @content;
+  }
+}
