@@ -3,8 +3,7 @@ import s from './Weather.module.scss';
 import { InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
-	getLocationsListAsync,
-	selectCountry, selectListStatus, setListStatus
+	getLocationsListAsync, selectCountry, selectListStatus, setListStatus
 } from './weatherSlice';
 import LocationList from './LocationList';
 import ReactCountryFlag from 'react-country-flag';

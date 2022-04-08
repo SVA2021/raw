@@ -2,8 +2,7 @@ import { SectionTitle } from "../../components/common/Typography/Typography";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import WeatherSettings from "./WeatherSettings";
 import {
-	getCurrentWeatherAsync,
-	selectCity, selectWeather, selectWeatherQueryStatus
+	getCurrentWeatherAsync,	selectCity, selectWeather, selectWeatherQueryStatus
 } from "./weatherSlice";
 import s from './Weather.module.scss';
 import WeatherItem from "./WeatherItem";

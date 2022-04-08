@@ -1,7 +1,9 @@
 import { weatherAPI } from './weatherAPI';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { CityGeoType, CountryType, LocationGeoType, WeatherStateType, WeatherType } from './weatherTypes';
+import {
+	CityGeoType, CountryType, LocationGeoType, WeatherStateType, WeatherType
+} from './weatherTypes';
 import { convertWeatherData } from './weatherFunctions';
 
 const initialState: WeatherStateType = {
