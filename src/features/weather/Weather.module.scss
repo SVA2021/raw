@@ -1,7 +1,6 @@
 @import '../../styles/mixins';
 @import '../../styles/variables';
 
-
 .header {
 	display: flex;
 	flex-direction: row;
@@ -11,11 +10,21 @@
 
 .main {
 	@include borderDefault;
-	// @include baseOffset;
 	@include greenDark;
 	margin: $offset-basic *2;
 	padding: $offset-basic *2;
 	text-align: left;
+
+	@include tablet {
+
+		margin: $offset-basic *2;
+		padding: $offset-basic *4;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-evenly;
+	}
 }
 
 .fixedLabel {
@@ -30,7 +39,6 @@
 	position: relative;
 	padding: 0 1em;
 	height: 55%;
-
 }
 
 .settings {

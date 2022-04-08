@@ -40,38 +40,40 @@ const WeatherItem = (props: any) => {
 					<InlineText className={s.parameter}>{weather.description}</InlineText>
 				</PlainText>
 			</div>
-			<PlainText>
+			<PlainText withOffset={true}>
 				<Title>feels like:</Title>
 				<InlineText className={s[setColor(weather.feels_like)]} withOffset={true}>
 					{weather.feels_like?.toFixed(1)}&#176;C
 				</InlineText>
 			</PlainText>
-			<PlainText>
+			<PlainText withOffset={true}>
 				<Title>min:</Title>
 				<InlineText className={s[setColor(weather.temp_min)]} withOffset={true}>
 					{weather.temp_min?.toFixed(1)}&#176;C
 				</InlineText>
+			</PlainText>
+			<PlainText withOffset={true}>
 				<Title>max:</Title>
 				<InlineText className={s[setColor(weather.temp_max)]} withOffset={true}>
 					{weather.temp_max?.toFixed(1)}&#176;C
 				</InlineText>
 			</PlainText>
-			<PlainText>
+			<PlainText withOffset={true}>
 				<Title>wind:</Title>
 				<InlineText withOffset={true}>{weather.windSpeed?.toFixed(1)}m/s</InlineText>
 				<InlineText className={s.wind} style={{ transform: `rotate(${weather.windDeg}deg)` }}>
 					&#8593;
 				</InlineText>
 			</PlainText>
-			<PlainText>
+			<PlainText withOffset={true}>
 				<Title>humidity:</Title>
 				<InlineText withOffset={true}>{weather.humidity}%</InlineText>
 			</PlainText>
-			<PlainText>
+			<PlainText withOffset={true}>
 				<Title>pressure:</Title>
 				<InlineText withOffset={true}>{weather.pressure}hPa</InlineText>
 			</PlainText>
-			<PlainText>
+			<PlainText withOffset={true}>
 				<Title>visibility:</Title>
 				<InlineText withOffset={true}>{weather.visibility}m</InlineText>
 			</PlainText>
