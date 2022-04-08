@@ -9,7 +9,7 @@
 .clock {
 	margin: $offset-basic * 4 ;
 	padding: $offset-basic * 4 ;
-	font-size: 200px;
+	font-size: min(25vw, 200px);
 
 	font-family: $font-titles;
 	letter-spacing: 0.1em;
