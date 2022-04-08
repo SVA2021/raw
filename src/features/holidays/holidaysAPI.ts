@@ -1,13 +1,11 @@
 import axios from "axios";
 import { Country } from "./holidaySlice";
-// const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 export const BASE_URL = 'https://date.nager.at';
 const COUNTRIES_LIST_URL = '/api/v3/AvailableCountries';
 const NEXT_WEEK_URL = '/api/v3/NextPublicHolidaysWorldwide';
 const LIST_OF_HOLIDAYS_URL = '/api/v3/PublicHolidays';
 
 const holidayInstance = axios.create({
-	// baseURL: PROXY_URL + BASE_URL,
 	baseURL: BASE_URL,
 });
 
