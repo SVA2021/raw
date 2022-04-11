@@ -1,8 +1,8 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import s from './Currency.module.scss';
 import { InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
-import { delActiveCurrency, selectAllCurrency } from "./currencySlice";
+import { delActiveCurrency, selectAllCurrency, selectBase, selectRatesList } from "./currencySlice";
 import { InputNumber } from '../../components/common/Input/Input';
 import Button from '../../components/common/Button/Button';
 
@@ -10,11 +10,18 @@ const CurrencyItem = (props: any) => {
 	const dispatch = useAppDispatch();
 	const allCurrencyList = useAppSelector(selectAllCurrency);
 
-	const base = props.base;
+	const rates = useAppSelector(selectRatesList);
+	const base = useAppSelector(selectBase);
+	// const base = props.base;
 	const code = props.code;
+	// const code = props.data.code;
 	const rate = props.rate;
-	const description = props.description;
+	// const rate = (rates.code) ? rates.code : 1;
 
+	// const description = props.data.description;
+	const description = props.description;
+	// const [rate, setRate] = useState(0);
+	// useEffect(() => setRate(rates.code),[rates.code])
 	const [original, setOriginal] = useState(1);
 	const [second, setSecond] = useState(rate);
 	const [visible, setVisible] = useState(false);
@@ -37,13 +44,13 @@ const CurrencyItem = (props: any) => {
 
 	return (
 		<div className={s.item}>
-			<PlainText>
+			<PlainText className={s.description}>
 				{description}
 			</PlainText>
 			<PlainText>
 				<InlineText withOffset={true}>1</InlineText>
 				<Title>{base}</Title>
-				<InlineText withOffset={true}>= {rate.toFixed(2)}</InlineText>
+				<InlineText withOffset={true}>= {rate?.toFixed(2)}</InlineText>
 				<Title>{code}</Title>
 			</PlainText>
 			<PlainText>

@@ -16,11 +16,12 @@ const Currency = (props: any) => {
 	const queryStatus = useAppSelector(selectCurrencyQueryStatus);
 	const activeCurrencyList = useAppSelector(selectActiveCurrency);
 	const base = useAppSelector(selectBase);
-	const symbols = getCodeCurrency(activeCurrencyList);
+	// const symbols = getCodeCurrency(activeCurrencyList);
 
-	useEffect(() => {
-		dispatch(getLatestAsync({ base: base, symbols: symbols }))
-	}, [activeCurrencyList]);
+// 	useEffect(() => {
+// 		dispatch(getLatestAsync({ base: base, symbols: symbols }))
+// 	// }, [activeCurrencyList]);
+// }, [base]);
 
 	return (
 		<div className="currency">
@@ -34,7 +35,9 @@ const Currency = (props: any) => {
 			{
 				(queryStatus === 'loading' || queryStatus === 'failed')
 					? <Loading text={queryStatus} />
-					: <CurrencyList activeCurrencyList={activeCurrencyList} />
+					: <CurrencyList 
+					// activeCurrencyList={activeCurrencyList} 
+					/>
 			}
 		</div>
 	)

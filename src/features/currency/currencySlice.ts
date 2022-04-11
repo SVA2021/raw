@@ -3,7 +3,7 @@ import { RootState } from '../../app/store';
 import { currencyAPI } from './currencyAPI';
 
 const initialState: CurrencyStateType = {
-	base: 'RUB',
+	base: 'CNY',
 	allCurrency: [
 		{
 			"description": "Chinese Yuan",
@@ -47,6 +47,7 @@ const initialState: CurrencyStateType = {
 export type CurrencyType = {
 	description: string
 	code: string
+	rate?: number
 }
 
 export type QueryCurrencyType = {
@@ -112,6 +113,9 @@ export const currencySlice = createSlice({
 			.addCase(getLatestAsync.fulfilled, (state, action: PayloadAction<any>) => {
 				state.status = 'idle';
 				state.rates = action.payload.rates;
+				for (const currency of state.activeCurrency) {
+					currency.rate = action.payload.rates[currency.code];
+				}
 			});
 		builder
 			.addCase(getCurrencyListAsync.pending, (state) => {
