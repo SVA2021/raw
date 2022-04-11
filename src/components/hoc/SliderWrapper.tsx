@@ -1,74 +1,77 @@
+import { FC, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
-import { useEffect, useRef, useState } from 'react';
-import { setArray } from '../../app/commonFunctions';
 import Button from '../common/Button/Button';
 import s from './SliderWrapper.module.scss';
 
-const array = setArray(5, []);
-
-const ListItem = (props: any) => {
-	let data = props.data;
-	return (
-		<div className={s.external}>
-			{data}
-		</div>
-	)
+interface TSliderWrapper {
+	array: any[],
+	step: number,
+	Component: any
 }
 
-const SliderWrapper = () => {
+const SliderWrapper: FC<TSliderWrapper> = ({ array, step, Component, ...props }) => {
 
-	const step = 216;
 	const ref: React.RefObject<any> = useRef(null);
-	const ref0: React.RefObject<any> = useRef(null);
-	const ref9: React.RefObject<any> = useRef(null);
-	
+	const firstElemRef: React.RefObject<any> = useRef(null);
+	const lastElemRef: React.RefObject<any> = useRef(null);
+
 	const [pos, setPos] = useState(0);
-	const [minWrap, setMinWrap] = useState(0);
-	const [maxWrap, setMaxWrap] = useState(0);
-	const [min0, setMin0] = useState(0);
-	const [max9, setMax9] = useState(0);
+	const [leftLimit, setLeftLimit] = useState(0);
+	const [rightLimit, setRightLimit] = useState(0);
+	const [firstElemPos, setFirstElemPos] = useState(0);
+	const [lastElemPos, setLastElemPos] = useState(0);
 
 	useEffect(() => {
-		// console.log(ref.current.getBoundingClientRect());
-		setMinWrap(ref.current.getBoundingClientRect().left);
-		setMaxWrap(ref.current.getBoundingClientRect().right);
-		// console.log(minWrap, maxWrap);
-}, [ref.current]);
+		const coord = ref.current.getBoundingClientRect();
+		setLeftLimit(coord.left);
+		setRightLimit(coord.right);
+	}, [ref.current?.offsetWidth]);
 
 	useEffect(() => {
-		// console.log(ref0.current.getBoundingClientRect());
-		setMin0(ref0.current.getBoundingClientRect().left);
-		// console.log(min0);
-	}, [ref0.current]);
+		setFirstElemPos(firstElemRef.current.getBoundingClientRect().x);
+	}, [firstElemRef.current?.offsetLeft]);
 
 	useEffect(() => {
-		// console.log(ref9.current.getBoundingClientRect());
-		setMax9(ref9.current.getBoundingClientRect().right);
-		// console.log(max9);
-	}, [ref9.current]);
+		setLastElemPos(lastElemRef.current.getBoundingClientRect().x);
+	}, [lastElemRef.current?.offsetLeft]);
 
 	const setRef = (ind: number, array: any[]) => {
-		if (ind === 0) return ref0;
-		if (ind === array.length - 1) return ref9;
+		if (ind === 0) return firstElemRef;
+		if (ind === array.length - 1) return lastElemRef;
 		return undefined;
 	}
 
 	const setPrev = () => {
-		console.log(min0, minWrap, step);
-		if (min0 - step < minWrap) return false;
+		if (lastElemPos + step <= rightLimit) return false;
 		setPos(pos - step);
 	}
 
 	const setNext = () => {
-		console.log(max9, maxWrap, step);
-		if (max9 + step > maxWrap) return false;
+		if (firstElemPos >= leftLimit) return false;
 		setPos(pos + step);
 	}
 
 	return (
-		<div className={s.wrapper}>
-			<Button className={classNames(s.btn, s.prev)} onClick={() => setPrev()}>{'<'}</Button>
-			<div className={s.item} ref={ref}>
+		<div className={s.wrapper} ref={ref}>
+			{(array.length > 1) &&
+				<>
+					<Button 
+					active={lastElemPos + step <= rightLimit}
+					className={classNames(s.btn, s.btn__prev)} 
+					onClick={() => setPrev()}
+					>
+						{'<'}
+					</Button>
+					<Button 
+					active={firstElemPos >= leftLimit}
+					className={classNames(s.btn, s.btn__next)} 
+					onClick={() => setNext()}
+					>
+						{'>'}
+					</Button>
+				</>
+			}
+			<div className={s.list} >
 				{array.map((item, index) =>
 					<div
 						ref={setRef(index, array)}
@@ -76,11 +79,10 @@ const SliderWrapper = () => {
 						style={{ left: pos + 'px', flexBasis: step + 'px' }}
 						key={String(Math.random()).toLowerCase()}
 					>
-						<ListItem data={item} />
+						<Component {...item} />
 					</div>
 				)}
 			</div>
-			<Button className={classNames(s.btn, s.next)} onClick={() => setNext()}>{'>'}</Button>
 		</div>
 	);
 }

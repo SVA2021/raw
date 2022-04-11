@@ -2,62 +2,64 @@
 @import '../../styles/mixins.scss';
 
 .wrapper {
-	// @include borderDefault;
-	@include baseOffset;
-	// @include darkLight;
+	position: relative;
+	margin: $offset-basic * 2;
+	padding: $offset-basic *2 $offset-basic * 8;
+	// @include baseOffset;
+	// padding-left: $offset-basic * 8;
+	// padding-right: $offset-basic * 8;
 
+	// @include borderDefault;
+	// @include darkLight;
 	// display: flex;
 	// flex-direction: row;
 	// align-items: center;
 	// justify-content: space-between;
-
-	position: relative;
-	padding-left: $offset-basic * 4;
-	padding-right: $offset-basic * 4;
 	// padding-right: 1rem;
 	// height: 20vw;
-
 }
 
 .btn {
-	// @include borderDefault;
-	// @include baseOffset;
-	// @include orangeDark;
-	// @include flexCenter;
-	// height: 100%;
-	// width: $offset-basic * 8;
-	// font-weight: 700;
-	// text-transform: uppercase;
-	// text-align: center;
-	// writing-mode: vertical-lr;
-	// text-orientation: upright;
-	// cursor: pointer;
-	// width: 100%;
 	position: absolute;
 	top: -$offset-basic;
 	height: 100%;
-	// top: 50%;
-	// transform: translateY(-50%);
 	z-index: 5;
 	opacity: 0.25;
-	// transition: opacity 0.3s ease-in-out;
 
 	&:hover {
 		opacity: 1;
 	}
 }
 
-.prev {
+// @include borderDefault;
+// @include baseOffset;
+// @include orangeDark;
+// @include flexCenter;
+// height: 100%;
+// width: $offset-basic * 8;
+// font-weight: 700;
+// text-transform: uppercase;
+// text-align: center;
+// writing-mode: vertical-lr;
+// text-orientation: upright;
+// cursor: pointer;
+// width: 100%;
+// top: 50%;
+// transform: translateY(-50%);
+// transition: opacity 0.3s ease-in-out;
+
+.btn__prev {
 	left: 0;
 }
 
-.next {
+.btn__next {
 	right: 0;
 }
 
-.item {
+.list {
 	position: relative;
 	display: flex;
+	align-items: center;
 	overflow: hidden;
 	// width: 100%;
 
@@ -67,42 +69,35 @@
 	// width: calc(100% - 64px - 48px);
 }
 
-.internal {
-	// flex: 1 0 auto;
-	display: flex;
-	// position: absolute;
-	overflow: hidden;
+.list__item {
+	flex-shrink: 0;
 	position: relative;
 }
 
 //* class below only for test
 
+// .internal {
+// 	// flex: 1 0 auto;
+// 	display: flex;
+// 	// position: absolute;
+// 	overflow: hidden;
+// 	position: relative;
+// }
 
-.list {
-	display: flex;
-	// overflow: hidden;
-	// overflow-y: hidden;
-	// overflow-x: auto;
-}
 
-.list__item {
-	// @include borderDefault;
-	// @include baseOffset;
-	// @include greenDark;
-	// text-align: center;
-	// flex-grow: 1;
-	// left: 0;
-	flex-shrink: 0;
-	// flex-basis: 100px; // need to change dynamically
-	position: relative;
-	// transition: left 0.5s ease-in;
-	// height: 10vw;
-}
 
-.external {
-	@include borderDefault;
-	@include baseOffset;
-	@include greenDark;
-	text-align: center;
+// .list {
+// 	display: flex;
+// 	// overflow: hidden;
+// 	// overflow-y: hidden;
+// 	// overflow-x: auto;
+// }
 
-}
+
+
+// .external {
+// 	@include borderDefault;
+// 	@include baseOffset;
+// 	@include greenDark;
+// 	text-align: center;
+// }
