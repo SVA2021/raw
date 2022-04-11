@@ -71,6 +71,10 @@
 	justify-content: space-evenly;
 }
 
+.description{
+	width: 75%;
+}
+
 .closeBtn {
 	@include darkLight;
 
