@@ -54,7 +54,9 @@ const CurrencyItem = (props: any) => {
 				<Title>{base}</Title>
 			</PlainText>
 			<div className={s.convert}>
-				<Button active={visible} onClick={() => setVisible(!visible)}>convert</Button>
+				<Button className={s.bordered} active={visible} onClick={() => setVisible(!visible)}>
+					{(visible) ? 'close converter' : 'open converter'}
+				</Button>
 				{visible &&
 					<>
 						<div>
