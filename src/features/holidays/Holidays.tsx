@@ -19,10 +19,11 @@ import LinkToOriginal from "../../components/LinkToOriginal";
 const Holidays = () => {
 
 	const dispatch = useAppDispatch();
+	
 	const today = getDateString('-');
 
-	const queryStatus = useAppSelector(selectHolidayQueryStatus);
-	const holidayList = useAppSelector(selectHolidayList);
+	// const queryStatus = useAppSelector(selectHolidayQueryStatus);
+	// const holidayList = useAppSelector(selectHolidayList);
 	const country = useAppSelector(selectCountry);
 	const holidayListMode = useAppSelector(selectHolidayListMode);
 
@@ -41,7 +42,7 @@ const Holidays = () => {
 				</div>
 				<HolidaySettings today={today} />
 			</header>
-			<HolidaysList queryStatus={queryStatus} holidayList={holidayList} />
+			<HolidaysList />
 		</div>
 	)
 }
