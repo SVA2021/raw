@@ -1,15 +1,9 @@
+import { Highlighted, InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
 import s from './Holidays.module.scss';
 import ReactCountryFlag from "react-country-flag"
-import { Highlighted, InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
-// import { HolidayItemType } from './holidaySlice';
-
-// type HolidayType = {
-// 	holiday: HolidayItemType
-// }
 
 const HolidayItem = (props: any) => {
-	// const props = props.holiday;
-	// debugger
+
 	return (
 		<div className={s.item}>
 			<PlainText>

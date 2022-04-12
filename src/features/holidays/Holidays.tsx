@@ -5,9 +5,7 @@ import {
 	getCountryHolydaysAsync,
 	getHolidayNextWeekAsync,
 	selectCountry,
-	selectHolidayList,
 	selectHolidayListMode,
-	selectHolidayQueryStatus,
 } from "./holidaySlice";
 import { useEffect } from "react";
 import { getDateString } from "../../app/commonFunctions";
@@ -19,13 +17,10 @@ import LinkToOriginal from "../../components/LinkToOriginal";
 const Holidays = () => {
 
 	const dispatch = useAppDispatch();
-	
-	const today = getDateString('-');
-
-	// const queryStatus = useAppSelector(selectHolidayQueryStatus);
-	// const holidayList = useAppSelector(selectHolidayList);
 	const country = useAppSelector(selectCountry);
 	const holidayListMode = useAppSelector(selectHolidayListMode);
+
+	const today = getDateString('-');
 
 	useEffect(() => {
 		(holidayListMode === 'week')
