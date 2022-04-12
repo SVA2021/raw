@@ -10,11 +10,11 @@ interface TSliderWrapper {
 }
 
 const SliderWrapper: FC<TSliderWrapper> = ({ array, step, Component, ...props }) => {
-
+	
 	const ref: React.RefObject<any> = useRef(null);
 	const firstElemRef: React.RefObject<any> = useRef(null);
 	const lastElemRef: React.RefObject<any> = useRef(null);
-
+	
 	const [pos, setPos] = useState(0);
 	const [leftLimit, setLeftLimit] = useState(0);
 	const [rightLimit, setRightLimit] = useState(0);
@@ -28,11 +28,15 @@ const SliderWrapper: FC<TSliderWrapper> = ({ array, step, Component, ...props })
 	}, [ref.current?.offsetWidth]);
 
 	useEffect(() => {
-		setFirstElemPos(firstElemRef.current.getBoundingClientRect().x);
+		if (firstElemRef.current) {
+			setFirstElemPos(firstElemRef.current.getBoundingClientRect().x);
+		}
 	}, [firstElemRef.current?.offsetLeft]);
 
 	useEffect(() => {
-		setLastElemPos(lastElemRef.current.getBoundingClientRect().x);
+		if (lastElemRef.current) {
+			setLastElemPos(lastElemRef.current.getBoundingClientRect().x);
+		}
 	}, [lastElemRef.current?.offsetLeft]);
 
 	const setRef = (ind: number, array: any[]) => {
@@ -55,17 +59,17 @@ const SliderWrapper: FC<TSliderWrapper> = ({ array, step, Component, ...props })
 		<div className={s.wrapper} ref={ref}>
 			{(array.length > 1) &&
 				<>
-					<Button 
-					active={lastElemPos + step <= rightLimit}
-					className={classNames(s.btn, s.btn__prev)} 
-					onClick={() => setPrev()}
+					<Button
+						active={lastElemPos + step <= rightLimit}
+						className={classNames(s.btn, s.btn__prev)}
+						onClick={() => setPrev()}
 					>
 						{'<'}
 					</Button>
-					<Button 
-					active={firstElemPos >= leftLimit}
-					className={classNames(s.btn, s.btn__next)} 
-					onClick={() => setNext()}
+					<Button
+						active={firstElemPos >= leftLimit}
+						className={classNames(s.btn, s.btn__next)}
+						onClick={() => setNext()}
 					>
 						{'>'}
 					</Button>
