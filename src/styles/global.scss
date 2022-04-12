@@ -24,6 +24,8 @@ a {
 .container {
 	@include minOffset;
 	min-width: 524px;
+	width: 98vw;
+	// width: 1200px;
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: min(25%, 268px) auto;
@@ -73,7 +75,7 @@ a {
 	grid-area: holidays;
 	z-index: 1;
 	display: grid;
-	grid-template-columns: max(24%, 250px) auto;
+	grid-template-columns: max(24px, 250px) auto;
 	text-align: center;
 	align-items: center;
 	gap: 2%;
