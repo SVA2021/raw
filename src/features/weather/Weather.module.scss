@@ -89,7 +89,7 @@
 	@include orangeDark;
 
 	&:focus {
-		box-shadow: 5px 5px 50px $green, -5px -5px 50px $green;
+		box-shadow: 5px 5px 25px $green, -5px -5px 25px $green;
 		background-color: $green;
 	}
 }
