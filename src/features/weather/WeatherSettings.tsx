@@ -33,7 +33,7 @@ const WeatherSettings = (props: any) => {
 					<Title withOffset={true}>today:</Title>
 					<InlineText withOffset={true}>{today}</InlineText>
 					<Title withOffset={true}>country:</Title>
-					<ReactCountryFlag countryCode={country.countryCode} svg />
+					<ReactCountryFlag countryCode={country.countryCode} alt={`flag ${country.countryCode}`} svg />
 					<InlineText withOffset={true}>{country.name}</InlineText>
 				</PlainText>
 			</header>
