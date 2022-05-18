@@ -4,6 +4,8 @@ import ReactCountryFlag from "react-country-flag"
 
 const HolidayItem = (props: any) => {
 
+	let altText = `flag ${props.countryCode}`;
+	
 	return (
 		<div className={s.item}>
 			<PlainText>
@@ -14,7 +16,7 @@ const HolidayItem = (props: any) => {
 			<PlainText>
 				<Title>country:</Title>
 				<InlineText withOffset={true}>{props.countryCode}</InlineText>
-				<ReactCountryFlag className={s.fixedLabel} countryCode={props.countryCode} svg />
+				<ReactCountryFlag className={s.fixedLabel} countryCode={props.countryCode} alt={altText} svg />
 			</PlainText>
 			<PlainText>
 				<Title>local name:</Title>

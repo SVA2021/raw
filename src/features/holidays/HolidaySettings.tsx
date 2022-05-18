@@ -59,7 +59,7 @@ const HolidaySettings = (props: any) => {
 				<PlainText>
 					<Title>country:</Title>
 					<InlineText withOffset={true}>{countryName}</InlineText>
-					<ReactCountryFlag countryCode={countryCode} svg />
+					<ReactCountryFlag countryCode={countryCode}  alt={`flag ${countryCode}`} svg />
 				</PlainText>
 			</header>
 			<div className={s.select__wrapper}>
