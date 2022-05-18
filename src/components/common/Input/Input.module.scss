@@ -1,49 +1,49 @@
 @import '../../../styles/variables';
 
 .slider {
-    -webkit-appearance: none;
-    height: 8px;
-    margin: $offset-basic * 2 $offset-basic;
-    background: $orange;
-    border-radius: $border-radius-default;
-    outline: none;
-    opacity: 0.9;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
+	-webkit-appearance: none;
+	height: 8px;
+	margin: $offset-basic * 2 $offset-basic;
+	background: $orange;
+	border-radius: $border-radius-default;
+	outline: none;
+	opacity: 0.9;
+	-webkit-transition: .2s;
+	transition: opacity .2s;
 }
 
 .slider:hover {
-    opacity: 1;
+	opacity: 1;
 }
 
 .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: $light;
-    cursor: pointer;
+	-webkit-appearance: none;
+	appearance: none;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: $light;
+	cursor: pointer;
 }
 
 .number {
-    margin: $offset-basic * 2;
-		padding: $offset-basic * 2;
-		padding-right: $offset-basic;
-    // width: 5em;
-    height: 32px;
-    border-radius: $border-radius-default;
-    background: $orange;
-    color: $light;
-    font-weight: bold;
+	margin: $offset-basic * 2;
+	padding: $offset-basic * 2;
+	padding-right: $offset-basic;
+	// width: 5em;
+	height: 32px;
+	border-radius: $border-radius-default;
+	background: $orange;
+	color: $light;
+	font-weight: bold;
 }
 
 .text {
-    @extend .number;
-    // width: 100px;
+	@extend .number;
+	// width: 100px;
 
-		&::placeholder{
-			color: $green;
-			opacity: 0.75;
-		}
+	&::placeholder {
+		color: $dark;
+		opacity: 0.8;
+	}
 }
