@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/raw/static/css/main.a0aafd0a.css",
-    "main.js": "/raw/static/js/main.54100c22.js",
+    "main.css": "/raw/static/css/main.5b456f71.css",
+    "main.js": "/raw/static/js/main.06953864.js",
     "static/media/earth_globe.svg": "/raw/static/media/earth_globe.58f4a4be701ef5414f9286928e0450da.svg",
     "index.html": "/raw/index.html",
-    "main.a0aafd0a.css.map": "/raw/static/css/main.a0aafd0a.css.map",
-    "main.54100c22.js.map": "/raw/static/js/main.54100c22.js.map"
+    "main.5b456f71.css.map": "/raw/static/css/main.5b456f71.css.map",
+    "main.06953864.js.map": "/raw/static/js/main.06953864.js.map"
   },
   "entrypoints": [
-    "static/css/main.a0aafd0a.css",
-    "static/js/main.54100c22.js"
+    "static/css/main.5b456f71.css",
+    "static/js/main.06953864.js"
   ]
 }
