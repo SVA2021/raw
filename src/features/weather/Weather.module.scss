@@ -8,7 +8,7 @@
 	justify-content: space-evenly;
 }
 
-.main {
+.inner {
 	@include borderDefault;
 	@include greenDark;
 	margin: $offset-basic *2;
@@ -25,47 +25,44 @@
 		align-items: center;
 		justify-content: space-evenly;
 	}
+
 }
 
-.fixedLabel {
-	float: right;
-	margin-left: $offset-basic;
-	font-weight: bold;
-}
+// .fixedLabel {
+// 	float: right;
+// 	margin-left: $offset-basic;
+// 	font-weight: bold;
+// }
 
-.holidayListWrapper {
-	overflow-y: scroll;
-	z-index: 0;
-	position: relative;
-	padding: 0 1em;
-	height: 55%;
-}
+// .holidayListWrapper {
+// 	overflow-y: scroll;
+// 	z-index: 0;
+// 	position: relative;
+// 	padding: 0 1em;
+// 	height: 55%;
+// }
 
 .settings {
 	padding: 0 1em;
 }
 
-.selection {
-	width: calc(100% - 2em);
+// .selection {
+// 	width: calc(100% - 2em);
+// }
+
+.textInput {
+	width: 90%;
+	margin: 0 auto;
 }
 
-.holidayList {
-	z-index: 1;
-	overflow-y: hidden;
-	position: absolute;
-	top: 0;
-	right: 0.5em;
-	left: 0.5em;
-}
-
-.wind {
-	display: inline-block;
-	margin: $offset-basic;
-	padding: $offset-basic;
-	font-size: 1.5rem;
-	font-weight: bolder;
-	color: $dark;
-}
+// .holidayList {
+// 	z-index: 1;
+// 	overflow-y: hidden;
+// 	position: absolute;
+// 	top: 0;
+// 	right: 0.5em;
+// 	left: 0.5em;
+// }
 
 .modal {
 	@include borderDefault;
@@ -100,9 +97,10 @@
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: top center;
+	flex: 1 0 auto;
 }
 
-.description {
+.main {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -110,11 +108,19 @@
 	text-align: center;
 }
 
-.parameter {
+.description {
 	padding: $offset-basic;
 	display: block;
 	text-transform: capitalize;
 	font-weight: bold;
+}
+
+.parameter {
+	margin: calc($offset-basic /2);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .temperature {
@@ -122,27 +128,35 @@
 	padding: $offset-basic * 2;
 	font-size: 1.5rem;
 	border-radius: $border-radius-default;
+	border: 2px solid $dark;
 }
 
-.textInput {
-	width: 90%;
-	margin: 0 auto;
+.border {
+	padding: 1px;
+	border: 2px solid $dark;
+	border-radius: $border-radius-default;
 }
 
 .cold {
 	color: $light;
 	background-color: $dark;
-	border: 1px solid $light;
 }
 
 .warm {
 	color: $orange;
 	background-color: $green;
-	border: 1px solid $orange;
 }
 
 .hot {
 	color: $light;
 	background-color: $orange;
-	border: 1px solid $light;
+}
+
+.wind {
+	display: inline-block;
+	margin: $offset-basic;
+	padding: $offset-basic;
+	font-size: 1.5rem;
+	font-weight: bolder;
+	color: $dark;
 }

@@ -22,7 +22,7 @@ const WeatherItem = (props: any) => {
 	if (weather.description === 'no data') return <Loading text={weather.description} />
 
 	return (
-		<div className={s.main}>
+		<div className={s.inner}>
 			<PlainText>
 				<Title withOffset={true}>date:</Title>
 				{date}
@@ -31,49 +31,51 @@ const WeatherItem = (props: any) => {
 				<Title withOffset={true}>city:</Title>
 				{weather.name}
 			</PlainText>
-			<div className={s.description}>
+			<div className={s.main}>
 				<div className={s.icon} style={{ backgroundImage: `url(${iconURL})` }}></div>
 				<PlainText >
 					<InlineText className={classNames(s.temperature, s[setColor(weather.temp)])} >
 						{weather.temp?.toFixed(1)}&#176;C
 					</InlineText>
-					<InlineText className={s.parameter}>{weather.description}</InlineText>
+					<InlineText className={s.description}>{weather.description}</InlineText>
 				</PlainText>
 			</div>
-			<PlainText withOffset={true}>
+			<PlainText withOffset={true} className={s.parameter}>
 				<Title>feels like:</Title>
-				<InlineText className={s[setColor(weather.feels_like)]} withOffset={true}>
+				<InlineText className={classNames(s.border, s[setColor(weather.feels_like)])} withOffset={true}>
 					{weather.feels_like?.toFixed(1)}&#176;C
 				</InlineText>
 			</PlainText>
-			<PlainText withOffset={true}>
+			<PlainText withOffset={true} className={s.parameter}>
 				<Title>min:</Title>
-				<InlineText className={s[setColor(weather.temp_min)]} withOffset={true}>
+				<InlineText className={classNames(s.border, s[setColor(weather.temp_min)])} withOffset={true}>
 					{weather.temp_min?.toFixed(1)}&#176;C
 				</InlineText>
 			</PlainText>
-			<PlainText withOffset={true}>
+			<PlainText withOffset={true} className={s.parameter}>
 				<Title>max:</Title>
-				<InlineText className={s[setColor(weather.temp_max)]} withOffset={true}>
+				<InlineText className={classNames(s.border, s[setColor(weather.temp_max)])} withOffset={true}>
 					{weather.temp_max?.toFixed(1)}&#176;C
 				</InlineText>
 			</PlainText>
-			<PlainText withOffset={true}>
+			<PlainText withOffset={true} className={s.parameter}>
 				<Title>wind:</Title>
-				<InlineText withOffset={true}>{weather.windSpeed?.toFixed(1)}m/s</InlineText>
-				<InlineText className={s.wind} style={{ transform: `rotate(${weather.windDeg}deg)` }}>
-					&#8593;
+				<InlineText withOffset={true}>
+					<InlineText className={s.wind} style={{ transform: `rotate(${weather.windDeg}deg)` }}>
+						&#8593;
+					</InlineText>
+					{weather.windSpeed?.toFixed(1)}m/s
 				</InlineText>
 			</PlainText>
-			<PlainText withOffset={true}>
+			<PlainText withOffset={true} className={s.parameter}>
 				<Title>humidity:</Title>
 				<InlineText withOffset={true}>{weather.humidity}%</InlineText>
 			</PlainText>
-			<PlainText withOffset={true}>
+			<PlainText withOffset={true} className={s.parameter}>
 				<Title>pressure:</Title>
 				<InlineText withOffset={true}>{weather.pressure}hPa</InlineText>
 			</PlainText>
-			<PlainText withOffset={true}>
+			<PlainText withOffset={true} className={s.parameter}>
 				<Title>visibility:</Title>
 				<InlineText withOffset={true}>{weather.visibility}m</InlineText>
 			</PlainText>
