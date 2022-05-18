@@ -2,7 +2,7 @@ import { iconIDType, WeatherType } from "./weatherTypes";
 
 export const getWeatherIconURL = (iconID: iconIDType, multi: number = 2) => {
 	if (!iconID) return 'none';
-	return `http://openweathermap.org/img/wn/${iconID}@${multi}x.png`
+	return `https://openweathermap.org/img/wn/${iconID}@${multi}x.png`
 }
 
 export const convertWeatherData = (response: any) => {
