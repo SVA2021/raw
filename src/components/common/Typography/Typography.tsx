@@ -15,9 +15,9 @@ export const HeroTitle: FC<any> = ({ children }) => (
 );
 
 export const SectionTitle: FC<any> = ({ children }) => (
-	<h3 className={s.sectionTitle}>
+	<h2 className={s.sectionTitle}>
 		{children}
-	</h3>
+	</h2>
 );
 
 export const SubTitleUpper: FC<any> = ({ children }) => (
