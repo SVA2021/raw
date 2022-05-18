@@ -85,8 +85,13 @@
 	position: absolute;
 	top: 0.5rem;
 	right: 0.5rem;
+	font-size: 1rem;
+	box-shadow: none;
+	margin: 0;
+	padding: 0;
 
 	&:hover {
+		box-shadow: none;
 		transform: scale(1.5);
 		transition: transform 0.25s ease-in-out;
 	}

@@ -73,7 +73,7 @@ const CurrencyItem = (props: any) => {
 					</>
 				}
 			</div>
-			<button className={s.closeBtn} onClick={() => delCurrency()}>X</button>
+			<Button className={s.closeBtn} onClick={() => delCurrency()}>&times;</Button>
 		</div>
 	)
 }
