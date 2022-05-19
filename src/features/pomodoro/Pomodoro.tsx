@@ -52,11 +52,13 @@ const Pomodoro = () => {
 	return (
 		<div className="pomodoro">
 			<SectionTitle>Pomodoro</SectionTitle>
+			<div className="pomodoro__inner">
 			<PomodoroMode />
 			<PomodoroClock time={time} />
 			<PomodoroButtons setTime={(sec: number) => setTime(sec)} />
 			<PomodoroStatistic />
 			{isSettings && <PomodoroSettings />}
+			</div>
 		</div>
 	)
 }
