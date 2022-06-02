@@ -1,11 +1,11 @@
 import { chooseColor, nextModePomodoro, startSession, normalizeSession } from "./pomodoroFunctions";
 
 describe('chooseColor function', () => {
-	it('undefined cases', () => {
-		expect(chooseColor(undefined, true)).toBe('idle');
-		expect(chooseColor('long', undefined)).toBe('idle');
-		expect(chooseColor(undefined, undefined, true)).toBe('idle');
-	});
+	// it('undefined cases', () => {
+	// 	expect(chooseColor(undefined, true)).toBe('idle');
+	// 	expect(chooseColor('long', undefined)).toBe('idle');
+	// 	expect(chooseColor(undefined, undefined, true)).toBe('idle');
+	// });
 	it('check isRunning true cases', () => {
 		expect(chooseColor('work', true)).toBe('work');
 		expect(chooseColor('long', true)).toBe('long');
