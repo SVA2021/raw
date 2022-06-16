@@ -1,12 +1,13 @@
-import { SectionTitle } from "../../components/common/Typography/Typography";
 import { useAppSelector } from '../../app/hooks';
 import Loading from "../../components/common/Loading/Loading";
+import { SectionTitle } from "../../components/common/Typography/Typography";
+import LinkToOriginal from "../../components/LinkToOriginal";
+import s from './Currency.module.scss';
+import CurrencyList from "./CurrencyList";
 import CurrencySettings from "./CurrencySettings";
 import { selectCurrencyQueryStatus } from "./currencySlice";
-import CurrencyList from "./CurrencyList";
-import s from './Currency.module.scss';
-import { BASE_URL } from "./currencyAPI";
-import LinkToOriginal from "../../components/LinkToOriginal";
+
+const BASE_URL = 'https://exchangerate.host/';
 
 const Currency = (props: any) => {
 
