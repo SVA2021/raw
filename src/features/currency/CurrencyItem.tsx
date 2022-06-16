@@ -1,20 +1,18 @@
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useState } from "react";
-import s from './Currency.module.scss';
-import { InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
-import { delActiveCurrency, selectAllCurrency, selectBase, } from "./currencySlice";
-import { InputNumber } from '../../components/common/Input/Input';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Button from '../../components/common/Button/Button';
+import { InputNumber } from '../../components/common/Input/Input';
+import { InlineText, PlainText, Title } from '../../components/common/Typography/Typography';
+import s from './Currency.module.scss';
+import { CurrencyType, delActiveCurrency, selectAllCurrency, selectBase } from "./currencySlice";
 
-const CurrencyItem = (props: any) => {
+const CurrencyItem = (props: CurrencyType) => {
 
 	const dispatch = useAppDispatch();
 	const base = useAppSelector(selectBase);
 	const allCurrencyList = useAppSelector(selectAllCurrency);
 
-	const code = props.code;
-	const rate = props.rate;
-	const description = props.description;
+	const {code, description, rate = 1} = props;
 
 	const [original, setOriginal] = useState(1);
 	const [second, setSecond] = useState(rate);
